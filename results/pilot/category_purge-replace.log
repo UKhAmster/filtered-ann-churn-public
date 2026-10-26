@@ -1,0 +1,36 @@
+   base   none step=     0 recall=0.9870 p5=0.900 lat=0.16ms wall=4s
+   base   wide step=     0 recall=0.9987 p5=1.000 lat=0.49ms wall=4s
+   base narrow step=     0 recall=1.0000 p5=1.000 lat=5.52ms wall=4s
+  c9999   none step= 10000 recall=0.9840 p5=0.900 lat=0.16ms wall=19s
+  c9999   wide step= 10000 recall=0.9960 p5=1.000 lat=0.45ms wall=19s
+  c9999 narrow step= 10000 recall=1.0000 p5=1.000 lat=5.04ms wall=20s
+ c19999   none step= 20000 recall=0.9837 p5=0.900 lat=0.16ms wall=30s
+ c19999   wide step= 20000 recall=0.9957 p5=1.000 lat=0.44ms wall=30s
+ c19999 narrow step= 20000 recall=1.0000 p5=1.000 lat=5.11ms wall=31s
+ c29999   none step= 30000 recall=0.9813 p5=0.900 lat=0.16ms wall=37s
+ c29999   wide step= 30000 recall=0.9963 p5=1.000 lat=0.46ms wall=37s
+ c29999 narrow step= 30000 recall=1.0000 p5=1.000 lat=5.27ms wall=38s
+ c39999   none step= 40000 recall=0.9847 p5=0.900 lat=0.17ms wall=44s
+ c39999   wide step= 40000 recall=0.9967 p5=1.000 lat=0.47ms wall=45s
+ c39999 narrow step= 40000 recall=1.0000 p5=1.000 lat=5.43ms wall=45s
+ c49999   none step= 50000 recall=0.9850 p5=0.900 lat=0.17ms wall=52s
+ c49999   wide step= 50000 recall=0.9960 p5=1.000 lat=0.48ms wall=52s
+ c49999 narrow step= 50000 recall=1.0000 p5=1.000 lat=5.60ms wall=53s
+ c59999   none step= 60000 recall=0.9790 p5=0.900 lat=0.17ms wall=59s
+ c59999   wide step= 60000 recall=0.9980 p5=1.000 lat=0.49ms wall=60s
+ c59999 narrow step= 60000 recall=1.0000 p5=1.000 lat=5.68ms wall=60s
+ c69999   none step= 70000 recall=0.9757 p5=0.900 lat=0.18ms wall=67s
+ c69999   wide step= 70000 recall=0.9970 p5=1.000 lat=0.49ms wall=68s
+ c69999 narrow step= 70000 recall=1.0000 p5=1.000 lat=5.79ms wall=68s
+ c79999   none step= 80000 recall=0.9750 p5=0.800 lat=0.18ms wall=76s
+ c79999   wide step= 80000 recall=0.9983 p5=1.000 lat=0.50ms wall=77s
+ c79999 narrow step= 80000 recall=1.0000 p5=1.000 lat=5.90ms wall=77s
+ c89999   none step= 90000 recall=0.9780 p5=0.900 lat=0.18ms wall=84s
+ c89999   wide step= 90000 recall=0.9970 p5=1.000 lat=0.51ms wall=85s
+ c89999 narrow step= 90000 recall=1.0000 p5=1.000 lat=5.95ms wall=85s
+ c99999   none step=100000 recall=0.9817 p5=0.900 lat=0.18ms wall=93s
+ c99999   wide step=100000 recall=0.9963 p5=1.000 lat=0.52ms wall=93s
+ c99999 narrow step=100000 recall=1.0000 p5=1.000 lat=6.08ms wall=94s
+rebuild   none step=100000 recall=0.9830 p5=0.900 lat=0.18ms wall=8s
+rebuild   wide step=100000 recall=0.9967 p5=1.000 lat=0.50ms wall=8s
+rebuild narrow step=100000 recall=1.0000 p5=1.000 lat=5.94ms wall=8s

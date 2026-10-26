@@ -1,0 +1,60 @@
+checkpoint 0 deleted=0
+checkpoint 1 deleted=30000
+checkpoint 2 deleted=60000
+checkpoint 3 deleted=90000
+checkpoint 4 deleted=120000
+checkpoint 5 deleted=150000
+checkpoint 6 deleted=180000
+checkpoint 7 deleted=210000
+checkpoint 8 deleted=240000
+checkpoint 9 deleted=270000
+checkpoint 10 deleted=300000
+   base   none step=     0 recall=0.9893 p5=0.900 lat=0.23ms cmps=1600
+   base   wide step=     0 recall=0.9953 p5=1.000 lat=0.98ms cmps=5622
+   base narrow step=     0 recall=0.9963 p5=1.000 lat=9.66ms cmps=37558
+   base   tiny step=     0 recall=0.9960 p5=1.000 lat=25.97ms cmps=74099
+ c29999   none step= 30000 recall=0.9890 p5=0.900 lat=0.23ms cmps=1642
+ c29999   wide step= 30000 recall=0.9963 p5=1.000 lat=1.03ms cmps=5906
+ c29999 narrow step= 30000 recall=0.9963 p5=1.000 lat=10.47ms cmps=40283
+ c29999   tiny step= 30000 recall=0.9963 p5=1.000 lat=24.75ms cmps=72625
+ c59999   none step= 60000 recall=0.9933 p5=0.900 lat=0.24ms cmps=1663
+ c59999   wide step= 60000 recall=0.9993 p5=1.000 lat=1.03ms cmps=6025
+ c59999 narrow step= 60000 recall=0.9977 p5=1.000 lat=10.79ms cmps=41746
+ c59999   tiny step= 60000 recall=0.9953 p5=1.000 lat=24.67ms cmps=73037
+ c89999   none step= 90000 recall=0.9923 p5=0.900 lat=0.24ms cmps=1672
+ c89999   wide step= 90000 recall=0.9980 p5=1.000 lat=1.04ms cmps=6055
+ c89999 narrow step= 90000 recall=0.9983 p5=1.000 lat=10.87ms cmps=42038
+ c89999   tiny step= 90000 recall=0.9970 p5=1.000 lat=26.00ms cmps=75218
+c119999   none step=120000 recall=0.9920 p5=0.900 lat=0.24ms cmps=1678
+c119999   wide step=120000 recall=0.9983 p5=1.000 lat=1.06ms cmps=6062
+c119999 narrow step=120000 recall=0.9990 p5=1.000 lat=11.12ms cmps=42571
+c119999   tiny step=120000 recall=0.9993 p5=1.000 lat=26.95ms cmps=76719
+c149999   none step=150000 recall=0.9900 p5=0.900 lat=0.24ms cmps=1675
+c149999   wide step=150000 recall=0.9977 p5=1.000 lat=1.05ms cmps=6070
+c149999 narrow step=150000 recall=0.9983 p5=1.000 lat=11.13ms cmps=42684
+c149999   tiny step=150000 recall=0.9990 p5=1.000 lat=27.31ms cmps=77335
+c179999   none step=180000 recall=0.9933 p5=0.900 lat=0.24ms cmps=1679
+c179999   wide step=180000 recall=0.9983 p5=1.000 lat=1.05ms cmps=6078
+c179999 narrow step=180000 recall=0.9987 p5=1.000 lat=11.16ms cmps=42598
+c179999   tiny step=180000 recall=0.9990 p5=1.000 lat=26.33ms cmps=76043
+c209999   none step=210000 recall=0.9893 p5=0.900 lat=0.24ms cmps=1680
+c209999   wide step=210000 recall=0.9987 p5=1.000 lat=1.05ms cmps=6067
+c209999 narrow step=210000 recall=0.9987 p5=1.000 lat=10.92ms cmps=42026
+c209999   tiny step=210000 recall=0.9977 p5=1.000 lat=26.38ms cmps=75747
+c239999   none step=240000 recall=0.9917 p5=0.900 lat=0.24ms cmps=1684
+c239999   wide step=240000 recall=0.9973 p5=1.000 lat=1.07ms cmps=6131
+c239999 narrow step=240000 recall=0.9987 p5=1.000 lat=10.55ms cmps=40884
+c239999   tiny step=240000 recall=0.9967 p5=1.000 lat=26.43ms cmps=75463
+c269999   none step=270000 recall=0.9940 p5=1.000 lat=0.24ms cmps=1674
+c269999   wide step=270000 recall=0.9983 p5=1.000 lat=1.07ms cmps=6120
+c269999 narrow step=270000 recall=0.9983 p5=1.000 lat=11.02ms cmps=42265
+c269999   tiny step=270000 recall=0.9973 p5=1.000 lat=26.10ms cmps=75119
+c299999   none step=300000 recall=0.9937 p5=0.995 lat=0.24ms cmps=1669
+c299999   wide step=300000 recall=0.9960 p5=1.000 lat=1.05ms cmps=6062
+c299999 narrow step=300000 recall=0.9960 p5=1.000 lat=10.73ms cmps=41586
+c299999   tiny step=300000 recall=0.9997 p5=1.000 lat=26.75ms cmps=76392
+checkpoint 0 deleted=0
+rebuild   none step=     0 recall=0.9943 p5=0.900 lat=0.23ms cmps=1618
+rebuild   wide step=     0 recall=0.9963 p5=1.000 lat=1.01ms cmps=5681
+rebuild narrow step=     0 recall=0.9963 p5=1.000 lat=10.60ms cmps=39925
+rebuild   tiny step=     0 recall=0.9997 p5=1.000 lat=26.82ms cmps=75262

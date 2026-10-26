@@ -1,0 +1,10 @@
+# Драйвер протокола поверх собранного образа Filtered-DiskANN (см. Dockerfile).
+# Цель добавляется в apps/CMakeLists.txt и собирается той же сборкой, что и
+# штатные приложения, чтобы получить те же флаги и зависимости.
+# Сборка из каталога adapters/: docker build -f filtered_diskann/Dockerfile.driver -t fanndyn-filtered_diskann:driver .
+FROM fanndyn-filtered_diskann:smoke
+COPY common/fanndyn_io.h /src/apps/fanndyn_io.h
+COPY filtered_diskann/fanndyn_driver.cpp /src/apps/fanndyn_driver.cpp
+RUN printf "\nadd_executable(fanndyn_driver fanndyn_driver.cpp)\ntarget_link_libraries(fanndyn_driver \${PROJECT_NAME} \${DISKANN_TOOLS_TCMALLOC_LINK_OPTIONS})\n" >> /src/apps/CMakeLists.txt \
+    && cd /src/build && cmake .. > /dev/null && make -j"$(nproc)" fanndyn_driver
+ENTRYPOINT ["/src/build/apps/fanndyn_driver"]

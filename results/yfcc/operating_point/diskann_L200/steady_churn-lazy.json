@@ -1,0 +1,53 @@
+{
+  "scenario": "steady_churn",
+  "dataset": "yfcc",
+  "labels": "zipf",
+  "method": "diskann",
+  "mode": "lazy",
+  "data": "/home/dev/data/yfcc",
+  "work": "/tmp/ysw",
+  "n_base": "100000",
+  "n_ops": "1",
+  "checkpoint_every": "1",
+  "consolidate_every": "10000",
+  "n_queries": "300",
+  "k": "10",
+  "R": "32",
+  "L_build": "100",
+  "L_search": "200",
+  "threads": "8",
+  "hnsw_M": "16",
+  "hnsw_ef_construction": "200",
+  "acorn_M": "32",
+  "acorn_gamma": "12",
+  "acorn_M_beta": "64",
+  "ef_search": "64",
+  "rebuild_at": "0.2",
+  "ung_entry_points": "16",
+  "ung_fetch": "50",
+  "probe_list": "False",
+  "seed": "7",
+  "out": "results/yfcc/operating_point/diskann_L200",
+  "generator_version": "2",
+  "label_seed": 11,
+  "image": "fanndyn-filtered_diskann:driver",
+  "tags": {
+    "wide": 29,
+    "narrow": 345,
+    "tiny": 103,
+    "purge": 11
+  },
+  "tag_share": {
+    "wide": 0.1908780912190878,
+    "narrow": 0.011589884101158989,
+    "tiny": 0.004009959900400996,
+    "purge": 0.06950930490695093
+  },
+  "reduced_labels": {
+    "wide": 0,
+    "narrow": 1,
+    "tiny": 2,
+    "purge": 3,
+    "other": 4
+  }
+}

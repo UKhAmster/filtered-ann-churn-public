@@ -1,0 +1,64 @@
+L2: Using AVX2 distance computation DistanceL2Float
+Index start points set: #5
+checkpoint 0 pending=0 consolidations=0
+checkpoint 1 pending=7648 consolidations=0
+checkpoint 2 pending=8359 consolidations=0
+checkpoint 3 pending=9024 consolidations=0
+checkpoint 4 pending=9765 consolidations=0
+checkpoint 5 pending=10482 consolidations=0
+checkpoint 6 pending=11179 consolidations=0
+checkpoint 7 pending=11924 consolidations=0
+checkpoint 8 pending=12631 consolidations=0
+checkpoint 9 pending=13349 consolidations=0
+checkpoint 10 pending=14035 consolidations=0
+   base   none step=     0 recall=0.9920 p5=0.900 lat=0.31ms cmps=1653
+   base   wide step=     0 recall=0.9870 p5=0.900 lat=0.22ms cmps=717
+   base narrow step=     0 recall=0.9133 p5=0.700 lat=0.10ms cmps=266
+   base   tiny step=     0 recall=0.8643 p5=0.600 lat=0.07ms cmps=202
+  c9999   none step= 10000 recall=0.9933 p5=0.900 lat=0.32ms cmps=1668
+  c9999   wide step= 10000 recall=0.9837 p5=0.900 lat=0.23ms cmps=729
+  c9999 narrow step= 10000 recall=0.9083 p5=0.600 lat=0.10ms cmps=269
+  c9999   tiny step= 10000 recall=0.8507 p5=0.600 lat=0.07ms cmps=206
+ c19999   none step= 20000 recall=0.9923 p5=0.900 lat=0.31ms cmps=1679
+ c19999   wide step= 20000 recall=0.9840 p5=0.900 lat=0.23ms cmps=725
+ c19999 narrow step= 20000 recall=0.8933 p5=0.600 lat=0.10ms cmps=263
+ c19999   tiny step= 20000 recall=0.8363 p5=0.600 lat=0.08ms cmps=211
+ c29999   none step= 30000 recall=0.9917 p5=0.900 lat=0.32ms cmps=1695
+ c29999   wide step= 30000 recall=0.9877 p5=0.900 lat=0.24ms cmps=733
+ c29999 narrow step= 30000 recall=0.8960 p5=0.600 lat=0.10ms cmps=269
+ c29999   tiny step= 30000 recall=0.8457 p5=0.600 lat=0.08ms cmps=213
+ c39999   none step= 40000 recall=0.9927 p5=0.900 lat=0.33ms cmps=1706
+ c39999   wide step= 40000 recall=0.9847 p5=0.900 lat=0.25ms cmps=741
+ c39999 narrow step= 40000 recall=0.8847 p5=0.595 lat=0.11ms cmps=268
+ c39999   tiny step= 40000 recall=0.8570 p5=0.600 lat=0.08ms cmps=218
+ c49999   none step= 50000 recall=0.9913 p5=0.900 lat=0.33ms cmps=1723
+ c49999   wide step= 50000 recall=0.9843 p5=0.900 lat=0.26ms cmps=752
+ c49999 narrow step= 50000 recall=0.8833 p5=0.500 lat=0.11ms cmps=274
+ c49999   tiny step= 50000 recall=0.8580 p5=0.600 lat=0.08ms cmps=224
+ c59999   none step= 60000 recall=0.9927 p5=0.900 lat=0.34ms cmps=1734
+ c59999   wide step= 60000 recall=0.9833 p5=0.900 lat=0.26ms cmps=752
+ c59999 narrow step= 60000 recall=0.8757 p5=0.600 lat=0.11ms cmps=271
+ c59999   tiny step= 60000 recall=0.8430 p5=0.600 lat=0.08ms cmps=220
+ c69999   none step= 70000 recall=0.9927 p5=0.900 lat=0.34ms cmps=1747
+ c69999   wide step= 70000 recall=0.9827 p5=0.900 lat=0.27ms cmps=756
+ c69999 narrow step= 70000 recall=0.8747 p5=0.600 lat=0.11ms cmps=278
+ c69999   tiny step= 70000 recall=0.8200 p5=0.500 lat=0.09ms cmps=218
+ c79999   none step= 80000 recall=0.9930 p5=0.900 lat=0.35ms cmps=1753
+ c79999   wide step= 80000 recall=0.9817 p5=0.900 lat=0.28ms cmps=761
+ c79999 narrow step= 80000 recall=0.8743 p5=0.595 lat=0.11ms cmps=281
+ c79999   tiny step= 80000 recall=0.8087 p5=0.400 lat=0.09ms cmps=223
+ c89999   none step= 90000 recall=0.9917 p5=0.900 lat=0.34ms cmps=1759
+ c89999   wide step= 90000 recall=0.9813 p5=0.900 lat=0.28ms cmps=763
+ c89999 narrow step= 90000 recall=0.8693 p5=0.500 lat=0.12ms cmps=278
+ c89999   tiny step= 90000 recall=0.7960 p5=0.400 lat=0.09ms cmps=233
+ c99999   none step=100000 recall=0.9917 p5=0.900 lat=0.35ms cmps=1768
+ c99999   wide step=100000 recall=0.9817 p5=0.900 lat=0.30ms cmps=776
+ c99999 narrow step=100000 recall=0.8647 p5=0.600 lat=0.12ms cmps=283
+ c99999   tiny step=100000 recall=0.7933 p5=0.400 lat=0.09ms cmps=230
+L2: Using AVX2 distance computation DistanceL2Float
+Index start points set: #5
+checkpoint 0 pending=0 consolidations=0
+rebuild   none step=     0 recall=0.9930 p5=0.900 lat=0.35ms cmps=1777
+rebuild   wide step=     0 recall=0.9860 p5=0.900 lat=0.29ms cmps=804
+rebuild narrow step=     0 recall=0.9310 p5=0.700 lat=0.12ms cmps=329
+rebuild   tiny step=     0 recall=0.8850 p5=0.600 lat=0.10ms cmps=260

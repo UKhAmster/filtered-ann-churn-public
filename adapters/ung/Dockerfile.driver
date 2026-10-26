@@ -1,0 +1,8 @@
+# Драйвер протокола поверх собранного образа UNG (см. Dockerfile).
+# Сборка из каталога adapters/: docker build -f ung/Dockerfile.driver -t fanndyn-ung:driver .
+FROM fanndyn-ung:smoke
+COPY common/fanndyn_io.h /src/codes/apps/fanndyn_io.h
+COPY ung/fanndyn_driver.cpp /src/codes/apps/fanndyn_driver.cpp
+RUN printf "\nadd_executable(fanndyn_driver fanndyn_driver.cpp)\ntarget_link_libraries(fanndyn_driver \${PROJECT_NAME} Vamana Boost::program_options Boost::filesystem)\n" >> /src/codes/apps/CMakeLists.txt \
+    && cd /src/build && cmake ../codes > /dev/null && make -j"$(nproc)" fanndyn_driver
+ENTRYPOINT ["/src/build/apps/fanndyn_driver"]

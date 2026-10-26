@@ -1,0 +1,52 @@
+L2: Using AVX2 distance computation DistanceL2Float
+Index start points set: #20
+checkpoint 0 pending=0 consolidations=0
+checkpoint 1 pending=15103 consolidations=0
+checkpoint 2 pending=16491 consolidations=0
+checkpoint 3 pending=17855 consolidations=0
+checkpoint 4 pending=19188 consolidations=0
+checkpoint 5 pending=20667 consolidations=0
+checkpoint 6 pending=22058 consolidations=0
+checkpoint 7 pending=23419 consolidations=0
+checkpoint 8 pending=24811 consolidations=0
+checkpoint 9 pending=26252 consolidations=0
+checkpoint 10 pending=27701 consolidations=0
+   base   none step=     0 recall=0.9987 p5=1.000 lat=0.60ms
+   base   wide step=     0 recall=0.9880 p5=0.900 lat=0.44ms
+   base narrow step=     0 recall=0.0013 p5=0.000 lat=0.01ms
+  c9999   none step= 10000 recall=0.9977 p5=1.000 lat=0.62ms
+  c9999   wide step= 10000 recall=0.9867 p5=0.900 lat=0.45ms
+  c9999 narrow step= 10000 recall=0.0007 p5=0.000 lat=0.01ms
+ c19999   none step= 20000 recall=0.9983 p5=1.000 lat=0.64ms
+ c19999   wide step= 20000 recall=0.9867 p5=0.900 lat=0.47ms
+ c19999 narrow step= 20000 recall=0.0010 p5=0.000 lat=0.01ms
+ c29999   none step= 30000 recall=0.9983 p5=1.000 lat=0.64ms
+ c29999   wide step= 30000 recall=0.9780 p5=0.900 lat=0.47ms
+ c29999 narrow step= 30000 recall=0.0043 p5=0.000 lat=0.01ms
+ c39999   none step= 40000 recall=0.9987 p5=1.000 lat=0.66ms
+ c39999   wide step= 40000 recall=0.9850 p5=0.900 lat=0.47ms
+ c39999 narrow step= 40000 recall=0.0010 p5=0.000 lat=0.01ms
+ c49999   none step= 50000 recall=0.9987 p5=1.000 lat=0.67ms
+ c49999   wide step= 50000 recall=0.9837 p5=0.900 lat=0.49ms
+ c49999 narrow step= 50000 recall=0.0040 p5=0.000 lat=0.01ms
+ c59999   none step= 60000 recall=0.9990 p5=1.000 lat=0.68ms
+ c59999   wide step= 60000 recall=0.9717 p5=0.800 lat=0.51ms
+ c59999 narrow step= 60000 recall=0.0007 p5=0.000 lat=0.01ms
+ c69999   none step= 70000 recall=0.9987 p5=1.000 lat=0.69ms
+ c69999   wide step= 70000 recall=0.9747 p5=0.900 lat=0.53ms
+ c69999 narrow step= 70000 recall=0.0010 p5=0.000 lat=0.01ms
+ c79999   none step= 80000 recall=0.9983 p5=1.000 lat=0.70ms
+ c79999   wide step= 80000 recall=0.9717 p5=0.800 lat=0.55ms
+ c79999 narrow step= 80000 recall=0.0027 p5=0.000 lat=0.01ms
+ c89999   none step= 90000 recall=0.9983 p5=1.000 lat=0.71ms
+ c89999   wide step= 90000 recall=0.9720 p5=0.800 lat=0.56ms
+ c89999 narrow step= 90000 recall=0.0003 p5=0.000 lat=0.01ms
+ c99999   none step=100000 recall=0.9980 p5=1.000 lat=0.71ms
+ c99999   wide step=100000 recall=0.9700 p5=0.800 lat=0.57ms
+ c99999 narrow step=100000 recall=0.0003 p5=0.000 lat=0.01ms
+L2: Using AVX2 distance computation DistanceL2Float
+Index start points set: #20
+checkpoint 0 pending=0 consolidations=0
+rebuild   none step=     0 recall=0.9983 p5=1.000 lat=0.68ms
+rebuild   wide step=     0 recall=0.9820 p5=0.900 lat=0.56ms
+rebuild narrow step=     0 recall=0.0003 p5=0.000 lat=0.01ms

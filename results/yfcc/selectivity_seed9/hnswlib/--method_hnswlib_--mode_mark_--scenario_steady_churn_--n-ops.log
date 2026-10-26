@@ -1,0 +1,96 @@
+checkpoint 0 deleted=0
+checkpoint 1 deleted=20000
+checkpoint 2 deleted=40000
+checkpoint 3 deleted=60000
+checkpoint 4 deleted=80000
+checkpoint 5 deleted=100000
+checkpoint 6 deleted=120000
+checkpoint 7 deleted=140000
+checkpoint 8 deleted=160000
+checkpoint 9 deleted=180000
+checkpoint 10 deleted=200000
+   base   none step=     0 recall=0.9903 p5=0.900 lat=0.24ms cmps=1600
+   base   s0.3 step=     0 recall=0.9957 p5=1.000 lat=0.61ms cmps=3599
+   base   s0.1 step=     0 recall=0.9943 p5=0.900 lat=1.61ms cmps=8522
+   base  s0.03 step=     0 recall=0.9983 p5=1.000 lat=4.81ms cmps=21050
+   base  s0.01 step=     0 recall=0.9983 p5=1.000 lat=10.45ms cmps=38164
+   base s0.003 step=     0 recall=0.9980 p5=1.000 lat=33.48ms cmps=83118
+   base s0.001 step=     0 recall=0.9957 p5=1.000 lat=43.42ms cmps=93798
+ c19999   none step= 20000 recall=0.9940 p5=1.000 lat=0.31ms cmps=1873
+ c19999   s0.3 step= 20000 recall=0.9970 p5=1.000 lat=0.75ms cmps=4233
+ c19999   s0.1 step= 20000 recall=0.9957 p5=1.000 lat=2.01ms cmps=10104
+ c19999  s0.03 step= 20000 recall=0.9987 p5=1.000 lat=5.92ms cmps=25009
+ c19999  s0.01 step= 20000 recall=0.9950 p5=0.995 lat=13.01ms cmps=45754
+ c19999 s0.003 step= 20000 recall=0.9960 p5=1.000 lat=43.21ms cmps=102070
+ c19999 s0.001 step= 20000 recall=0.9980 p5=1.000 lat=52.94ms cmps=112284
+ c39999   none step= 40000 recall=0.9923 p5=1.000 lat=0.36ms cmps=2138
+ c39999   s0.3 step= 40000 recall=0.9977 p5=1.000 lat=0.88ms cmps=4876
+ c39999   s0.1 step= 40000 recall=0.9957 p5=1.000 lat=2.35ms cmps=11691
+ c39999  s0.03 step= 40000 recall=0.9963 p5=1.000 lat=7.02ms cmps=29176
+ c39999  s0.01 step= 40000 recall=0.9970 p5=1.000 lat=15.54ms cmps=53776
+ c39999 s0.003 step= 40000 recall=0.9987 p5=1.000 lat=50.89ms cmps=118910
+ c39999 s0.001 step= 40000 recall=0.9987 p5=1.000 lat=61.44ms cmps=129759
+ c59999   none step= 60000 recall=0.9933 p5=1.000 lat=0.41ms cmps=2411
+ c59999   s0.3 step= 60000 recall=0.9973 p5=1.000 lat=1.02ms cmps=5527
+ c59999   s0.1 step= 60000 recall=0.9970 p5=1.000 lat=2.71ms cmps=13154
+ c59999  s0.03 step= 60000 recall=0.9973 p5=1.000 lat=8.18ms cmps=32821
+ c59999  s0.01 step= 60000 recall=0.9990 p5=1.000 lat=18.02ms cmps=60775
+ c59999 s0.003 step= 60000 recall=0.9993 p5=1.000 lat=60.11ms cmps=136079
+ c59999 s0.001 step= 60000 recall=0.9977 p5=1.000 lat=76.22ms cmps=151259
+ c79999   none step= 80000 recall=0.9887 p5=0.995 lat=0.48ms cmps=2689
+ c79999   s0.3 step= 80000 recall=0.9980 p5=1.000 lat=1.17ms cmps=6127
+ c79999   s0.1 step= 80000 recall=0.9973 p5=1.000 lat=3.14ms cmps=14868
+ c79999  s0.03 step= 80000 recall=0.9983 p5=1.000 lat=9.32ms cmps=36907
+ c79999  s0.01 step= 80000 recall=0.9983 p5=1.000 lat=20.38ms cmps=67817
+ c79999 s0.003 step= 80000 recall=0.9997 p5=1.000 lat=67.44ms cmps=152011
+ c79999 s0.001 step= 80000 recall=0.9990 p5=1.000 lat=87.03ms cmps=170527
+ c99999   none step=100000 recall=0.9950 p5=1.000 lat=0.51ms cmps=2957
+ c99999   s0.3 step=100000 recall=0.9990 p5=1.000 lat=1.27ms cmps=6722
+ c99999   s0.1 step=100000 recall=0.9973 p5=1.000 lat=3.45ms cmps=16205
+ c99999  s0.03 step=100000 recall=0.9990 p5=1.000 lat=10.15ms cmps=40417
+ c99999  s0.01 step=100000 recall=0.9983 p5=1.000 lat=22.09ms cmps=74207
+ c99999 s0.003 step=100000 recall=0.9997 p5=1.000 lat=74.59ms cmps=167829
+ c99999 s0.001 step=100000 recall=0.9977 p5=1.000 lat=89.71ms cmps=183438
+c119999   none step=120000 recall=0.9940 p5=1.000 lat=0.56ms cmps=3210
+c119999   s0.3 step=120000 recall=0.9977 p5=1.000 lat=1.42ms cmps=7388
+c119999   s0.1 step=120000 recall=0.9990 p5=1.000 lat=3.84ms cmps=17796
+c119999  s0.03 step=120000 recall=0.9987 p5=1.000 lat=11.18ms cmps=43986
+c119999  s0.01 step=120000 recall=0.9990 p5=1.000 lat=25.08ms cmps=82664
+c119999 s0.003 step=120000 recall=0.9997 p5=1.000 lat=77.69ms cmps=177982
+c119999 s0.001 step=120000 recall=0.9993 p5=1.000 lat=103.30ms cmps=204046
+c139999   none step=140000 recall=0.9940 p5=0.995 lat=0.62ms cmps=3474
+c139999   s0.3 step=140000 recall=0.9980 p5=1.000 lat=1.53ms cmps=7996
+c139999   s0.1 step=140000 recall=0.9987 p5=1.000 lat=4.16ms cmps=19270
+c139999  s0.03 step=140000 recall=0.9997 p5=1.000 lat=12.19ms cmps=47294
+c139999  s0.01 step=140000 recall=0.9987 p5=1.000 lat=27.74ms cmps=90204
+c139999 s0.003 step=140000 recall=0.9993 p5=1.000 lat=84.91ms cmps=193369
+c139999 s0.001 step=140000 recall=0.9997 p5=1.000 lat=113.28ms cmps=222909
+c159999   none step=160000 recall=0.9947 p5=1.000 lat=0.66ms cmps=3732
+c159999   s0.3 step=160000 recall=0.9973 p5=1.000 lat=1.67ms cmps=8647
+c159999   s0.1 step=160000 recall=0.9987 p5=1.000 lat=4.50ms cmps=20749
+c159999  s0.03 step=160000 recall=0.9983 p5=1.000 lat=13.29ms cmps=51240
+c159999  s0.01 step=160000 recall=0.9997 p5=1.000 lat=30.15ms cmps=97281
+c159999 s0.003 step=160000 recall=1.0000 p5=1.000 lat=92.53ms cmps=209078
+c159999 s0.001 step=160000 recall=0.9993 p5=1.000 lat=123.32ms cmps=240939
+c179999   none step=180000 recall=0.9947 p5=0.995 lat=0.73ms cmps=3995
+c179999   s0.3 step=180000 recall=0.9977 p5=1.000 lat=1.81ms cmps=9217
+c179999   s0.1 step=180000 recall=0.9983 p5=1.000 lat=4.96ms cmps=22244
+c179999  s0.03 step=180000 recall=0.9990 p5=1.000 lat=14.69ms cmps=55041
+c179999  s0.01 step=180000 recall=0.9997 p5=1.000 lat=32.26ms cmps=103062
+c179999 s0.003 step=180000 recall=0.9993 p5=1.000 lat=100.97ms cmps=224408
+c179999 s0.001 step=180000 recall=1.0000 p5=1.000 lat=140.69ms cmps=264219
+c199999   none step=200000 recall=0.9927 p5=0.900 lat=0.78ms cmps=4273
+c199999   s0.3 step=200000 recall=0.9973 p5=1.000 lat=1.98ms cmps=9796
+c199999   s0.1 step=200000 recall=0.9990 p5=1.000 lat=5.31ms cmps=23836
+c199999  s0.03 step=200000 recall=0.9993 p5=1.000 lat=16.00ms cmps=60197
+c199999  s0.01 step=200000 recall=1.0000 p5=1.000 lat=35.09ms cmps=111408
+c199999 s0.003 step=200000 recall=0.9990 p5=1.000 lat=107.04ms cmps=238363
+c199999 s0.001 step=200000 recall=0.9987 p5=1.000 lat=148.44ms cmps=280722
+checkpoint 0 deleted=0
+rebuild   none step=     0 recall=0.9897 p5=0.900 lat=0.24ms cmps=1632
+rebuild   s0.3 step=     0 recall=0.9980 p5=1.000 lat=0.63ms cmps=3639
+rebuild   s0.1 step=     0 recall=0.9990 p5=1.000 lat=1.67ms cmps=8658
+rebuild  s0.03 step=     0 recall=0.9990 p5=1.000 lat=4.97ms cmps=21439
+rebuild  s0.01 step=     0 recall=1.0000 p5=1.000 lat=10.73ms cmps=39014
+rebuild s0.003 step=     0 recall=0.9990 p5=1.000 lat=32.31ms cmps=81080
+rebuild s0.001 step=     0 recall=0.9997 p5=1.000 lat=44.33ms cmps=94401

@@ -1,0 +1,22 @@
+{
+  "scenario": "steady_churn",
+  "mode": "replace",
+  "data": "/home/dev/data/sift",
+  "n_base": "100000",
+  "n_ops": "100000",
+  "checkpoint_every": "10000",
+  "n_queries": "300",
+  "k": "10",
+  "m": "16",
+  "ef_construction": "200",
+  "ef_search": "64",
+  "seed": "7",
+  "out": "results/pilot",
+  "generator_version": "2",
+  "n_labels": 20,
+  "wide_label": 0,
+  "narrow_label": 19,
+  "purge_label": 1,
+  "label_seed": 11,
+  "rebuild_s": 3.9496140708215535
+}

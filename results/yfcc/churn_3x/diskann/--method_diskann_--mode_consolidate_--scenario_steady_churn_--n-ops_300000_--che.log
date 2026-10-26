@@ -1,0 +1,94 @@
+L2: Using AVX2 distance computation DistanceL2Float
+Index start points set: #5
+checkpoint 0 pending=0 consolidations=0
+Starting consolidate_deletes...  done in 1.30218 seconds.
+Starting consolidate_deletes...  done in 1.18941 seconds.
+Starting consolidate_deletes...  done in 1.1716 seconds.
+checkpoint 1 pending=0 consolidations=3
+Starting consolidate_deletes...  done in 1.15687 seconds.
+Starting consolidate_deletes...  done in 1.17721 seconds.
+Starting consolidate_deletes...  done in 1.16658 seconds.
+checkpoint 2 pending=0 consolidations=6
+Starting consolidate_deletes...  done in 1.1438 seconds.
+Starting consolidate_deletes...  done in 1.14518 seconds.
+Starting consolidate_deletes...  done in 1.18348 seconds.
+checkpoint 3 pending=0 consolidations=9
+Starting consolidate_deletes...  done in 1.14255 seconds.
+Starting consolidate_deletes...  done in 1.18979 seconds.
+Starting consolidate_deletes...  done in 1.16741 seconds.
+checkpoint 4 pending=0 consolidations=12
+Starting consolidate_deletes...  done in 1.12875 seconds.
+Starting consolidate_deletes...  done in 1.16982 seconds.
+Starting consolidate_deletes...  done in 1.1594 seconds.
+checkpoint 5 pending=0 consolidations=15
+Starting consolidate_deletes...  done in 1.20007 seconds.
+Starting consolidate_deletes...  done in 1.17502 seconds.
+Starting consolidate_deletes...  done in 1.15321 seconds.
+checkpoint 6 pending=0 consolidations=18
+Starting consolidate_deletes...  done in 1.14612 seconds.
+Starting consolidate_deletes...  done in 1.13501 seconds.
+Starting consolidate_deletes...  done in 1.16608 seconds.
+checkpoint 7 pending=0 consolidations=21
+Starting consolidate_deletes...  done in 1.17545 seconds.
+Starting consolidate_deletes...  done in 1.18824 seconds.
+Starting consolidate_deletes...  done in 1.18198 seconds.
+checkpoint 8 pending=0 consolidations=24
+Starting consolidate_deletes...  done in 1.15341 seconds.
+Starting consolidate_deletes...  done in 1.16478 seconds.
+Starting consolidate_deletes...  done in 1.14066 seconds.
+checkpoint 9 pending=0 consolidations=27
+Starting consolidate_deletes...  done in 1.12532 seconds.
+Starting consolidate_deletes...  done in 1.13621 seconds.
+Starting consolidate_deletes...  done in 1.15676 seconds.
+checkpoint 10 pending=0 consolidations=30
+   base   none step=     0 recall=0.9927 p5=0.900 lat=0.32ms cmps=1660
+   base   wide step=     0 recall=0.9867 p5=0.900 lat=0.22ms cmps=715
+   base narrow step=     0 recall=0.9153 p5=0.700 lat=0.10ms cmps=265
+   base   tiny step=     0 recall=0.8650 p5=0.600 lat=0.07ms cmps=201
+ c29999   none step= 30000 recall=0.9883 p5=0.900 lat=0.29ms cmps=1471
+ c29999   wide step= 30000 recall=0.9840 p5=0.900 lat=0.21ms cmps=638
+ c29999 narrow step= 30000 recall=0.8693 p5=0.600 lat=0.09ms cmps=206
+ c29999   tiny step= 30000 recall=0.7873 p5=0.500 lat=0.07ms cmps=156
+ c59999   none step= 60000 recall=0.9910 p5=0.900 lat=0.29ms cmps=1461
+ c59999   wide step= 60000 recall=0.9823 p5=0.900 lat=0.21ms cmps=634
+ c59999 narrow step= 60000 recall=0.8377 p5=0.495 lat=0.09ms cmps=197
+ c59999   tiny step= 60000 recall=0.7110 p5=0.300 lat=0.06ms cmps=146
+ c89999   none step= 90000 recall=0.9927 p5=0.900 lat=0.29ms cmps=1446
+ c89999   wide step= 90000 recall=0.9790 p5=0.900 lat=0.22ms cmps=638
+ c89999 narrow step= 90000 recall=0.8273 p5=0.400 lat=0.09ms cmps=196
+ c89999   tiny step= 90000 recall=0.7413 p5=0.300 lat=0.06ms cmps=146
+c119999   none step=120000 recall=0.9893 p5=0.900 lat=0.29ms cmps=1445
+c119999   wide step=120000 recall=0.9763 p5=0.900 lat=0.22ms cmps=636
+c119999 narrow step=120000 recall=0.8163 p5=0.400 lat=0.09ms cmps=195
+c119999   tiny step=120000 recall=0.7810 p5=0.300 lat=0.06ms cmps=141
+c149999   none step=150000 recall=0.9897 p5=0.900 lat=0.29ms cmps=1442
+c149999   wide step=150000 recall=0.9787 p5=0.900 lat=0.21ms cmps=635
+c149999 narrow step=150000 recall=0.8320 p5=0.500 lat=0.09ms cmps=197
+c149999   tiny step=150000 recall=0.7513 p5=0.400 lat=0.06ms cmps=145
+c179999   none step=180000 recall=0.9893 p5=0.900 lat=0.29ms cmps=1444
+c179999   wide step=180000 recall=0.9777 p5=0.900 lat=0.22ms cmps=632
+c179999 narrow step=180000 recall=0.8337 p5=0.500 lat=0.09ms cmps=201
+c179999   tiny step=180000 recall=0.7540 p5=0.400 lat=0.06ms cmps=144
+c209999   none step=210000 recall=0.9870 p5=0.900 lat=0.28ms cmps=1441
+c209999   wide step=210000 recall=0.9807 p5=0.900 lat=0.21ms cmps=633
+c209999 narrow step=210000 recall=0.8250 p5=0.500 lat=0.09ms cmps=208
+c209999   tiny step=210000 recall=0.8037 p5=0.500 lat=0.06ms cmps=149
+c239999   none step=240000 recall=0.9913 p5=1.000 lat=0.30ms cmps=1447
+c239999   wide step=240000 recall=0.9843 p5=0.900 lat=0.21ms cmps=632
+c239999 narrow step=240000 recall=0.8603 p5=0.500 lat=0.09ms cmps=204
+c239999   tiny step=240000 recall=0.8017 p5=0.495 lat=0.06ms cmps=148
+c269999   none step=270000 recall=0.9883 p5=0.900 lat=0.29ms cmps=1446
+c269999   wide step=270000 recall=0.9823 p5=0.900 lat=0.21ms cmps=637
+c269999 narrow step=270000 recall=0.8350 p5=0.495 lat=0.09ms cmps=204
+c269999   tiny step=270000 recall=0.0000 p5=0.000 lat=0.00ms cmps=1
+c299999   none step=300000 recall=0.9890 p5=0.900 lat=0.28ms cmps=1446
+c299999   wide step=300000 recall=0.9787 p5=0.900 lat=0.21ms cmps=631
+c299999 narrow step=300000 recall=0.8300 p5=0.500 lat=0.09ms cmps=207
+c299999   tiny step=300000 recall=0.5587 p5=0.100 lat=0.06ms cmps=135
+L2: Using AVX2 distance computation DistanceL2Float
+Index start points set: #5
+checkpoint 0 pending=0 consolidations=0
+rebuild   none step=     0 recall=0.9940 p5=0.900 lat=0.32ms cmps=1670
+rebuild   wide step=     0 recall=0.9890 p5=0.900 lat=0.22ms cmps=725
+rebuild narrow step=     0 recall=0.9000 p5=0.600 lat=0.10ms cmps=256
+rebuild   tiny step=     0 recall=0.9030 p5=0.700 lat=0.08ms cmps=216

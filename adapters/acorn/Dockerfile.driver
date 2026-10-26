@@ -1,0 +1,7 @@
+# Драйвер протокола поверх собранного образа ACORN (см. Dockerfile).
+FROM fanndyn-acorn:smoke
+COPY fanndyn_driver.cpp /driver/fanndyn_driver.cpp
+RUN g++ -O3 -std=c++17 -fopenmp -I/src /driver/fanndyn_driver.cpp \
+        -L/src/build/faiss -lfaiss -o /driver/fanndyn_driver
+ENV LD_LIBRARY_PATH=/src/build/faiss
+ENTRYPOINT ["/driver/fanndyn_driver"]

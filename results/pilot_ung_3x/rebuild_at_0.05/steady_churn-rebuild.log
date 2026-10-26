@@ -1,0 +1,1088 @@
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 68 ms
+Building graph for each group ...
+- Finished in 3586 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 12 ms
+checkpoint 0 dead_in_index=0 invisible_new=0 rebuilds=1
+checkpoint 1 dead_in_index=2475 invisible_new=2475 rebuilds=1
+checkpoint 2 dead_in_index=4889 invisible_new=4889 rebuilds=1
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 70 ms
+Building graph for each group ...
+- Finished in 3492 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 3 dead_in_index=2366 invisible_new=2367 rebuilds=2
+checkpoint 4 dead_in_index=4765 invisible_new=4766 rebuilds=2
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 68 ms
+Building graph for each group ...
+- Finished in 3546 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 5 dead_in_index=2234 invisible_new=2235 rebuilds=3
+checkpoint 6 dead_in_index=4661 invisible_new=4662 rebuilds=3
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 80 ms
+Building graph for each group ...
+- Finished in 3555 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 7 dead_in_index=2115 invisible_new=2116 rebuilds=4
+checkpoint 8 dead_in_index=4540 invisible_new=4541 rebuilds=4
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 89 ms
+Building graph for each group ...
+- Finished in 3569 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 9 dead_in_index=1997 invisible_new=1998 rebuilds=5
+checkpoint 10 dead_in_index=4414 invisible_new=4415 rebuilds=5
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 68 ms
+Building graph for each group ...
+- Finished in 3560 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 11 dead_in_index=1871 invisible_new=1872 rebuilds=6
+checkpoint 12 dead_in_index=4284 invisible_new=4285 rebuilds=6
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 109 ms
+Building graph for each group ...
+- Finished in 3619 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 13 dead_in_index=1735 invisible_new=1736 rebuilds=7
+checkpoint 14 dead_in_index=4149 invisible_new=4150 rebuilds=7
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 121 ms
+Building graph for each group ...
+- Finished in 3571 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 15 dead_in_index=1593 invisible_new=1594 rebuilds=8
+checkpoint 16 dead_in_index=4031 invisible_new=4032 rebuilds=8
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 62 ms
+Building graph for each group ...
+- Finished in 3579 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 17 dead_in_index=1475 invisible_new=1476 rebuilds=9
+checkpoint 18 dead_in_index=3920 invisible_new=3921 rebuilds=9
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 68 ms
+Building graph for each group ...
+- Finished in 3581 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 19 dead_in_index=1358 invisible_new=1359 rebuilds=10
+checkpoint 20 dead_in_index=3774 invisible_new=3775 rebuilds=10
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 63 ms
+Building graph for each group ...
+- Finished in 3703 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 21 dead_in_index=1219 invisible_new=1220 rebuilds=11
+checkpoint 22 dead_in_index=3652 invisible_new=3653 rebuilds=11
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 66 ms
+Building graph for each group ...
+- Finished in 3590 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 23 dead_in_index=1085 invisible_new=1086 rebuilds=12
+checkpoint 24 dead_in_index=3528 invisible_new=3529 rebuilds=12
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 63 ms
+Building graph for each group ...
+- Finished in 3632 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 25 dead_in_index=950 invisible_new=951 rebuilds=13
+checkpoint 26 dead_in_index=3408 invisible_new=3409 rebuilds=13
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 113 ms
+Building graph for each group ...
+- Finished in 3736 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 27 dead_in_index=817 invisible_new=818 rebuilds=14
+checkpoint 28 dead_in_index=3260 invisible_new=3261 rebuilds=14
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 111 ms
+Building graph for each group ...
+- Finished in 3688 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 29 dead_in_index=690 invisible_new=691 rebuilds=15
+checkpoint 30 dead_in_index=3142 invisible_new=3143 rebuilds=15
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 110 ms
+Building graph for each group ...
+- Finished in 3721 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 15 ms
+checkpoint 31 dead_in_index=554 invisible_new=555 rebuilds=16
+checkpoint 32 dead_in_index=3017 invisible_new=3018 rebuilds=16
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 122 ms
+Building graph for each group ...
+- Finished in 3724 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 33 dead_in_index=439 invisible_new=440 rebuilds=17
+checkpoint 34 dead_in_index=2903 invisible_new=2904 rebuilds=17
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 115 ms
+Building graph for each group ...
+- Finished in 3751 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 35 dead_in_index=304 invisible_new=305 rebuilds=18
+checkpoint 36 dead_in_index=2775 invisible_new=2776 rebuilds=18
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 118 ms
+Building graph for each group ...
+- Finished in 3693 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 14 ms
+checkpoint 37 dead_in_index=191 invisible_new=192 rebuilds=19
+checkpoint 38 dead_in_index=2653 invisible_new=2654 rebuilds=19
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 119 ms
+Building graph for each group ...
+- Finished in 3781 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 39 dead_in_index=69 invisible_new=70 rebuilds=20
+checkpoint 40 dead_in_index=2536 invisible_new=2537 rebuilds=20
+checkpoint 41 dead_in_index=4959 invisible_new=4960 rebuilds=20
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 130 ms
+Building graph for each group ...
+- Finished in 3716 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 42 dead_in_index=2434 invisible_new=2435 rebuilds=21
+checkpoint 43 dead_in_index=4837 invisible_new=4838 rebuilds=21
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 119 ms
+Building graph for each group ...
+- Finished in 3784 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 44 dead_in_index=2297 invisible_new=2298 rebuilds=22
+checkpoint 45 dead_in_index=4702 invisible_new=4703 rebuilds=22
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 126 ms
+Building graph for each group ...
+- Finished in 3777 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 12 ms
+checkpoint 46 dead_in_index=2172 invisible_new=2173 rebuilds=23
+checkpoint 47 dead_in_index=4592 invisible_new=4593 rebuilds=23
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 126 ms
+Building graph for each group ...
+- Finished in 3748 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 48 dead_in_index=2046 invisible_new=2047 rebuilds=24
+checkpoint 49 dead_in_index=4449 invisible_new=4450 rebuilds=24
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 119 ms
+Building graph for each group ...
+- Finished in 3743 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 50 dead_in_index=1905 invisible_new=1906 rebuilds=25
+checkpoint 51 dead_in_index=4321 invisible_new=4322 rebuilds=25
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 114 ms
+Building graph for each group ...
+- Finished in 3692 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 12 ms
+checkpoint 52 dead_in_index=1775 invisible_new=1776 rebuilds=26
+checkpoint 53 dead_in_index=4200 invisible_new=4201 rebuilds=26
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 121 ms
+Building graph for each group ...
+- Finished in 3756 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 54 dead_in_index=1653 invisible_new=1654 rebuilds=27
+checkpoint 55 dead_in_index=4080 invisible_new=4081 rebuilds=27
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 123 ms
+Building graph for each group ...
+- Finished in 3748 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 12 ms
+checkpoint 56 dead_in_index=1523 invisible_new=1524 rebuilds=28
+checkpoint 57 dead_in_index=3957 invisible_new=3958 rebuilds=28
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 115 ms
+Building graph for each group ...
+- Finished in 3738 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 58 dead_in_index=1397 invisible_new=1398 rebuilds=29
+checkpoint 59 dead_in_index=3820 invisible_new=3821 rebuilds=29
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 152 ms
+Building graph for each group ...
+- Finished in 3801 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 33 ms
+checkpoint 60 dead_in_index=1267 invisible_new=1268 rebuilds=30
+checkpoint 61 dead_in_index=3707 invisible_new=3708 rebuilds=30
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 114 ms
+Building graph for each group ...
+- Finished in 3822 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 62 dead_in_index=1122 invisible_new=1123 rebuilds=31
+checkpoint 63 dead_in_index=3573 invisible_new=3574 rebuilds=31
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 181 ms
+Building graph for each group ...
+- Finished in 3729 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 64 dead_in_index=1019 invisible_new=1020 rebuilds=32
+checkpoint 65 dead_in_index=3465 invisible_new=3466 rebuilds=32
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 220 ms
+Building graph for each group ...
+- Finished in 3805 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 66 dead_in_index=904 invisible_new=905 rebuilds=33
+checkpoint 67 dead_in_index=3353 invisible_new=3354 rebuilds=33
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 113 ms
+Building graph for each group ...
+- Finished in 3757 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 68 dead_in_index=771 invisible_new=772 rebuilds=34
+checkpoint 69 dead_in_index=3227 invisible_new=3228 rebuilds=34
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 161 ms
+Building graph for each group ...
+- Finished in 3796 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 70 dead_in_index=660 invisible_new=661 rebuilds=35
+checkpoint 71 dead_in_index=3121 invisible_new=3122 rebuilds=35
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 146 ms
+Building graph for each group ...
+- Finished in 3785 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 72 dead_in_index=537 invisible_new=538 rebuilds=36
+checkpoint 73 dead_in_index=2997 invisible_new=2998 rebuilds=36
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 156 ms
+Building graph for each group ...
+- Finished in 3923 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 74 dead_in_index=420 invisible_new=421 rebuilds=37
+checkpoint 75 dead_in_index=2874 invisible_new=2875 rebuilds=37
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 146 ms
+Building graph for each group ...
+- Finished in 3830 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 76 dead_in_index=302 invisible_new=303 rebuilds=38
+checkpoint 77 dead_in_index=2762 invisible_new=2763 rebuilds=38
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 140 ms
+Building graph for each group ...
+- Finished in 3734 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 78 dead_in_index=155 invisible_new=156 rebuilds=39
+checkpoint 79 dead_in_index=2609 invisible_new=2610 rebuilds=39
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 181 ms
+Building graph for each group ...
+- Finished in 3873 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 80 dead_in_index=5 invisible_new=6 rebuilds=40
+checkpoint 81 dead_in_index=2479 invisible_new=2480 rebuilds=40
+checkpoint 82 dead_in_index=4886 invisible_new=4887 rebuilds=40
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 134 ms
+Building graph for each group ...
+- Finished in 3992 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 83 dead_in_index=2349 invisible_new=2350 rebuilds=41
+checkpoint 84 dead_in_index=4761 invisible_new=4762 rebuilds=41
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 119 ms
+Building graph for each group ...
+- Finished in 3973 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 85 dead_in_index=2220 invisible_new=2221 rebuilds=42
+checkpoint 86 dead_in_index=4628 invisible_new=4629 rebuilds=42
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 135 ms
+Building graph for each group ...
+- Finished in 3878 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 87 dead_in_index=2097 invisible_new=2098 rebuilds=43
+checkpoint 88 dead_in_index=4527 invisible_new=4528 rebuilds=43
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 173 ms
+Building graph for each group ...
+- Finished in 3776 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 89 dead_in_index=1987 invisible_new=1988 rebuilds=44
+checkpoint 90 dead_in_index=4403 invisible_new=4404 rebuilds=44
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 89 ms
+Building graph for each group ...
+- Finished in 3803 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 31 ms
+checkpoint 91 dead_in_index=1856 invisible_new=1857 rebuilds=45
+checkpoint 92 dead_in_index=4292 invisible_new=4293 rebuilds=45
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 110 ms
+Building graph for each group ...
+- Finished in 3845 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 93 dead_in_index=1725 invisible_new=1726 rebuilds=46
+checkpoint 94 dead_in_index=4135 invisible_new=4136 rebuilds=46
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 125 ms
+Building graph for each group ...
+- Finished in 3904 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 95 dead_in_index=1582 invisible_new=1583 rebuilds=47
+checkpoint 96 dead_in_index=4010 invisible_new=4011 rebuilds=47
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 124 ms
+Building graph for each group ...
+- Finished in 3795 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 97 dead_in_index=1462 invisible_new=1463 rebuilds=48
+checkpoint 98 dead_in_index=3883 invisible_new=3884 rebuilds=48
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 166 ms
+Building graph for each group ...
+- Finished in 3808 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 99 dead_in_index=1325 invisible_new=1326 rebuilds=49
+checkpoint 100 dead_in_index=3768 invisible_new=3769 rebuilds=49
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 150 ms
+Building graph for each group ...
+- Finished in 3835 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 12 ms
+checkpoint 101 dead_in_index=1220 invisible_new=1221 rebuilds=50
+checkpoint 102 dead_in_index=3663 invisible_new=3664 rebuilds=50
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 110 ms
+Building graph for each group ...
+- Finished in 3849 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 103 dead_in_index=1091 invisible_new=1092 rebuilds=51
+checkpoint 104 dead_in_index=3535 invisible_new=3536 rebuilds=51
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 122 ms
+Building graph for each group ...
+- Finished in 3820 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 10 ms
+checkpoint 105 dead_in_index=978 invisible_new=979 rebuilds=52
+checkpoint 106 dead_in_index=3429 invisible_new=3430 rebuilds=52
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 133 ms
+Building graph for each group ...
+- Finished in 3795 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 107 dead_in_index=840 invisible_new=841 rebuilds=53
+checkpoint 108 dead_in_index=3282 invisible_new=3283 rebuilds=53
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 165 ms
+Building graph for each group ...
+- Finished in 3818 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 109 dead_in_index=704 invisible_new=705 rebuilds=54
+checkpoint 110 dead_in_index=3155 invisible_new=3156 rebuilds=54
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 163 ms
+Building graph for each group ...
+- Finished in 3803 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 11 ms
+checkpoint 111 dead_in_index=573 invisible_new=574 rebuilds=55
+checkpoint 112 dead_in_index=3029 invisible_new=3030 rebuilds=55
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 156 ms
+Building graph for each group ...
+- Finished in 3823 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 113 dead_in_index=459 invisible_new=460 rebuilds=56
+checkpoint 114 dead_in_index=2919 invisible_new=2920 rebuilds=56
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 207 ms
+Building graph for each group ...
+- Finished in 3907 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 115 dead_in_index=335 invisible_new=336 rebuilds=57
+checkpoint 116 dead_in_index=2802 invisible_new=2803 rebuilds=57
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 211 ms
+Building graph for each group ...
+- Finished in 3661 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 117 dead_in_index=200 invisible_new=201 rebuilds=58
+checkpoint 118 dead_in_index=2664 invisible_new=2665 rebuilds=58
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 181 ms
+Building graph for each group ...
+- Finished in 3776 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 119 dead_in_index=69 invisible_new=70 rebuilds=59
+checkpoint 120 dead_in_index=2544 invisible_new=2545 rebuilds=59
+   base   none step=     0 recall=0.9970 p5=1.000 lat=2.33ms
+   base   wide step=     0 recall=0.9993 p5=1.000 lat=0.12ms
+   base narrow step=     0 recall=1.0000 p5=1.000 lat=0.04ms
+  c2499   none step=  2500 recall=0.9717 p5=0.895 lat=2.34ms
+  c2499   wide step=  2500 recall=0.9770 p5=0.900 lat=0.12ms
+  c2499 narrow step=  2500 recall=0.9837 p5=0.900 lat=0.04ms
+  c4999   none step=  5000 recall=0.9420 p5=0.795 lat=2.32ms
+  c4999   wide step=  5000 recall=0.9497 p5=0.800 lat=0.12ms
+  c4999 narrow step=  5000 recall=0.9530 p5=0.800 lat=0.04ms
+  c7499   none step=  7500 recall=0.9637 p5=0.800 lat=2.33ms
+  c7499   wide step=  7500 recall=0.9720 p5=0.900 lat=0.12ms
+  c7499 narrow step=  7500 recall=0.9597 p5=0.800 lat=0.04ms
+  c9999   none step= 10000 recall=0.9447 p5=0.700 lat=2.32ms
+  c9999   wide step= 10000 recall=0.9560 p5=0.800 lat=0.12ms
+  c9999 narrow step= 10000 recall=0.9403 p5=0.800 lat=0.04ms
+ c12499   none step= 12500 recall=0.9733 p5=0.800 lat=2.31ms
+ c12499   wide step= 12500 recall=0.9717 p5=0.895 lat=0.12ms
+ c12499 narrow step= 12500 recall=0.9867 p5=0.900 lat=0.03ms
+ c14999   none step= 15000 recall=0.9420 p5=0.800 lat=2.32ms
+ c14999   wide step= 15000 recall=0.9460 p5=0.800 lat=0.12ms
+ c14999 narrow step= 15000 recall=0.9617 p5=0.900 lat=0.04ms
+ c17499   none step= 17500 recall=0.9833 p5=0.900 lat=2.32ms
+ c17499   wide step= 17500 recall=0.9843 p5=0.900 lat=0.12ms
+ c17499 narrow step= 17500 recall=0.9870 p5=0.900 lat=0.04ms
+ c19999   none step= 20000 recall=0.9677 p5=0.800 lat=2.32ms
+ c19999   wide step= 20000 recall=0.9663 p5=0.800 lat=0.12ms
+ c19999 narrow step= 20000 recall=0.9687 p5=0.800 lat=0.04ms
+ c22499   none step= 22500 recall=0.9760 p5=0.900 lat=2.30ms
+ c22499   wide step= 22500 recall=0.9830 p5=0.900 lat=0.12ms
+ c22499 narrow step= 22500 recall=0.9757 p5=0.900 lat=0.04ms
+ c24999   none step= 25000 recall=0.9440 p5=0.800 lat=2.31ms
+ c24999   wide step= 25000 recall=0.9547 p5=0.800 lat=0.12ms
+ c24999 narrow step= 25000 recall=0.9507 p5=0.800 lat=0.04ms
+ c27499   none step= 27500 recall=0.9833 p5=0.900 lat=2.31ms
+ c27499   wide step= 27500 recall=0.9823 p5=0.900 lat=0.12ms
+ c27499 narrow step= 27500 recall=0.9837 p5=0.900 lat=0.03ms
+ c29999   none step= 30000 recall=0.9647 p5=0.800 lat=2.30ms
+ c29999   wide step= 30000 recall=0.9590 p5=0.800 lat=0.12ms
+ c29999 narrow step= 30000 recall=0.9590 p5=0.800 lat=0.04ms
+ c32499   none step= 32500 recall=0.9757 p5=0.900 lat=2.31ms
+ c32499   wide step= 32500 recall=0.9807 p5=0.900 lat=0.12ms
+ c32499 narrow step= 32500 recall=0.9767 p5=0.900 lat=0.04ms
+ c34999   none step= 35000 recall=0.9490 p5=0.800 lat=2.30ms
+ c34999   wide step= 35000 recall=0.9570 p5=0.800 lat=0.12ms
+ c34999 narrow step= 35000 recall=0.9630 p5=0.900 lat=0.04ms
+ c37499   none step= 37500 recall=0.9857 p5=0.900 lat=2.33ms
+ c37499   wide step= 37500 recall=0.9927 p5=0.900 lat=0.12ms
+ c37499 narrow step= 37500 recall=0.9877 p5=0.900 lat=0.04ms
+ c39999   none step= 40000 recall=0.9707 p5=0.800 lat=2.33ms
+ c39999   wide step= 40000 recall=0.9753 p5=0.900 lat=0.12ms
+ c39999 narrow step= 40000 recall=0.9687 p5=0.900 lat=0.04ms
+ c42499   none step= 42500 recall=0.9793 p5=0.900 lat=2.31ms
+ c42499   wide step= 42500 recall=0.9817 p5=0.900 lat=0.12ms
+ c42499 narrow step= 42500 recall=0.9887 p5=0.900 lat=0.04ms
+ c44999   none step= 45000 recall=0.9573 p5=0.800 lat=2.33ms
+ c44999   wide step= 45000 recall=0.9583 p5=0.800 lat=0.12ms
+ c44999 narrow step= 45000 recall=0.9697 p5=0.900 lat=0.04ms
+ c47499   none step= 47500 recall=0.9863 p5=0.900 lat=2.32ms
+ c47499   wide step= 47500 recall=0.9880 p5=0.900 lat=0.12ms
+ c47499 narrow step= 47500 recall=0.9937 p5=0.900 lat=0.04ms
+ c49999   none step= 50000 recall=0.9707 p5=0.900 lat=2.31ms
+ c49999   wide step= 50000 recall=0.9717 p5=0.895 lat=0.12ms
+ c49999 narrow step= 50000 recall=0.9790 p5=0.900 lat=0.04ms
+ c52499   none step= 52500 recall=0.9777 p5=0.800 lat=2.34ms
+ c52499   wide step= 52500 recall=0.9857 p5=0.900 lat=0.12ms
+ c52499 narrow step= 52500 recall=0.9857 p5=0.900 lat=0.04ms
+ c54999   none step= 55000 recall=0.9577 p5=0.800 lat=2.34ms
+ c54999   wide step= 55000 recall=0.9677 p5=0.895 lat=0.12ms
+ c54999 narrow step= 55000 recall=0.9520 p5=0.800 lat=0.04ms
+ c57499   none step= 57500 recall=0.9880 p5=0.900 lat=2.34ms
+ c57499   wide step= 57500 recall=0.9893 p5=0.900 lat=0.12ms
+ c57499 narrow step= 57500 recall=0.9967 p5=1.000 lat=0.04ms
+ c59999   none step= 60000 recall=0.9653 p5=0.800 lat=2.32ms
+ c59999   wide step= 60000 recall=0.9683 p5=0.900 lat=0.12ms
+ c59999 narrow step= 60000 recall=0.9703 p5=0.900 lat=0.04ms
+ c62499   none step= 62500 recall=0.9863 p5=0.900 lat=2.33ms
+ c62499   wide step= 62500 recall=0.9943 p5=0.995 lat=0.12ms
+ c62499 narrow step= 62500 recall=0.9967 p5=1.000 lat=0.04ms
+ c64999   none step= 65000 recall=0.9700 p5=0.800 lat=2.33ms
+ c64999   wide step= 65000 recall=0.9723 p5=0.900 lat=0.12ms
+ c64999 narrow step= 65000 recall=0.9790 p5=0.900 lat=0.04ms
+ c67499   none step= 67500 recall=0.9897 p5=0.900 lat=2.38ms
+ c67499   wide step= 67500 recall=0.9953 p5=1.000 lat=0.12ms
+ c67499 narrow step= 67500 recall=0.9957 p5=1.000 lat=0.04ms
+ c69999   none step= 70000 recall=0.9660 p5=0.800 lat=2.40ms
+ c69999   wide step= 70000 recall=0.9693 p5=0.900 lat=0.12ms
+ c69999 narrow step= 70000 recall=0.9680 p5=0.900 lat=0.04ms
+ c72499   none step= 72500 recall=0.9883 p5=0.900 lat=2.36ms
+ c72499   wide step= 72500 recall=0.9907 p5=0.900 lat=0.12ms
+ c72499 narrow step= 72500 recall=0.9953 p5=1.000 lat=0.04ms
+ c74999   none step= 75000 recall=0.9697 p5=0.895 lat=2.38ms
+ c74999   wide step= 75000 recall=0.9680 p5=0.895 lat=0.12ms
+ c74999 narrow step= 75000 recall=0.9663 p5=0.900 lat=0.04ms
+ c77499   none step= 77500 recall=0.9900 p5=0.900 lat=2.39ms
+ c77499   wide step= 77500 recall=0.9963 p5=1.000 lat=0.12ms
+ c77499 narrow step= 77500 recall=0.9930 p5=0.900 lat=0.04ms
+ c79999   none step= 80000 recall=0.9740 p5=0.900 lat=2.41ms
+ c79999   wide step= 80000 recall=0.9737 p5=0.800 lat=0.12ms
+ c79999 narrow step= 80000 recall=0.9777 p5=0.900 lat=0.04ms
+ c82499   none step= 82500 recall=0.9930 p5=0.900 lat=2.36ms
+ c82499   wide step= 82500 recall=0.9943 p5=0.900 lat=0.12ms
+ c82499 narrow step= 82500 recall=0.9937 p5=0.900 lat=0.04ms
+ c84999   none step= 85000 recall=0.9673 p5=0.800 lat=2.37ms
+ c84999   wide step= 85000 recall=0.9697 p5=0.800 lat=0.12ms
+ c84999 narrow step= 85000 recall=0.9657 p5=0.900 lat=0.04ms
+ c87499   none step= 87500 recall=0.9950 p5=1.000 lat=2.38ms
+ c87499   wide step= 87500 recall=0.9967 p5=1.000 lat=0.14ms
+ c87499 narrow step= 87500 recall=0.9970 p5=1.000 lat=0.04ms
+ c89999   none step= 90000 recall=0.9640 p5=0.800 lat=2.38ms
+ c89999   wide step= 90000 recall=0.9657 p5=0.800 lat=0.12ms
+ c89999 narrow step= 90000 recall=0.9780 p5=0.900 lat=0.04ms
+ c92499   none step= 92500 recall=0.9930 p5=0.900 lat=2.38ms
+ c92499   wide step= 92500 recall=0.9973 p5=1.000 lat=0.12ms
+ c92499 narrow step= 92500 recall=0.9967 p5=1.000 lat=0.04ms
+ c94999   none step= 95000 recall=0.9613 p5=0.800 lat=2.33ms
+ c94999   wide step= 95000 recall=0.9683 p5=0.800 lat=0.12ms
+ c94999 narrow step= 95000 recall=0.9740 p5=0.900 lat=0.04ms
+ c97499   none step= 97500 recall=0.9977 p5=1.000 lat=2.36ms
+ c97499   wide step= 97500 recall=0.9983 p5=1.000 lat=0.14ms
+ c97499 narrow step= 97500 recall=1.0000 p5=1.000 lat=0.04ms
+ c99999   none step=100000 recall=0.9720 p5=0.895 lat=2.36ms
+ c99999   wide step=100000 recall=0.9747 p5=0.900 lat=0.12ms
+ c99999 narrow step=100000 recall=0.9617 p5=0.800 lat=0.04ms
+c102499   none step=102500 recall=0.9423 p5=0.800 lat=2.37ms
+c102499   wide step=102500 recall=0.9470 p5=0.800 lat=0.12ms
+c102499 narrow step=102500 recall=0.9393 p5=0.800 lat=0.04ms
+c104999   none step=105000 recall=0.9720 p5=0.800 lat=2.36ms
+c104999   wide step=105000 recall=0.9720 p5=0.900 lat=0.12ms
+c104999 narrow step=105000 recall=0.9730 p5=0.900 lat=0.04ms
+c107499   none step=107500 recall=0.9477 p5=0.800 lat=2.37ms
+c107499   wide step=107500 recall=0.9493 p5=0.800 lat=0.12ms
+c107499 narrow step=107500 recall=0.9487 p5=0.800 lat=0.04ms
+c109999   none step=110000 recall=0.9677 p5=0.800 lat=2.36ms
+c109999   wide step=110000 recall=0.9703 p5=0.900 lat=0.12ms
+c109999 narrow step=110000 recall=0.9847 p5=0.900 lat=0.04ms
+c112499   none step=112500 recall=0.9500 p5=0.700 lat=2.37ms
+c112499   wide step=112500 recall=0.9513 p5=0.800 lat=0.12ms
+c112499 narrow step=112500 recall=0.9593 p5=0.800 lat=0.04ms
+c114999   none step=115000 recall=0.9813 p5=0.900 lat=2.36ms
+c114999   wide step=115000 recall=0.9853 p5=0.900 lat=0.12ms
+c114999 narrow step=115000 recall=0.9857 p5=0.900 lat=0.04ms
+c117499   none step=117500 recall=0.9587 p5=0.800 lat=2.39ms
+c117499   wide step=117500 recall=0.9637 p5=0.800 lat=0.12ms
+c117499 narrow step=117500 recall=0.9687 p5=0.900 lat=0.04ms
+c119999   none step=120000 recall=0.9867 p5=0.900 lat=2.34ms
+c119999   wide step=120000 recall=0.9837 p5=0.900 lat=0.12ms
+c119999 narrow step=120000 recall=0.9803 p5=0.900 lat=0.04ms
+c122499   none step=122500 recall=0.9680 p5=0.800 lat=2.36ms
+c122499   wide step=122500 recall=0.9660 p5=0.800 lat=0.12ms
+c122499 narrow step=122500 recall=0.9600 p5=0.800 lat=0.04ms
+c124999   none step=125000 recall=0.9703 p5=0.800 lat=2.34ms
+c124999   wide step=125000 recall=0.9687 p5=0.800 lat=0.12ms
+c124999 narrow step=125000 recall=0.9787 p5=0.900 lat=0.04ms
+c127499   none step=127500 recall=0.9400 p5=0.700 lat=2.35ms
+c127499   wide step=127500 recall=0.9437 p5=0.800 lat=0.12ms
+c127499 narrow step=127500 recall=0.9563 p5=0.800 lat=0.04ms
+c129999   none step=130000 recall=0.9763 p5=0.900 lat=2.36ms
+c129999   wide step=130000 recall=0.9813 p5=0.900 lat=0.11ms
+c129999 narrow step=130000 recall=0.9843 p5=0.900 lat=0.04ms
+c132499   none step=132500 recall=0.9550 p5=0.800 lat=2.36ms
+c132499   wide step=132500 recall=0.9653 p5=0.800 lat=0.12ms
+c132499 narrow step=132500 recall=0.9660 p5=0.900 lat=0.04ms
+c134999   none step=135000 recall=0.9853 p5=0.900 lat=2.35ms
+c134999   wide step=135000 recall=0.9880 p5=0.900 lat=0.12ms
+c134999 narrow step=135000 recall=0.9860 p5=0.900 lat=0.04ms
+c137499   none step=137500 recall=0.9687 p5=0.800 lat=2.34ms
+c137499   wide step=137500 recall=0.9677 p5=0.800 lat=0.12ms
+c137499 narrow step=137500 recall=0.9537 p5=0.800 lat=0.04ms
+c139999   none step=140000 recall=0.9797 p5=0.900 lat=2.35ms
+c139999   wide step=140000 recall=0.9863 p5=0.900 lat=0.12ms
+c139999 narrow step=140000 recall=0.9777 p5=0.900 lat=0.04ms
+c142499   none step=142500 recall=0.9610 p5=0.800 lat=2.34ms
+c142499   wide step=142500 recall=0.9697 p5=0.900 lat=0.12ms
+c142499 narrow step=142500 recall=0.9333 p5=0.800 lat=0.04ms
+c144999   none step=145000 recall=0.9900 p5=0.900 lat=2.35ms
+c144999   wide step=145000 recall=0.9863 p5=0.900 lat=0.12ms
+c144999 narrow step=145000 recall=0.9870 p5=0.900 lat=0.04ms
+c147499   none step=147500 recall=0.9730 p5=0.800 lat=2.35ms
+c147499   wide step=147500 recall=0.9670 p5=0.895 lat=0.12ms
+c147499 narrow step=147500 recall=0.9607 p5=0.800 lat=0.04ms
+c149999   none step=150000 recall=0.9837 p5=0.900 lat=2.38ms
+c149999   wide step=150000 recall=0.9850 p5=0.900 lat=0.12ms
+c149999 narrow step=150000 recall=0.9963 p5=1.000 lat=0.04ms
+c152499   none step=152500 recall=0.9610 p5=0.800 lat=2.38ms
+c152499   wide step=152500 recall=0.9660 p5=0.800 lat=0.12ms
+c152499 narrow step=152500 recall=0.9860 p5=0.900 lat=0.04ms
+c154999   none step=155000 recall=0.9870 p5=0.900 lat=2.37ms
+c154999   wide step=155000 recall=0.9847 p5=0.900 lat=0.12ms
+c154999 narrow step=155000 recall=0.9860 p5=0.900 lat=0.04ms
+c157499   none step=157500 recall=0.9670 p5=0.800 lat=2.36ms
+c157499   wide step=157500 recall=0.9653 p5=0.800 lat=0.12ms
+c157499 narrow step=157500 recall=0.9653 p5=0.800 lat=0.04ms
+c159999   none step=160000 recall=0.9877 p5=0.900 lat=2.36ms
+c159999   wide step=160000 recall=0.9897 p5=0.900 lat=0.12ms
+c159999 narrow step=160000 recall=0.9923 p5=0.900 lat=0.04ms
+c162499   none step=162500 recall=0.9700 p5=0.800 lat=2.34ms
+c162499   wide step=162500 recall=0.9653 p5=0.800 lat=0.12ms
+c162499 narrow step=162500 recall=0.9637 p5=0.900 lat=0.04ms
+c164999   none step=165000 recall=0.9880 p5=0.900 lat=2.38ms
+c164999   wide step=165000 recall=0.9880 p5=0.900 lat=0.12ms
+c164999 narrow step=165000 recall=0.9933 p5=0.900 lat=0.04ms
+c167499   none step=167500 recall=0.9620 p5=0.800 lat=2.36ms
+c167499   wide step=167500 recall=0.9630 p5=0.800 lat=0.12ms
+c167499 narrow step=167500 recall=0.9697 p5=0.900 lat=0.04ms
+c169999   none step=170000 recall=0.9877 p5=0.900 lat=2.38ms
+c169999   wide step=170000 recall=0.9930 p5=0.900 lat=0.12ms
+c169999 narrow step=170000 recall=0.9827 p5=0.900 lat=0.04ms
+c172499   none step=172500 recall=0.9623 p5=0.800 lat=2.40ms
+c172499   wide step=172500 recall=0.9653 p5=0.800 lat=0.12ms
+c172499 narrow step=172500 recall=0.9427 p5=0.800 lat=0.04ms
+c174999   none step=175000 recall=0.9877 p5=0.900 lat=2.40ms
+c174999   wide step=175000 recall=0.9907 p5=0.900 lat=0.12ms
+c174999 narrow step=175000 recall=0.9940 p5=0.900 lat=0.04ms
+c177499   none step=177500 recall=0.9663 p5=0.800 lat=2.39ms
+c177499   wide step=177500 recall=0.9673 p5=0.800 lat=0.12ms
+c177499 narrow step=177500 recall=0.9723 p5=0.900 lat=0.04ms
+c179999   none step=180000 recall=0.9890 p5=0.900 lat=2.38ms
+c179999   wide step=180000 recall=0.9900 p5=0.900 lat=0.12ms
+c179999 narrow step=180000 recall=0.9917 p5=0.900 lat=0.04ms
+c182499   none step=182500 recall=0.9610 p5=0.800 lat=2.39ms
+c182499   wide step=182500 recall=0.9657 p5=0.800 lat=0.12ms
+c182499 narrow step=182500 recall=0.9720 p5=0.900 lat=0.04ms
+c184999   none step=185000 recall=0.9920 p5=0.900 lat=2.52ms
+c184999   wide step=185000 recall=0.9970 p5=1.000 lat=0.13ms
+c184999 narrow step=185000 recall=0.9950 p5=0.995 lat=0.04ms
+c187499   none step=187500 recall=0.9747 p5=0.900 lat=2.51ms
+c187499   wide step=187500 recall=0.9773 p5=0.900 lat=0.13ms
+c187499 narrow step=187500 recall=0.9817 p5=0.900 lat=0.04ms
+c189999   none step=190000 recall=0.9960 p5=1.000 lat=2.55ms
+c189999   wide step=190000 recall=0.9973 p5=1.000 lat=0.12ms
+c189999 narrow step=190000 recall=0.9990 p5=1.000 lat=0.04ms
+c192499   none step=192500 recall=0.9723 p5=0.900 lat=2.54ms
+c192499   wide step=192500 recall=0.9743 p5=0.900 lat=0.12ms
+c192499 narrow step=192500 recall=0.9803 p5=0.900 lat=0.04ms
+c194999   none step=195000 recall=0.9947 p5=0.900 lat=2.52ms
+c194999   wide step=195000 recall=0.9980 p5=1.000 lat=0.12ms
+c194999 narrow step=195000 recall=0.9993 p5=1.000 lat=0.04ms
+c197499   none step=197500 recall=0.9757 p5=0.900 lat=2.51ms
+c197499   wide step=197500 recall=0.9763 p5=0.900 lat=0.12ms
+c197499 narrow step=197500 recall=0.9853 p5=0.900 lat=0.04ms
+c199999   none step=200000 recall=0.9950 p5=0.995 lat=2.45ms
+c199999   wide step=200000 recall=0.9997 p5=1.000 lat=0.12ms
+c199999 narrow step=200000 recall=1.0000 p5=1.000 lat=0.04ms
+c202499   none step=202500 recall=0.9770 p5=0.900 lat=2.45ms
+c202499   wide step=202500 recall=0.9823 p5=0.900 lat=0.13ms
+c202499 narrow step=202500 recall=0.9707 p5=0.900 lat=0.04ms
+c204999   none step=205000 recall=0.9650 p5=0.800 lat=2.44ms
+c204999   wide step=205000 recall=0.9687 p5=0.900 lat=0.13ms
+c204999 narrow step=205000 recall=0.9543 p5=0.800 lat=0.04ms
+c207499   none step=207500 recall=0.9697 p5=0.900 lat=2.50ms
+c207499   wide step=207500 recall=0.9717 p5=0.900 lat=0.13ms
+c207499 narrow step=207500 recall=0.9620 p5=0.800 lat=0.04ms
+c209999   none step=210000 recall=0.9463 p5=0.800 lat=2.51ms
+c209999   wide step=210000 recall=0.9517 p5=0.800 lat=0.13ms
+c209999 narrow step=210000 recall=0.9360 p5=0.800 lat=0.04ms
+c212499   none step=212500 recall=0.9740 p5=0.900 lat=2.60ms
+c212499   wide step=212500 recall=0.9807 p5=0.900 lat=0.13ms
+c212499 narrow step=212500 recall=0.9797 p5=0.900 lat=0.04ms
+c214999   none step=215000 recall=0.9570 p5=0.800 lat=2.61ms
+c214999   wide step=215000 recall=0.9640 p5=0.800 lat=0.14ms
+c214999 narrow step=215000 recall=0.9600 p5=0.900 lat=0.04ms
+c217499   none step=217500 recall=0.9763 p5=0.900 lat=2.51ms
+c217499   wide step=217500 recall=0.9843 p5=0.900 lat=0.13ms
+c217499 narrow step=217500 recall=0.9880 p5=0.900 lat=0.04ms
+c219999   none step=220000 recall=0.9630 p5=0.800 lat=2.50ms
+c219999   wide step=220000 recall=0.9737 p5=0.900 lat=0.13ms
+c219999 narrow step=220000 recall=0.9780 p5=0.900 lat=0.04ms
+c222499   none step=222500 recall=0.9760 p5=0.900 lat=2.42ms
+c222499   wide step=222500 recall=0.9797 p5=0.900 lat=0.12ms
+c222499 narrow step=222500 recall=0.9807 p5=0.900 lat=0.04ms
+c224999   none step=225000 recall=0.9497 p5=0.800 lat=2.43ms
+c224999   wide step=225000 recall=0.9540 p5=0.800 lat=0.12ms
+c224999 narrow step=225000 recall=0.9630 p5=0.800 lat=0.04ms
+c227499   none step=227500 recall=0.9830 p5=0.900 lat=2.40ms
+c227499   wide step=227500 recall=0.9853 p5=0.900 lat=0.12ms
+c227499 narrow step=227500 recall=0.9780 p5=0.900 lat=0.04ms
+c229999   none step=230000 recall=0.9693 p5=0.800 lat=2.39ms
+c229999   wide step=230000 recall=0.9700 p5=0.900 lat=0.12ms
+c229999 narrow step=230000 recall=0.9590 p5=0.800 lat=0.04ms
+c232499   none step=232500 recall=0.9857 p5=0.900 lat=2.42ms
+c232499   wide step=232500 recall=0.9900 p5=0.900 lat=0.12ms
+c232499 narrow step=232500 recall=0.9893 p5=0.900 lat=0.04ms
+c234999   none step=235000 recall=0.9680 p5=0.800 lat=2.41ms
+c234999   wide step=235000 recall=0.9733 p5=0.900 lat=0.12ms
+c234999 narrow step=235000 recall=0.9717 p5=0.900 lat=0.04ms
+c237499   none step=237500 recall=0.9773 p5=0.900 lat=2.46ms
+c237499   wide step=237500 recall=0.9867 p5=0.900 lat=0.13ms
+c237499 narrow step=237500 recall=0.9827 p5=0.900 lat=0.04ms
+c239999   none step=240000 recall=0.9583 p5=0.800 lat=2.48ms
+c239999   wide step=240000 recall=0.9620 p5=0.800 lat=0.13ms
+c239999 narrow step=240000 recall=0.9530 p5=0.800 lat=0.04ms
+c242499   none step=242500 recall=0.9803 p5=0.900 lat=2.42ms
+c242499   wide step=242500 recall=0.9867 p5=0.900 lat=0.12ms
+c242499 narrow step=242500 recall=0.9910 p5=0.900 lat=0.04ms
+c244999   none step=245000 recall=0.9603 p5=0.800 lat=2.40ms
+c244999   wide step=245000 recall=0.9663 p5=0.800 lat=0.12ms
+c244999 narrow step=245000 recall=0.9720 p5=0.900 lat=0.04ms
+c247499   none step=247500 recall=0.9870 p5=0.900 lat=2.41ms
+c247499   wide step=247500 recall=0.9913 p5=0.900 lat=0.12ms
+c247499 narrow step=247500 recall=0.9947 p5=1.000 lat=0.04ms
+c249999   none step=250000 recall=0.9733 p5=0.900 lat=2.40ms
+c249999   wide step=250000 recall=0.9750 p5=0.900 lat=0.12ms
+c249999 narrow step=250000 recall=0.9823 p5=0.900 lat=0.04ms
+c252499   none step=252500 recall=0.9857 p5=0.900 lat=2.40ms
+c252499   wide step=252500 recall=0.9880 p5=0.900 lat=0.12ms
+c252499 narrow step=252500 recall=0.9823 p5=0.900 lat=0.04ms
+c254999   none step=255000 recall=0.9627 p5=0.800 lat=2.39ms
+c254999   wide step=255000 recall=0.9673 p5=0.895 lat=0.12ms
+c254999 narrow step=255000 recall=0.9573 p5=0.800 lat=0.04ms
+c257499   none step=257500 recall=0.9883 p5=0.900 lat=2.40ms
+c257499   wide step=257500 recall=0.9930 p5=0.900 lat=0.12ms
+c257499 narrow step=257500 recall=0.9910 p5=0.900 lat=0.04ms
+c259999   none step=260000 recall=0.9727 p5=0.900 lat=2.39ms
+c259999   wide step=260000 recall=0.9783 p5=0.900 lat=0.12ms
+c259999 narrow step=260000 recall=0.9677 p5=0.900 lat=0.04ms
+c262499   none step=262500 recall=0.9887 p5=0.900 lat=2.39ms
+c262499   wide step=262500 recall=0.9947 p5=0.995 lat=0.12ms
+c262499 narrow step=262500 recall=0.9963 p5=1.000 lat=0.04ms
+c264999   none step=265000 recall=0.9653 p5=0.800 lat=2.39ms
+c264999   wide step=265000 recall=0.9707 p5=0.895 lat=0.12ms
+c264999 narrow step=265000 recall=0.9720 p5=0.900 lat=0.04ms
+c267499   none step=267500 recall=0.9880 p5=0.900 lat=2.46ms
+c267499   wide step=267500 recall=0.9910 p5=0.900 lat=0.12ms
+c267499 narrow step=267500 recall=0.9923 p5=0.900 lat=0.04ms
+c269999   none step=270000 recall=0.9663 p5=0.800 lat=2.43ms
+c269999   wide step=270000 recall=0.9747 p5=0.900 lat=0.12ms
+c269999 narrow step=270000 recall=0.9733 p5=0.900 lat=0.04ms
+c272499   none step=272500 recall=0.9913 p5=0.900 lat=2.50ms
+c272499   wide step=272500 recall=0.9957 p5=1.000 lat=0.12ms
+c272499 narrow step=272500 recall=0.9920 p5=0.900 lat=0.04ms
+c274999   none step=275000 recall=0.9583 p5=0.800 lat=2.50ms
+c274999   wide step=275000 recall=0.9613 p5=0.800 lat=0.12ms
+c274999 narrow step=275000 recall=0.9520 p5=0.800 lat=0.04ms
+c277499   none step=277500 recall=0.9903 p5=0.900 lat=2.42ms
+c277499   wide step=277500 recall=0.9943 p5=0.900 lat=0.12ms
+c277499 narrow step=277500 recall=0.9930 p5=0.900 lat=0.04ms
+c279999   none step=280000 recall=0.9537 p5=0.795 lat=2.40ms
+c279999   wide step=280000 recall=0.9660 p5=0.800 lat=0.12ms
+c279999 narrow step=280000 recall=0.9480 p5=0.795 lat=0.04ms
+c282499   none step=282500 recall=0.9917 p5=0.900 lat=2.48ms
+c282499   wide step=282500 recall=0.9960 p5=1.000 lat=0.13ms
+c282499 narrow step=282500 recall=0.9980 p5=1.000 lat=0.04ms
+c284999   none step=285000 recall=0.9777 p5=0.900 lat=2.47ms
+c284999   wide step=285000 recall=0.9770 p5=0.900 lat=0.13ms
+c284999 narrow step=285000 recall=0.9823 p5=0.900 lat=0.04ms
+c287499   none step=287500 recall=0.9933 p5=0.900 lat=2.46ms
+c287499   wide step=287500 recall=0.9970 p5=1.000 lat=0.13ms
+c287499 narrow step=287500 recall=0.9993 p5=1.000 lat=0.04ms
+c289999   none step=290000 recall=0.9700 p5=0.800 lat=2.45ms
+c289999   wide step=290000 recall=0.9687 p5=0.800 lat=0.13ms
+c289999 narrow step=290000 recall=0.9723 p5=0.900 lat=0.04ms
+c292499   none step=292500 recall=0.9950 p5=0.995 lat=2.42ms
+c292499   wide step=292500 recall=0.9967 p5=1.000 lat=0.12ms
+c292499 narrow step=292500 recall=0.9997 p5=1.000 lat=0.04ms
+c294999   none step=295000 recall=0.9720 p5=0.800 lat=2.43ms
+c294999   wide step=295000 recall=0.9707 p5=0.800 lat=0.11ms
+c294999 narrow step=295000 recall=0.9750 p5=0.900 lat=0.04ms
+c297499   none step=297500 recall=0.9963 p5=1.000 lat=2.41ms
+c297499   wide step=297500 recall=0.9990 p5=1.000 lat=0.12ms
+c297499 narrow step=297500 recall=1.0000 p5=1.000 lat=0.04ms
+c299999   none step=300000 recall=0.9643 p5=0.800 lat=2.44ms
+c299999   wide step=300000 recall=0.9707 p5=0.800 lat=0.12ms
+c299999 narrow step=300000 recall=0.9737 p5=0.900 lat=0.04ms
+- Scenario: general
+Dividing groups and building the trie tree index ...
+- Number of groups: 20
+- Finished in 126 ms
+Building graph for each group ...
+- Finished in 3889 ms
+Building label navigation graph... 
+- Finished in 0 ms
+Building cross-group edges ...
+- Finish in 13 ms
+checkpoint 0 dead_in_index=0 invisible_new=0 rebuilds=1
+rebuild   none step=     0 recall=0.9980 p5=1.000 lat=2.50ms
+rebuild   wide step=     0 recall=0.9997 p5=1.000 lat=0.13ms
+rebuild narrow step=     0 recall=1.0000 p5=1.000 lat=0.04ms

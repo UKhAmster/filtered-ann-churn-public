@@ -1,0 +1,14 @@
+# Драйвер протокола на C++ для hnswlib (заголовочная библиотека).
+# Коммит тот же, что у пакета PyPI 0.8.0 из карты возможностей.
+# Сборка из каталога adapters/: docker build -f hnswlib/Dockerfile.driver -t fanndyn-hnswlib:driver .
+FROM ubuntu:22.04
+ARG REPO_URL=https://github.com/nmslib/hnswlib.git
+ARG COMMIT_SHA=d9b3608c83d8
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends git g++ libomp-dev ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+RUN git clone "$REPO_URL" /src && cd /src && git checkout "$COMMIT_SHA"
+COPY common/fanndyn_io.h /driver/fanndyn_io.h
+COPY hnswlib/fanndyn_driver.cpp /driver/fanndyn_driver.cpp
+RUN g++ -O3 -march=native -std=c++17 -fopenmp -I/src -I/driver /driver/fanndyn_driver.cpp -o /driver/fanndyn_driver
+ENTRYPOINT ["/driver/fanndyn_driver"]

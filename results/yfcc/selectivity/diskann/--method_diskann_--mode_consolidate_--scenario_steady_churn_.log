@@ -1,0 +1,120 @@
+L2: Using AVX2 distance computation DistanceL2Float
+Index start points set: #8
+checkpoint 0 pending=0 consolidations=0
+Starting consolidate_deletes...  done in 1.21809 seconds.
+Starting consolidate_deletes...  done in 1.13315 seconds.
+checkpoint 1 pending=0 consolidations=2
+Starting consolidate_deletes...  done in 1.10307 seconds.
+Starting consolidate_deletes...  done in 1.12448 seconds.
+checkpoint 2 pending=0 consolidations=4
+Starting consolidate_deletes...  done in 1.10569 seconds.
+Starting consolidate_deletes...  done in 1.13064 seconds.
+checkpoint 3 pending=0 consolidations=6
+Starting consolidate_deletes...  done in 1.09003 seconds.
+Starting consolidate_deletes...  done in 1.08413 seconds.
+checkpoint 4 pending=0 consolidations=8
+Starting consolidate_deletes...  done in 1.0986 seconds.
+Starting consolidate_deletes...  done in 1.10016 seconds.
+checkpoint 5 pending=0 consolidations=10
+Starting consolidate_deletes...  done in 1.10982 seconds.
+Starting consolidate_deletes...  done in 1.13497 seconds.
+checkpoint 6 pending=0 consolidations=12
+Starting consolidate_deletes...  done in 1.11421 seconds.
+Starting consolidate_deletes...  done in 1.11835 seconds.
+checkpoint 7 pending=0 consolidations=14
+Starting consolidate_deletes...  done in 1.11989 seconds.
+Starting consolidate_deletes...  done in 1.12736 seconds.
+checkpoint 8 pending=0 consolidations=16
+Starting consolidate_deletes...  done in 1.09447 seconds.
+Starting consolidate_deletes...  done in 1.10288 seconds.
+checkpoint 9 pending=0 consolidations=18
+Starting consolidate_deletes...  done in 1.10794 seconds.
+Starting consolidate_deletes...  done in 1.12691 seconds.
+checkpoint 10 pending=0 consolidations=20
+   base   none step=     0 recall=0.9927 p5=0.900 lat=0.30ms cmps=1608
+   base   s0.3 step=     0 recall=0.9863 p5=0.900 lat=0.24ms cmps=765
+   base   s0.1 step=     0 recall=0.9343 p5=0.700 lat=0.16ms cmps=435
+   base  s0.03 step=     0 recall=0.8743 p5=0.600 lat=0.13ms cmps=284
+   base  s0.01 step=     0 recall=0.6910 p5=0.200 lat=0.09ms cmps=178
+   base s0.003 step=     0 recall=0.0197 p5=0.000 lat=0.00ms cmps=4
+   base s0.001 step=     0 recall=0.0043 p5=0.000 lat=0.00ms cmps=2
+ c19999   none step= 20000 recall=0.9917 p5=0.900 lat=0.28ms cmps=1405
+ c19999   s0.3 step= 20000 recall=0.9743 p5=0.900 lat=0.22ms cmps=664
+ c19999   s0.1 step= 20000 recall=0.9240 p5=0.600 lat=0.15ms cmps=373
+ c19999  s0.03 step= 20000 recall=0.8220 p5=0.400 lat=0.12ms cmps=228
+ c19999  s0.01 step= 20000 recall=0.6190 p5=0.100 lat=0.08ms cmps=150
+ c19999 s0.003 step= 20000 recall=0.0113 p5=0.000 lat=0.00ms cmps=3
+ c19999 s0.001 step= 20000 recall=0.0043 p5=0.000 lat=0.00ms cmps=2
+ c39999   none step= 40000 recall=0.9903 p5=0.900 lat=0.27ms cmps=1384
+ c39999   s0.3 step= 40000 recall=0.9670 p5=0.800 lat=0.22ms cmps=659
+ c39999   s0.1 step= 40000 recall=0.9093 p5=0.595 lat=0.15ms cmps=359
+ c39999  s0.03 step= 40000 recall=0.7900 p5=0.200 lat=0.12ms cmps=228
+ c39999  s0.01 step= 40000 recall=0.4910 p5=0.000 lat=0.08ms cmps=149
+ c39999 s0.003 step= 40000 recall=0.0073 p5=0.000 lat=0.00ms cmps=2
+ c39999 s0.001 step= 40000 recall=0.0043 p5=0.000 lat=0.00ms cmps=2
+ c59999   none step= 60000 recall=0.9873 p5=0.900 lat=0.27ms cmps=1382
+ c59999   s0.3 step= 60000 recall=0.9717 p5=0.900 lat=0.22ms cmps=670
+ c59999   s0.1 step= 60000 recall=0.9060 p5=0.600 lat=0.15ms cmps=359
+ c59999  s0.03 step= 60000 recall=0.7887 p5=0.200 lat=0.12ms cmps=220
+ c59999  s0.01 step= 60000 recall=0.4553 p5=0.000 lat=0.07ms cmps=133
+ c59999 s0.003 step= 60000 recall=0.0080 p5=0.000 lat=0.00ms cmps=2
+ c59999 s0.001 step= 60000 recall=0.0037 p5=0.000 lat=0.00ms cmps=2
+ c79999   none step= 80000 recall=0.9950 p5=1.000 lat=0.27ms cmps=1369
+ c79999   s0.3 step= 80000 recall=0.9700 p5=0.800 lat=0.23ms cmps=670
+ c79999   s0.1 step= 80000 recall=0.8970 p5=0.595 lat=0.15ms cmps=363
+ c79999  s0.03 step= 80000 recall=0.7707 p5=0.200 lat=0.12ms cmps=224
+ c79999  s0.01 step= 80000 recall=0.4580 p5=0.000 lat=0.07ms cmps=146
+ c79999 s0.003 step= 80000 recall=0.0060 p5=0.000 lat=0.00ms cmps=2
+ c79999 s0.001 step= 80000 recall=0.1287 p5=0.000 lat=0.01ms cmps=21
+ c99999   none step=100000 recall=0.9937 p5=1.000 lat=0.27ms cmps=1371
+ c99999   s0.3 step=100000 recall=0.9703 p5=0.895 lat=0.23ms cmps=668
+ c99999   s0.1 step=100000 recall=0.8870 p5=0.395 lat=0.15ms cmps=367
+ c99999  s0.03 step=100000 recall=0.7470 p5=0.100 lat=0.11ms cmps=212
+ c99999  s0.01 step=100000 recall=0.3987 p5=0.000 lat=0.06ms cmps=135
+ c99999 s0.003 step=100000 recall=0.1677 p5=0.000 lat=0.01ms cmps=26
+ c99999 s0.001 step=100000 recall=0.0133 p5=0.000 lat=0.00ms cmps=3
+c119999   none step=120000 recall=0.9903 p5=0.900 lat=0.27ms cmps=1367
+c119999   s0.3 step=120000 recall=0.9790 p5=0.900 lat=0.22ms cmps=666
+c119999   s0.1 step=120000 recall=0.8860 p5=0.300 lat=0.15ms cmps=363
+c119999  s0.03 step=120000 recall=0.7453 p5=0.200 lat=0.12ms cmps=228
+c119999  s0.01 step=120000 recall=0.2800 p5=0.000 lat=0.05ms cmps=119
+c119999 s0.003 step=120000 recall=0.0137 p5=0.000 lat=0.00ms cmps=3
+c119999 s0.001 step=120000 recall=0.0000 p5=0.000 lat=0.00ms cmps=1
+c139999   none step=140000 recall=0.9893 p5=0.900 lat=0.27ms cmps=1368
+c139999   s0.3 step=140000 recall=0.9740 p5=0.900 lat=0.23ms cmps=673
+c139999   s0.1 step=140000 recall=0.9020 p5=0.495 lat=0.15ms cmps=370
+c139999  s0.03 step=140000 recall=0.7200 p5=0.100 lat=0.11ms cmps=207
+c139999  s0.01 step=140000 recall=0.3493 p5=0.000 lat=0.06ms cmps=135
+c139999 s0.003 step=140000 recall=0.0123 p5=0.000 lat=0.00ms cmps=3
+c139999 s0.001 step=140000 recall=0.0000 p5=0.000 lat=0.00ms cmps=1
+c159999   none step=160000 recall=0.9877 p5=0.900 lat=0.27ms cmps=1374
+c159999   s0.3 step=160000 recall=0.9727 p5=0.900 lat=0.23ms cmps=676
+c159999   s0.1 step=160000 recall=0.8847 p5=0.295 lat=0.16ms cmps=371
+c159999  s0.03 step=160000 recall=0.7430 p5=0.100 lat=0.11ms cmps=212
+c159999  s0.01 step=160000 recall=0.5177 p5=0.000 lat=0.08ms cmps=144
+c159999 s0.003 step=160000 recall=0.0047 p5=0.000 lat=0.00ms cmps=2
+c159999 s0.001 step=160000 recall=0.0610 p5=0.000 lat=0.01ms cmps=13
+c179999   none step=180000 recall=0.9887 p5=0.900 lat=0.27ms cmps=1375
+c179999   s0.3 step=180000 recall=0.9747 p5=0.900 lat=0.23ms cmps=669
+c179999   s0.1 step=180000 recall=0.8990 p5=0.500 lat=0.16ms cmps=376
+c179999  s0.03 step=180000 recall=0.7300 p5=0.100 lat=0.12ms cmps=223
+c179999  s0.01 step=180000 recall=0.5207 p5=0.000 lat=0.07ms cmps=140
+c179999 s0.003 step=180000 recall=0.0053 p5=0.000 lat=0.00ms cmps=2
+c179999 s0.001 step=180000 recall=0.0000 p5=0.000 lat=0.00ms cmps=1
+c199999   none step=200000 recall=0.9883 p5=0.900 lat=0.27ms cmps=1371
+c199999   s0.3 step=200000 recall=0.9777 p5=0.900 lat=0.23ms cmps=672
+c199999   s0.1 step=200000 recall=0.9050 p5=0.600 lat=0.16ms cmps=371
+c199999  s0.03 step=200000 recall=0.7187 p5=0.000 lat=0.12ms cmps=230
+c199999  s0.01 step=200000 recall=0.4547 p5=0.000 lat=0.07ms cmps=140
+c199999 s0.003 step=200000 recall=0.1320 p5=0.000 lat=0.01ms cmps=21
+c199999 s0.001 step=200000 recall=0.0153 p5=0.000 lat=0.00ms cmps=4
+L2: Using AVX2 distance computation DistanceL2Float
+Index start points set: #8
+checkpoint 0 pending=0 consolidations=0
+rebuild   none step=     0 recall=0.9907 p5=0.900 lat=0.30ms cmps=1620
+rebuild   s0.3 step=     0 recall=0.9857 p5=0.900 lat=0.25ms cmps=796
+rebuild   s0.1 step=     0 recall=0.9413 p5=0.700 lat=0.17ms cmps=434
+rebuild  s0.03 step=     0 recall=0.8687 p5=0.500 lat=0.13ms cmps=281
+rebuild  s0.01 step=     0 recall=0.7160 p5=0.300 lat=0.09ms cmps=182
+rebuild s0.003 step=     0 recall=0.4210 p5=0.000 lat=0.05ms cmps=104
+rebuild s0.001 step=     0 recall=0.0583 p5=0.000 lat=0.01ms cmps=13
