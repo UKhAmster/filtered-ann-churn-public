@@ -1,11 +1,11 @@
-# UNG. В репозитории единственный коммит `init` от декабря 2024, истории нет,
-# откатываться при поломке некуда — ревизия закреплена по SHA как есть.
+# UNG. The repository has a single commit `init` from December 2024 and no history,
+# so there is nothing to roll back to if it breaks; the revision is pinned by SHA as is.
 FROM ubuntu:22.04
 ARG REPO_URL=https://github.com/YZ-Cai/Unified-Navigating-Graph.git
 ARG COMMIT_SHA=92b58ffd600d3a51bb6537460dae1079150b5fa5
 ENV DEBIAN_FRONTEND=noninteractive
-# MKL не нужен: codes/CMakeLists.txt требует только Boost и OpenMP, а пакет
-# libmkl-full-dev к тому же задаёт интерактивный вопрос и вешает сборку.
+# MKL is not needed: codes/CMakeLists.txt requires only Boost and OpenMP, and the
+# libmkl-full-dev package also asks an interactive question that hangs the build.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git build-essential cmake ca-certificates \
         libboost-program-options-dev libboost-filesystem-dev \

@@ -1,6 +1,6 @@
-"""Графики пилотного замера: полнота и задержка от числа операций.
+"""Pilot plots: recall and latency versus the number of operations.
 
-Пример:
+Example:
     .venv/bin/python scripts/plot_pilot.py results/pilot
 """
 

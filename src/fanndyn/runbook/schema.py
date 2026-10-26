@@ -1,7 +1,7 @@
-"""Типы операций runbook и их сериализация.
+"""Runbook operation types and their serialization.
 
-Runbook детерминирован: зерно и версия генератора записаны в заголовке,
-поэтому состояние коллекции в любой контрольной точке восстановимо.
+A runbook is deterministic: the seed and generator version are stored in its header,
+so the state of the collection at any checkpoint can be reconstructed.
 """
 
 from __future__ import annotations
@@ -13,7 +13,7 @@ from pathlib import Path
 
 
 class RunbookError(ValueError):
-    """Runbook нарушает инварианты и непригоден для прогона."""
+    """The runbook violates its invariants and cannot be run."""
 
 
 class OpKind(str, Enum):
@@ -41,8 +41,8 @@ class Runbook:
 
 
 def validate(rb: Runbook) -> None:
-    """Проверяет инварианты: удаления и правки только по живым идентификаторам,
-    идентификаторы не переиспользуются, есть хотя бы одна контрольная точка."""
+    """Checks invariants: deletions and updates only touch live ids,
+    ids are never reused, and there is at least one checkpoint."""
     alive: set[int] = set()
     seen: set[int] = set()
     checkpoints = 0
@@ -50,19 +50,19 @@ def validate(rb: Runbook) -> None:
         if op.kind is OpKind.INSERT:
             for oid in op.ids:
                 if oid in seen:
-                    raise RunbookError(f"операция {i}: повторное использование id {oid}")
+                    raise RunbookError(f"operation {i}: id {oid} reused")
                 seen.add(oid)
                 alive.add(oid)
         elif op.kind in (OpKind.DELETE, OpKind.UPDATE_ATTR):
             for oid in op.ids:
                 if oid not in alive:
-                    raise RunbookError(f"операция {i}: обращение к отсутствующему id {oid}")
+                    raise RunbookError(f"operation {i}: reference to missing id {oid}")
             if op.kind is OpKind.DELETE:
                 alive.difference_update(op.ids)
         elif op.kind is OpKind.CHECKPOINT:
             checkpoints += 1
     if checkpoints == 0:
-        raise RunbookError("runbook не содержит ни одной контрольной точки")
+        raise RunbookError("runbook contains no checkpoint")
 
 
 def to_jsonl(rb: Runbook, path: Path) -> None:

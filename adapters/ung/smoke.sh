@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Дымовой прогон UNG на синтетических данных.
-# Цепочка полностью повторяет README проекта, только на 5000 векторах вместо SIFT1M:
-# генерация меток -> генерация запросных меток -> эталоны -> построение -> поиск.
+# UNG smoke run on synthetic data.
+# The chain follows the project README exactly, only on 5000 vectors instead of SIFT1M:
+# label generation -> query label generation -> ground truth -> build -> search.
 set -euo pipefail
 cd /src
 
@@ -54,6 +54,6 @@ PY
     --result_path_prefix /tmp/results/ --scenario containment \
     --num_entry_points 16 --Lsearch 10 50 100
 
-echo "--- результаты поиска ---"
+echo "--- search results ---"
 cat /tmp/results/*.csv
 echo "smoke ok"

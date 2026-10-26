@@ -1,21 +1,21 @@
-// Драйвер ACORN для протокола fanndyn: тот же формат ввода-вывода, что у драйвера
-// Filtered-DiskANN (см. adapters/filtered_diskann/fanndyn_driver.cpp).
+// ACORN driver for the fanndyn protocol: the same input/output format as the
+// Filtered-DiskANN driver (see adapters/filtered_diskann/fanndyn_driver.cpp).
 //
-// Удаления в ACORN нет (remove_ids не переопределён), поэтому они эмулируются так,
-// как это делают системы без штатного удаления: удалённый объект исключается маской
-// фильтра, а граф не чинится (режим tombstone). Режим rebuild дополнительно
-// перестраивает индекс с нуля на живых объектах, когда доля удалённых достигает
-// --rebuild-at от числа живых.
+// ACORN has no deletion (remove_ids is not overridden), so deletions are emulated the
+// way systems without native deletion do it: a deleted object is excluded by the filter
+// mask and the graph is not repaired (tombstone mode). The rebuild mode additionally
+// rebuilds the index from scratch on live objects when the deleted fraction reaches
+// --rebuild-at of the live count.
 //
-// Вставки буферизуются до ближайшей контрольной точки или перестройки: IndexACORN::add
-// на каждый вызов заводит массив из ntotal блокировок, то есть одиночная вставка стоит
-// O(N), а на одиночных вставках после построения драйвер падал. Удаления графа не
-// касаются, поэтому набор и порядок вставленных точек сохраняются; меняется лишь то,
-// что граф новых точек строится пакетом.
+// Insertions are buffered until the next checkpoint or rebuild: IndexACORN::add
+// allocates an array of ntotal locks on every call, so a single insertion costs
+// O(N), and single insertions after the build crashed the driver. Deletions do not
+// touch the graph, so the set and order of inserted points are preserved; only the
+// graph of new points is built in a batch.
 //
-// ACORN хранит указатель на вектор метаданных, поэтому вектор выделяется сразу на все
-// id и больше не меняет размер. Внутренний номер FAISS совпадает с порядком добавления;
-// при перестройке ведётся таблица соответствия номеров и id.
+// ACORN keeps a pointer to the metadata vector, so the vector is allocated for all
+// ids at once and never resized. The internal FAISS number follows insertion order;
+// across rebuilds a mapping between internal numbers and ids is kept.
 #include <faiss/IndexACORN.h>
 #include <omp.h>
 
@@ -33,7 +33,7 @@ using Clock = std::chrono::steady_clock;
 
 static std::vector<uint32_t> read_u32(const std::string &path) {
     std::ifstream in(path, std::ios::binary | std::ios::ate);
-    if (!in) throw std::runtime_error("нет файла " + path);
+    if (!in) throw std::runtime_error("no file " + path);
     auto size = in.tellg();
     in.seekg(0);
     std::vector<uint32_t> out(size / sizeof(uint32_t));
@@ -43,7 +43,7 @@ static std::vector<uint32_t> read_u32(const std::string &path) {
 
 static std::vector<float> read_bin(const std::string &path, uint32_t &n, uint32_t &d) {
     std::ifstream in(path, std::ios::binary);
-    if (!in) throw std::runtime_error("нет файла " + path);
+    if (!in) throw std::runtime_error("no file " + path);
     in.read(reinterpret_cast<char *>(&n), 4);
     in.read(reinterpret_cast<char *>(&d), 4);
     std::vector<float> out(size_t(n) * d);
@@ -60,8 +60,8 @@ struct State {
     uint32_t d;
     int M, gamma, M_beta, ef_search, build_threads;
     const std::vector<float> *base;
-    std::vector<int> meta;              // метка по внутреннему номеру, размер фиксирован
-    std::vector<uint32_t> slot_to_id;   // внутренний номер -> id объекта
+    std::vector<int> meta;              // label by internal number, fixed size
+    std::vector<uint32_t> slot_to_id;   // internal number -> object id
     std::vector<char> alive_by_id;
     std::unique_ptr<faiss::IndexACORNFlat> index;
 
@@ -75,7 +75,7 @@ struct State {
         std::vector<float> buf(ids.size() * size_t(d));
         for (size_t i = 0; i < ids.size(); ++i) {
             size_t slot = slot_to_id.size() + i;
-            if (slot >= meta.size()) throw std::runtime_error("нет места под метаданные");
+            if (slot >= meta.size()) throw std::runtime_error("no room for metadata");
             meta[slot] = int(labels[ids[i]]);
             std::copy_n(base->data() + size_t(ids[i]) * d, d, buf.data() + i * d);
         }
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
         else if (k == "--K") K = std::stoul(v);
         else if (k == "--threads") threads = std::stoi(v);
         else if (k == "--rebuild-at") rebuild_at = std::stod(v);
-        else throw std::runtime_error("неизвестный параметр " + k);
+        else throw std::runtime_error("unknown parameter " + k);
     }
     if (mode != "tombstone" && mode != "rebuild") throw std::runtime_error("mode: tombstone | rebuild");
     std::vector<int> filters;
@@ -166,7 +166,7 @@ int main(int argc, char **argv) {
             flush();
             size_t N = st.slot_to_id.size();
             for (size_t f = 0; f < filters.size(); ++f) {
-                // Маска одна на все запросы: удалённые исключены, фильтр по метке.
+                // One mask for all queries: deleted objects excluded, filter by label.
                 std::vector<char> row(N);
                 for (size_t s = 0; s < N; ++s) {
                     uint32_t id = st.slot_to_id[s];
@@ -190,7 +190,7 @@ int main(int argc, char **argv) {
             std::cerr << "checkpoint " << ck << " dead=" << dead << " rebuilds=" << rebuilds << std::endl;
             ck++;
         } else {
-            throw std::runtime_error("неизвестный вид операции " + std::to_string(kind));
+            throw std::runtime_error("unknown operation kind " + std::to_string(kind));
         }
     }
     return 0;

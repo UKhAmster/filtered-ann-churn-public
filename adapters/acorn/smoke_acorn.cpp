@@ -1,13 +1,13 @@
-// Дымовой пример ACORN на синтетических данных.
+// ACORN smoke example on synthetic data.
 //
-// Собственный пример проекта (demos/test_acorn.cpp) не годится для дымовой
-// проверки: он требует внешний датасет SIFT с заранее посчитанными метаданными,
-// эталонами и файлами предикатов. Его сборка проверяется отдельной целью в
-// Dockerfile, а работоспособность индекса — этим примером.
+// The project's own example (demos/test_acorn.cpp) does not fit a smoke
+// check: it needs an external SIFT dataset with precomputed metadata,
+// ground truth and predicate files. Its build is checked by a separate target in
+// the Dockerfile, and the index itself by this example.
 //
-// Код следует разделу README «Example Usage», но по фактическому API: README
-// показывает конструктор из четырёх аргументов, а IndexACORN.h требует пяти —
-// метаданные передаются при построении.
+// The code follows the README section "Example Usage", but with the actual API: the README
+// shows a four-argument constructor, while IndexACORN.h requires five, with
+// metadata passed at construction.
 #include <cstdio>
 #include <random>
 #include <vector>
@@ -31,7 +31,7 @@ int main() {
         value = uniform(rng);
     }
 
-    // Один атрибут на вектор, четыре значения — минимальная модель фильтра.
+    // One attribute per vector, four values: the minimal filter model.
     std::vector<int> metadata(N);
     for (int i = 0; i < N; ++i) {
         metadata[i] = i % 4;
@@ -44,7 +44,7 @@ int main() {
     std::vector<faiss::idx_t> labels(static_cast<size_t>(k) * nq);
     std::vector<float> distances(static_cast<size_t>(k) * nq);
 
-    // Предикат: пропускаем только векторы с атрибутом, равным атрибуту запроса.
+    // Predicate: pass only vectors whose attribute equals the query's attribute.
     std::vector<char> filter_ids_map(static_cast<size_t>(nq) * N);
     for (int q = 0; q < nq; ++q) {
         for (int i = 0; i < N; ++i) {

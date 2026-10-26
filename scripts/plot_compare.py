@@ -1,6 +1,6 @@
-"""Сравнение траекторий полноты hnswlib и Filtered-DiskANN на одном сценарии.
+"""Recall trajectories of hnswlib and Filtered-DiskANN on one scenario.
 
-Пример:
+Example:
     .venv/bin/python scripts/plot_compare.py results/pilot_3x results/pilot_diskann_3x out.png
 """
 

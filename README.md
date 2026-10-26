@@ -24,7 +24,9 @@ tests/            unit tests of the package
 ```
 
 Method revisions are pinned by commit SHA in each `Dockerfile` (`ARG COMMIT_SHA`).
-Code comments and the READMEs inside `adapters/` and `results/yfcc/` are in Russian.
+Plot labels of the thesis figure scripts, console output of the analysis scripts and the column
+names of `derived.csv` are in Russian; the columns are translated in `results/yfcc/README.md`.
+The preprint figures (`scripts/preprint_figures.py`) are in English.
 
 ## Setup
 
@@ -35,12 +37,13 @@ python -m venv .venv
 .venv/bin/pip install -e '.[dev]'
 make test
 
-bash adapters/smoke.sh acorn      # base image fanndyn-acorn:smoke for the ACORN driver
+# base images fanndyn-<method>:smoke for the Filtered-DiskANN, UNG and ACORN drivers
+for m in filtered_diskann ung acorn; do bash adapters/smoke.sh $m; done
 cd adapters
 docker build -f hnswlib/Dockerfile.driver          -t fanndyn-hnswlib:driver .
 docker build -f filtered_diskann/Dockerfile.driver -t fanndyn-filtered_diskann:driver .
 docker build -f ung/Dockerfile.driver              -t fanndyn-ung:driver .
-docker build -f acorn/Dockerfile.driver            -t fanndyn-acorn:driver .
+docker build -f acorn/Dockerfile.driver            -t fanndyn-acorn:driver acorn
 ```
 
 ## Data

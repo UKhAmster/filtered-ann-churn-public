@@ -1,18 +1,18 @@
-"""Производные показатели (спецификация, раздел 4.3) по результатам прогонов.
+"""Derived metrics of the protocol computed from run results.
 
-Для каждой пары (прогон, фильтр):
-  * оракул — полнота свежего индекса: среднее контрольной точки base и индекса, перестроенного
-    на итоговой коллекции (в стационарном обороте состав коллекции статистически не меняется);
-  * средний недодан полноты — площадь потерь, делённая на длину прогона в операциях;
-  * наработка до нарушения — операции до первой контрольной точки с полнотой ниже
-    «полнота в начале прогона − порог» (разрешение — шаг контрольных точек); отсчёт от
-    собственного старта, потому что у узких фильтров base и перестроенный индекс различаются
-    сильнее порога из-за шума малых выборок запросов;
-  * средний избыток работы — то же для числа вычислений расстояний относительно base;
-  * обслуживание — суммарное время уплотнений или перестроек за прогон и время полной
-    перестройки опорного индекса.
+For each (run, filter) pair:
+  * oracle: recall of a fresh index, the mean of the base checkpoint and of the index rebuilt
+    on the final collection (under steady churn the collection is statistically unchanged);
+  * mean recall deficit: the loss area divided by the run length in operations;
+  * time to violation: operations until the first checkpoint with recall below
+    "recall at the start of the run - threshold" (resolution: the checkpoint step); counted
+    from the run's own start, because for narrow filters base and the rebuilt index differ
+    by more than the threshold due to the noise of small query sets;
+  * mean excess work: the same for distance computations relative to base;
+  * maintenance: total time of consolidations or rebuilds per run and the time of a full
+    rebuild of the reference index.
 
-Пример:
+Example:
     .venv/bin/python scripts/derived_table.py results/yfcc/churn_3x --drop 0.02
 """
 
@@ -62,7 +62,7 @@ def summarize_run(path: Path, drop: float) -> list[dict]:
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("root", type=Path)
-    p.add_argument("--drop", type=float, default=0.02, help="допустимая потеря полноты от оракула")
+    p.add_argument("--drop", type=float, default=0.02, help="allowed recall loss from the oracle")
     p.add_argument("--out", type=Path, default=None)
     a = p.parse_args()
     rows = [r for path in sorted(a.root.glob("*/*.csv")) for r in summarize_run(path, a.drop)]

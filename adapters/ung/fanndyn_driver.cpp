@@ -1,16 +1,16 @@
-// Драйвер UNG для протокола fanndyn (формат ввода-вывода — adapters/common/fanndyn_io.h).
+// UNG driver for the fanndyn protocol (input/output format: adapters/common/fanndyn_io.h).
 //
-// UNG статический: у UniNavGraph есть только build, search, save и load. Поэтому его
-// жизнь под потоком изменений моделируется так, как живёт статический индекс в
-// эксплуатации: между перестройками индекс обслуживает прежнюю коллекцию, удалённые
-// объекты отфильтровываются из ответа (для этого запрашивается --fetch кандидатов, а не
-// K), новые объекты не видны; когда удалённых из индекса набирается --rebuild-at от
-// числа живых, индекс строится заново на всех живых объектах, включая новые.
+// UNG is static: UniNavGraph has only build, search, save and load. So its life
+// under a stream of changes is modeled the way a static index lives in
+// production: between rebuilds the index serves the previous collection, deleted
+// objects are filtered out of answers (for that --fetch candidates are requested instead
+// of K), new objects are invisible; when the number of deleted objects reaches --rebuild-at
+// of the live count, the index is rebuilt on all live objects, including new ones.
 //
-// Фильтр по метке — сценарий containment (объект содержит метку): у объекта может быть
-// несколько меток. Метки сдвигаются на +1: метка 0 в UNG занята корнем префиксного дерева.
-// UNG ищет пакетом, поэтому задержка — среднее по пакету в один поток, одинаковое для всех
-// запросов; число вычислений расстояний UNG возвращает на каждый запрос.
+// Label filter is the containment scenario (the object contains the label): an object may
+// have several labels. Labels are shifted by +1: label 0 in UNG is taken by the trie root.
+// UNG searches in a batch, so latency is the batch mean in one thread, the same for all
+// queries; UNG returns the number of distance computations for every query.
 #include "uni_nav_graph.h"
 
 #include <memory>
@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
     auto ops = read_raw<uint32_t>(dir + "/ops.u32");
     std::shared_ptr<ANNS::DistanceHandler> dist(ANNS::get_distance_handler("float", "L2").release());
 
-    // Хранилища запросов: по одному на фильтр (для поиска без фильтра метка не важна).
+    // Query stores: one per filter (for unfiltered search the label does not matter).
     std::vector<std::shared_ptr<ANNS::IStorage>> qstorages;
     std::vector<uint32_t> nqs;
     for (size_t f = 0; f < filters.size(); ++f) {
@@ -147,7 +147,7 @@ int main(int argc, char **argv) {
                       << std::endl;
             ck++;
         } else {
-            throw std::runtime_error("неизвестный вид операции " + std::to_string(kind));
+            throw std::runtime_error("unknown operation kind " + std::to_string(kind));
         }
     }
     return 0;

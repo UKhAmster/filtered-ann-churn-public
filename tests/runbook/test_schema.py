@@ -34,7 +34,7 @@ def test_validate_rejects_delete_of_absent_id():
         generator_version="1",
         ops=(Op(kind=OpKind.DELETE, ids=(7,)),),
     )
-    with pytest.raises(RunbookError, match="отсутствующ"):
+    with pytest.raises(RunbookError, match="missing id"):
         validate(bad)
 
 
@@ -45,5 +45,5 @@ def test_validate_requires_at_least_one_checkpoint():
         generator_version="1",
         ops=(Op(kind=OpKind.INSERT, ids=(0,)),),
     )
-    with pytest.raises(RunbookError, match="контрольн"):
+    with pytest.raises(RunbookError, match="no checkpoint"):
         validate(bad)

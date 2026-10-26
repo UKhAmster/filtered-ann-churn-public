@@ -1,10 +1,10 @@
-"""Рисунок политики перестройки статического индекса (UNG): пила полноты и компромисс.
+"""Rebuild policy figure for a static index (UNG): recall sawtooth and trade-off.
 
-Слева — полнота без фильтра на первых 60 тыс. операций при трёх порогах перестройки.
-Справа — средняя полнота против суммарного времени построений; линия — модель 1 - t/2
-(в среднем невидима половина порога новых объектов).
+Left: unfiltered recall over the first 60k operations at three rebuild thresholds.
+Right: mean recall versus total build time; the line is the model 1 - t/2
+(on average half of the threshold's worth of new objects is invisible).
 
-Пример:
+Example:
     .venv/bin/python scripts/plot_policy.py results/pilot_ung_3x out.png
 """
 

@@ -1,18 +1,18 @@
 # Filtered-DiskANN.
 #
-# Важное уточнение: ветка main репозитория microsoft/DiskANN переписана на Rust,
-# и её история не содержит C++-кода вовсе. Реализация, соответствующая статье
-# Filtered-DiskANN (SIGMOD 2023) и сопоставимая с опубликованными результатами,
-# живёт в ветке cpp_main. Коммит закреплён по SHA.
+# Note: the main branch of microsoft/DiskANN was rewritten in Rust,
+# and its history contains no C++ code at all. The implementation matching the
+# Filtered-DiskANN paper (WWW 2023) and comparable with published results
+# lives in the cpp_main branch. The commit is pinned by SHA.
 FROM ubuntu:22.04
 ARG REPO_URL=https://github.com/microsoft/DiskANN.git
 ARG COMMIT_SHA=78256bbab4685e1774e78d331e081a153be26823
 ENV DEBIAN_FRONTEND=noninteractive
-# libmkl-full-dev спрашивает про замену BLAS/LAPACK по умолчанию; без
-# noninteractive сборка виснет на этом вопросе.
-# CMakeLists требует Intel OpenMP и перебирает три фиксированных пути. В jammy
-# пакета libiomp-dev нет, а libiomp5.so приходит с libomp-14-dev и лежит вне
-# этих путей — отсюда явный -DOMP_PATH ниже.
+# libmkl-full-dev asks about replacing the default BLAS/LAPACK; without
+# noninteractive the build hangs on this question.
+# CMakeLists requires Intel OpenMP and tries three fixed paths. In jammy
+# there is no libiomp-dev package, and libiomp5.so comes with libomp-14-dev outside
+# those paths, hence the explicit -DOMP_PATH below.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git make cmake g++ ca-certificates \
         libaio-dev libgoogle-perftools-dev libboost-all-dev libmkl-full-dev \

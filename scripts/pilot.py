@@ -1,6 +1,6 @@
-"""Пилотный замер: траектория полноты hnswlib под динамикой на подвыборке SIFT.
+"""Pilot measurement: recall trajectory of hnswlib under churn on a SIFT sample.
 
-Пример:
+Example:
     .venv/bin/python scripts/pilot.py --scenario steady_churn --mode mark --out results/pilot
 """
 
@@ -22,9 +22,9 @@ from fanndyn.runbook.scenarios import build_scenario
 from fanndyn.runbook.schema import OpKind
 
 N_LABELS = 20
-WIDE_LABEL = 0  # около 28 % коллекции
-NARROW_LABEL = N_LABELS - 1  # около 1,4 %
-PURGE_LABEL = 1  # около 14 %
+WIDE_LABEL = 0  # about 28 % of the collection
+NARROW_LABEL = N_LABELS - 1  # about 1.4 %
+PURGE_LABEL = 1  # about 14 %
 LABEL_SEED = 11
 
 
@@ -91,7 +91,7 @@ def main() -> None:
 
     rows = run_runbook(rb, vectors, labels, queries, filters, factory, k=a.k, progress=progress)
 
-    # Опорная точка: индекс, построенный заново на итоговой живой коллекции.
+    # Reference point: an index built from scratch on the final live collection.
     alive = np.ones(n_total, dtype=bool)
     for op in rb.ops:
         if op.kind is OpKind.DELETE:

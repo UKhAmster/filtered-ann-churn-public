@@ -1,9 +1,9 @@
-"""Сводка производных показателей по повторам: среднее, минимум и максимум по зёрнам.
+"""Summary of derived metrics over repeats: mean, minimum and maximum over seeds.
 
-Читает derived.csv из каждого каталога (их строит scripts/derived_table.py) и пишет
-derived_seeds.csv в первый каталог.
+Reads derived.csv from each directory (built by scripts/derived_table.py) and writes
+derived_seeds.csv to the first directory. Column names are in Russian, see results/yfcc/README.md.
 
-Пример:
+Example:
     .venv/bin/python scripts/aggregate_derived.py results/yfcc/selectivity \
         results/yfcc/selectivity_seed8 results/yfcc/selectivity_seed9
 """

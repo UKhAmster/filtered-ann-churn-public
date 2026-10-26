@@ -14,8 +14,8 @@ def test_reduce_tags_keeps_selected_and_marks_rest_as_other():
     ptr, idx = _csr([[5, 9], [1], [9, 7, 5], []])
     new_ptr, new_idx = reduce_tags(ptr, idx, keep=[9, 5])
     rows = [new_idx[new_ptr[i] : new_ptr[i + 1]].tolist() for i in range(4)]
-    # 9 -> 0, 5 -> 1, прочее -> 2; метки объекта отсортированы: DiskANN сравнивает
-    # списки меток методом двух указателей и требует сортировки.
+    # 9 -> 0, 5 -> 1, other -> 2; labels of an object are sorted: DiskANN compares
+    # label lists with two pointers and requires sorting.
     assert rows == [[0, 1], [2], [0, 1], [2]]
 
 

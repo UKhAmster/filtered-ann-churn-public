@@ -1,9 +1,9 @@
-"""Сравнение порогов перестройки статического индекса (UNG) под стационарным оборотом.
+"""Comparison of rebuild thresholds for a static index (UNG) under steady churn.
 
-Для каждого порога: средняя по времени полнота и доля запросов с полнотой ниже 0,9
-(усреднение по контрольным точкам, шаг равномерный), число построений индекса (включая первое) и их суммарное время.
+For each threshold: time-averaged recall and share of queries with recall below 0.9
+(averaged over evenly spaced checkpoints), the number of index builds (including the first) and their total time.
 
-Пример:
+Example:
     .venv/bin/python scripts/policy_summary.py results/pilot_ung_3x
 """
 

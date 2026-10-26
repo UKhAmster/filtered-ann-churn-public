@@ -1,12 +1,12 @@
-"""Рисунок перебора селективности: показатели в зависимости от доли тега в коллекции.
+"""Selectivity sweep figure: metrics as a function of the tag share in the collection.
 
-Читает derived.csv (scripts/derived_table.py) или derived_seeds.csv (scripts/aggregate_derived.py);
-во втором случае рисуется среднее по повторам с разбросом «минимум — максимум». Поиск без
-фильтра — точка с долей 1.
-Точки, где полнота свежего индекса ниже BROKEN, полые: метод не работает на этом фильтре уже
-до изменений, и показатели деградации там не имеют смысла.
+Reads derived.csv (scripts/derived_table.py) or derived_seeds.csv (scripts/aggregate_derived.py);
+in the latter case the mean over repeats is drawn with a min-max range. Unfiltered search
+is the point with share 1.
+Points where fresh-index recall is below BROKEN are hollow: the method fails on that filter
+before any updates, and degradation metrics are meaningless there.
 
-Пример:
+Example:
     .venv/bin/python scripts/plot_selectivity.py results/yfcc/selectivity/derived.csv out.png
 """
 
@@ -36,7 +36,7 @@ PANELS = [
 
 
 def normalize(table: pd.DataFrame) -> pd.DataFrame:
-    """Приводит derived_seeds.csv к колонкам derived.csv плюс границы разброса."""
+    """Brings derived_seeds.csv to the columns of derived.csv plus range bounds."""
     if "оракул mean" not in table.columns:
         return table
     out = table[["метод", "режим", "фильтр"]].copy()

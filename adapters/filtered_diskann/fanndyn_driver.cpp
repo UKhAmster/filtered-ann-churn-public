@@ -1,16 +1,16 @@
-// Драйвер Filtered-DiskANN для протокола fanndyn (формат ввода-вывода —
-// adapters/common/fanndyn_io.h): проигрывает runbook на динамическом фильтрованном индексе.
+// Filtered-DiskANN driver for the fanndyn protocol (input/output format:
+// adapters/common/fanndyn_io.h): replays a runbook on a dynamic filtered index.
 //
-// Режимы: lazy — ленивые удаления без уплотнения; consolidate — уплотнение графа каждые
-// --consolidate-every удалений. С --probe-list 1 дополнительно пишется alive_c<i>_f<j>.u32:
-// сколько живых вершин в списке из L лучших кандидатов (повторный поиск с K = L).
+// Modes: lazy - lazy deletions without consolidation; consolidate - graph consolidation every
+// --consolidate-every deletions. With --probe-list 1 it also writes alive_c<i>_f<j>.u32:
+// how many live vertices are in the list of the L best candidates (a repeated search with K = L).
 //
-// Два обхода закрытых полей через явное инстанцирование шаблона (при нём проверка доступа
-// не выполняется); исходники DiskANN не меняются:
-//  * search_with_tags ищет фильтр в строковом словаре _label_map, который у динамического
-//    индекса не заполняется, — словарь заполняется драйвером;
-//  * для счёта работы поиска функция расстояния хранилища (_distance_fn) заменяется
-//    наследником DistanceL2Float, увеличивающим счётчик потока при каждом вызове compare.
+// Two workarounds for private fields through explicit template instantiation (which skips
+// access checks); the DiskANN sources are not modified:
+//  * search_with_tags looks up the filter in the string dictionary _label_map, which a dynamic
+//    index does not fill, so the driver fills it;
+//  * to count search work, the store's distance function (_distance_fn) is replaced
+//    by a subclass of DistanceL2Float that increments a per-thread counter on every compare.
 #include "index.h"
 #include "index_factory.h"
 #include "in_mem_data_store.h"
@@ -104,10 +104,10 @@ int main(int argc, char **argv) {
                       .build();
     auto abstract = diskann::IndexFactory(config).create_instance();
     auto *index = dynamic_cast<IndexT *>(abstract.get());
-    if (!index) throw std::runtime_error("неожиданный тип индекса");
+    if (!index) throw std::runtime_error("unexpected index type");
     for (LabelT l = 0; l < n_labels; ++l) (index->*member(LabelMapTag{}))[std::to_string(l)] = l;
     auto *store = dynamic_cast<StoreT *>((index->*member(DataStoreTag{})).get());
-    if (!store) throw std::runtime_error("неожиданный тип хранилища");
+    if (!store) throw std::runtime_error("unexpected store type");
     (store->*member(DistanceTag{})) = std::make_unique<CountingL2>();
 
     double norm = 0;
@@ -144,17 +144,17 @@ int main(int argc, char **argv) {
             for (int64_t i = 0; i < int64_t(cnt); ++i) {
                 uint32_t id = ids[i];
                 auto ls = labels.of(id);
-                // detect_common_filters пересекает метки методом двух указателей и требует
-                // сортировки; insert_point её не проверяет.
+                // detect_common_filters intersects labels with two pointers and requires
+                // sorting; insert_point does not check it.
                 std::sort(ls.begin(), ls.end());
                 if (index->insert_point(&base[size_t(id) * d], TagT(id + 1), ls) != 0)
-                    throw std::runtime_error("insert_point не удался для id " + std::to_string(id));
+                    throw std::runtime_error("insert_point failed for id " + std::to_string(id));
             }
             insert_s += std::chrono::duration<double>(Clock::now() - t0).count();
         } else if (kind == 2) {
             for (uint32_t i = 0; i < cnt; ++i)
                 if (index->lazy_delete(TagT(ids[i] + 1)) != 0)
-                    throw std::runtime_error("lazy_delete не удался для id " + std::to_string(ids[i]));
+                    throw std::runtime_error("lazy_delete failed for id " + std::to_string(ids[i]));
             pending += cnt;
             if (mode == "consolidate" && pending >= consolidate_every) {
                 auto t0 = Clock::now();
@@ -189,7 +189,7 @@ int main(int argc, char **argv) {
                       << std::endl;
             ck++;
         } else {
-            throw std::runtime_error("неизвестный вид операции " + std::to_string(kind));
+            throw std::runtime_error("unknown operation kind " + std::to_string(kind));
         }
     }
     return 0;

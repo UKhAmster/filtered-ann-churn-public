@@ -1,5 +1,5 @@
-# Драйвер протокола поверх собранного образа UNG (см. Dockerfile).
-# Сборка из каталога adapters/: docker build -f ung/Dockerfile.driver -t fanndyn-ung:driver .
+# Protocol driver on top of the built UNG image (see Dockerfile).
+# Build from the adapters/ directory: docker build -f ung/Dockerfile.driver -t fanndyn-ung:driver .
 FROM fanndyn-ung:smoke
 COPY common/fanndyn_io.h /src/codes/apps/fanndyn_io.h
 COPY ung/fanndyn_driver.cpp /src/codes/apps/fanndyn_driver.cpp

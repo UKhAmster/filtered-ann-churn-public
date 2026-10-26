@@ -1,4 +1,4 @@
-"""Экспорт runbook для внешних драйверов и восстановление состояния коллекции."""
+"""Runbook export for external drivers and reconstruction of the collection state."""
 
 from __future__ import annotations
 
@@ -6,30 +6,30 @@ import numpy as np
 
 from fanndyn.runbook.schema import Op, OpKind, Runbook
 
-# Коды операций в бинарном потоке драйвера; SEARCH не передаётся.
+# Operation codes in the driver's binary stream; SEARCH is not passed.
 OP_CODES = {OpKind.INSERT: 1, OpKind.DELETE: 2, OpKind.CHECKPOINT: 3}
 
 
 def with_base_checkpoint(rb: Runbook) -> Runbook:
-    """Добавляет контрольную точку сразу после начальной загрузки — нулевой момент траектории."""
+    """Adds a checkpoint right after the initial load: time zero of the trajectory."""
     ops = (rb.ops[0], Op(kind=OpKind.CHECKPOINT, tag="base")) + rb.ops[1:]
     return Runbook(name=rb.name, seed=rb.seed, generator_version=rb.generator_version, ops=ops)
 
 
 def encode_ops(rb: Runbook) -> np.ndarray:
-    """Поток uint32: код операции, число id, сами id. Правки атрибутов не поддерживаются."""
+    """uint32 stream: operation code, number of ids, the ids. Attribute updates are unsupported."""
     out: list[int] = []
     for op in rb.ops:
         if op.kind is OpKind.SEARCH:
             continue
         if op.kind not in OP_CODES:
-            raise ValueError(f"драйвер не поддерживает операцию {op.kind.value}")
+            raise ValueError(f"driver does not support operation {op.kind.value}")
         out += [OP_CODES[op.kind], len(op.ids), *op.ids]
     return np.asarray(out, dtype=np.uint32)
 
 
 def alive_at_checkpoints(rb: Runbook) -> list[tuple[str, np.ndarray, int]]:
-    """Для каждой контрольной точки: тег, отсортированные живые id, число пройденных шагов."""
+    """For each checkpoint: tag, sorted live ids, number of steps done."""
     alive: set[int] = set()
     steps = 0
     out = []

@@ -1,10 +1,10 @@
-"""Сводка повторов по зёрнам: диапазон ключевых величин для каждой пары (метод, режим, фильтр).
+"""Summary of repeats over seeds: range of key values for each (method, mode, filter).
 
-Для каждого прогона берутся полнота и доля запросов ниже 0,9 в начале и в конце траектории,
-отношение работы в конце к началу и средняя по времени полнота; по зёрнам печатаются минимум и
-максимум.
+For each run it takes recall and the share of queries below 0.9 at the start and end of the
+trajectory, the ratio of work at the end to the start, and time-averaged recall; the minimum
+and maximum over seeds are printed.
 
-Пример:
+Example:
     .venv/bin/python scripts/aggregate_seeds.py results/yfcc/churn_3x results/yfcc/churn_3x_seed8 \
         results/yfcc/churn_3x_seed9
 """

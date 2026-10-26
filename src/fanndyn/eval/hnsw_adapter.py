@@ -1,9 +1,9 @@
-"""Адаптер hnswlib с двумя режимами удаления.
+"""hnswlib adapter with two deletion modes.
 
-mark    — удаление пометкой (markDelete), новые точки занимают новые слоты;
-          помеченные вершины остаются в графе и участвуют в обходе.
-replace — новые точки занимают слоты помеченных (replace_deleted), граф
-          локально перестраивается на месте старой вершины.
+mark    - mark-delete (markDelete); new points take new slots;
+          marked vertices stay in the graph and take part in traversal.
+replace - new points take the slots of marked ones (replace_deleted); the graph
+          is rebuilt locally in place of the old vertex.
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ class HnswAdapter:
         build_threads: int = -1,
     ) -> None:
         if mode not in MODES:
-            raise ValueError(f"неизвестный режим удаления: {mode}")
+            raise ValueError(f"unknown deletion mode: {mode}")
         self.mode = mode
         self._build_threads = build_threads
         self._index = hnswlib.Index(space="l2", dim=dim)
@@ -66,7 +66,7 @@ class HnswAdapter:
         self._marked += len(ids)
 
     def search(self, query: np.ndarray, k: int, allowed: Callable[[int], bool]) -> np.ndarray:
-        """k ближайших среди допустимых; если граф не дал k кандидатов, возвращает меньше."""
+        """k nearest among allowed ids; fewer if the graph yields fewer than k candidates."""
         for kk in range(k, 0, -1):
             try:
                 labels, _ = self._index.knn_query(query, k=kk, num_threads=1, filter=allowed)

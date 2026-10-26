@@ -1,123 +1,149 @@
-# Замеры на YFCC-10M (настоящие теги)
+# Measurements on YFCC-10M (real tags)
 
-Данные: префикс 1 млн векторов YFCC-10M из фильтрованного трека big-ann-benchmarks NeurIPS'23
-(CLIP, 192 измерения, uint8; в среднем 8,8 тега на объект в префиксе), публичные запросы.
-Загрузка — `scripts/fetch_yfcc.py`, подготовка — `load_yfcc` в `scripts/pilot_driver.py`.
-Работа на запрос — число вычислений расстояний (не зависит от машины).
+Data: a 1M-vector prefix of YFCC-10M from the filtered track of big-ann-benchmarks NeurIPS'23
+(CLIP, 192 dimensions, uint8; 8.8 tags per object on average in the prefix), public queries.
+Download: `scripts/fetch_yfcc.py`; preparation: `load_yfcc` in `scripts/pilot_driver.py`.
+Work per query is the number of distance computations (machine-independent).
 
-## Фильтры
+## Filters
 
-Теги выбираются детерминированно по доле в коллекции прогона среди тегов, которые есть хотя бы у
-300 публичных запросов. Поэтому выбор зависит от размера коллекции:
+Tags are chosen deterministically by their share in the run's collection, among tags carried by
+at least 300 public queries. The choice therefore depends on the collection size:
 
-| Фильтр | Основные прогоны (400 тыс.) | Подбор рабочей точки (100 тыс.) |
+| Filter | Main runs (400k) | Operating point selection (100k) |
 |---|---|---|
-| wide | тег 29, 19,3 % | тег 29, 19,1 % |
-| narrow | тег 345, 1,09 % | тег 345, 1,16 % |
-| tiny | тег 933, 0,39 % | тег 3808, 0,40 % |
-| purge (удаляемая категория) | тег 11, 7,0 % | тег 21, 7,0 % |
+| wide | tag 29, 19.3 % | tag 29, 19.1 % |
+| narrow | tag 345, 1.09 % | tag 345, 1.16 % |
+| tiny | tag 933, 0.39 % | tag 3808, 0.40 % |
+| purge (deleted category) | tag 11, 7.0 % | tag 21, 7.0 % |
 
-Запросы фильтра — первые 300 публичных запросов с этим тегом; без фильтра — первые 300 запросов.
-Словарь меток сокращён до четырёх тегов и метки «прочее»: на ответы для этих фильтров это не
-влияет, а динамическому Filtered-DiskANN нужно не меньше стартовых точек, чем меток. Метки
-объекта отсортированы (см. `docs/capability-map.md` о контракте `insert_point`).
+The queries of a filter are the first 300 public queries with that tag; unfiltered search uses
+the first 300 queries. The label vocabulary is reduced to the four tags plus an "other" label:
+this does not change answers for these filters, while dynamic Filtered-DiskANN needs at least as
+many start points as labels. Labels of an object are sorted (see `docs/capability-map.md` on the
+`insert_point` contract).
 
-## Рабочие точки (`operating_point/`)
+## Operating points (`operating_point/`)
 
-Правило: полнота recall@10 на свежем индексе из 100 тыс. объектов не ниже 0,98 без фильтра и с
-широким фильтром; берётся минимальный параметр, удовлетворяющий правилу.
+Rule: recall@10 on a fresh 100k-object index is at least 0.98 without a filter and with the wide
+filter; the smallest parameter satisfying the rule is taken.
 
-| Метод | Параметр | без фильтра | wide | narrow | tiny |
+| Method | Parameter | no filter | wide | narrow | tiny |
 |---|---|---|---|---|---|
-| hnswlib | ef = 64 | 0,979 | 0,993 | 0,996 | 0,998 |
-| hnswlib | **ef = 128** | 0,990 | 0,996 | 0,995 | 0,997 |
-| UNG | **L = 100** | 0,995 | 0,990 | 0,994 | 0,998 |
-| Filtered-DiskANN | **L = 100** | 0,993 | 0,986 | 0,917 | 0,907 |
-| Filtered-DiskANN | L = 200 | 0,995 | 0,995 | 0,936 | 0,908 |
-| Filtered-DiskANN | L = 300 | 0,996 | 0,996 | 0,949 | 0,905 |
+| hnswlib | ef = 64 | 0.979 | 0.993 | 0.996 | 0.998 |
+| hnswlib | **ef = 128** | 0.990 | 0.996 | 0.995 | 0.997 |
+| UNG | **L = 100** | 0.995 | 0.990 | 0.994 | 0.998 |
+| Filtered-DiskANN | **L = 100** | 0.993 | 0.986 | 0.917 | 0.907 |
+| Filtered-DiskANN | L = 200 | 0.995 | 0.995 | 0.936 | 0.908 |
+| Filtered-DiskANN | L = 300 | 0.996 | 0.996 | 0.949 | 0.905 |
 
-У Filtered-DiskANN полнота узких тегов на свежем индексе заметно ниже, чем у двух других
-методов, и растёт с L медленно.
+On a fresh index, Filtered-DiskANN recall on narrow tags is noticeably lower than that of the
+other two methods and grows slowly with L.
 
-## Результаты
+## Results
 
-`churn_3x/` — стационарный оборот, 300 тыс. операций «удалить — вставить» (коллекция обновлена
-трижды); `purge/` — удаление категории (тег purge) разом и 100 тыс. вставок.
-Рисунок — `churn_3x/steady_churn.png` (`scripts/plot_yfcc.py`).
+`churn_3x/`: steady churn, 300k "delete, insert" operations (the collection is renewed three
+times); `purge/`: deletion of a category (the purge tag) at once followed by 100k insertions.
+Figure: `churn_3x/steady_churn.png` (`scripts/plot_yfcc.py`).
 
-- **hnswlib, удаление пометкой:** полнота 0,99–1,0 на всех фильтрах, работа на запрос растёт
-  почти линейно — в 3,5 раза без фильтра, 3,6 / 4,0 / 3,7 раза с тегами 19 / 1,1 / 0,4 %.
-  Переиспользование мест держит работу в пределах −2…+11 %.
-- **Filtered-DiskANN без уплотнения:** деградация тем сильнее, чем уже тег: полнота 0,987 → 0,939,
-  0,907 → 0,759, 0,861 → 0,758; доля запросов ниже 0,9 — 2 → 16 %, 24 → 57 %, 35 → 63 %.
-  Без фильтра 0,993 → 0,976. Перестройка возвращает исходные значения.
-- **Filtered-DiskANN с уплотнением каждые 10 тыс. удалений:** широкий тег держится (0,979), узкий —
-  0,830, самый узкий по ходу оборота падает до 0 и к концу восстанавливается лишь до 0,56.
-- **UNG, перестройка при 20 % удалённых:** средняя полнота 0,893–0,900 при модели 1 − t/2 = 0,90;
-  14 построений.
-- **Удаление категории (7 %):** hnswlib не затронут; у DiskANN без уплотнения за 100 тыс.
-  операций узкие теги теряют 5–7 п. п. (0,913 → 0,865, 0,864 → 0,793), с уплотнением — 1 п. п.
+- **hnswlib, mark-delete:** recall 0.99-1.0 on all filters; work per query grows almost
+  linearly, ×3.5 without a filter and ×3.6 / 4.0 / 3.7 with tags of 19 / 1.1 / 0.4 %.
+  Slot reuse keeps work within -2…+11 %.
+- **Filtered-DiskANN without consolidation:** the narrower the tag, the stronger the degradation:
+  recall 0.987 → 0.939, 0.907 → 0.759, 0.861 → 0.758; share of queries below 0.9 2 → 16 %,
+  24 → 57 %, 35 → 63 %. Without a filter 0.993 → 0.976. A rebuild restores the initial values.
+- **Filtered-DiskANN with consolidation every 10k deletions:** the wide tag holds (0.979), the
+  narrow one reaches 0.830, the tiniest drops to 0 during churn and recovers only to 0.56 by the end.
+- **UNG, rebuild at 20 % deleted:** mean recall 0.893-0.900 against the model 1 − t/2 = 0.90;
+  14 builds.
+- **Category purge (7 %):** hnswlib is unaffected; Filtered-DiskANN without consolidation loses
+  5-7 p.p. on narrow tags over 100k operations (0.913 → 0.865, 0.864 → 0.793), 1 p.p. with
+  consolidation.
 
-## Перебор селективности (`selectivity/`)
+## Selectivity sweep (`selectivity/`)
 
-Шесть тегов с целевыми долями 30, 10, 3, 1, 0,3 и 0,1 % (фактически 33,9 / 9,7 / 2,9 / 1,0 / 0,28 /
-0,20 %; для 0,1 % не нашлось тега хотя бы с 300 запросами), стационарный оборот 200 тыс. операций,
-методы в рабочих точках. Производные показатели — `selectivity/derived.csv`
-(`scripts/derived_table.py`), рисунок — `selectivity/selectivity.png` (`scripts/plot_selectivity.py`).
+Six tags with target shares of 30, 10, 3, 1, 0.3 and 0.1 % (actual 33.9 / 9.7 / 2.9 / 1.0 / 0.28 /
+0.20 %; no tag with at least 300 queries was found for 0.1 %), steady churn of 200k operations,
+methods at their operating points. Derived metrics: `selectivity/derived.csv`
+(`scripts/derived_table.py`); figure: `selectivity/selectivity.png` (`scripts/plot_selectivity.py`).
 
-- **hnswlib (пометка):** полнота 1,0 на всех уровнях; средний избыток работы 83–100 %, почти не
-  зависит от селективности. Закон W = W₀ · p^(−β), p — доля живых вершин: β = 0,89–1,01 при
-  ошибке около 1 % (`scripts/work_law.py`); на SIFT по времени β = 0,87–0,94.
-- **UNG (перестройка при 20 %):** средний недодан 9,4–10,4 п. п. на всех уровнях — модель
-  1 − t/2 от селективности не зависит.
-- **Filtered-DiskANN:** полнота свежего индекса падает с сужением фильтра (0,99 → 0,94 → 0,87 →
-  0,70 при 34 → 10 → 3 → 1 %), средний недодан растёт (без уплотнения 0,3 → 0,9 → 2,2 → 6,2 →
-  10,2 п. п.), наработка до потери 2 п. п. сокращается (200 → 100 → 40 тыс. операций). На тегах
-  0,28 и 0,20 % метод не работает уже на свежем индексе (0,22–0,47 и около 0,01).
+- **hnswlib (mark-delete):** recall 1.0 at all levels; mean excess work 83-100 %, almost
+  independent of selectivity. Law W = W₀ · p^(−β), p the live share of vertices: β = 0.89-1.01
+  with about 1 % error (`scripts/work_law.py`); on SIFT, by latency, β = 0.87-0.94.
+- **UNG (rebuild at 20 %):** mean recall deficit 9.4-10.4 p.p. at all levels; the model
+  1 − t/2 does not depend on selectivity.
+- **Filtered-DiskANN:** fresh-index recall falls as the filter narrows (0.99 → 0.94 → 0.87 →
+  0.70 at 34 → 10 → 3 → 1 %), the mean deficit grows (without consolidation 0.3 → 0.9 → 2.2 →
+  6.2 → 10.2 p.p.), and the time to a 2 p.p. loss shrinks (200 → 100 → 40k operations). On tags of
+  0.28 and 0.20 % the method fails already on a fresh index (0.22-0.47 and about 0.01).
 
-Селективность не объясняет всё: теги 0,39 и 0,40 % основных прогонов давали 0,86–0,91, а
-0,28 и 0,20 % — почти ноль. Сцепленность тега с геометрией (подъём доли своего тега среди 10
-ближайших соседей, `scripts/tag_cohesion.py`) разницу тоже не объясняет: у провальных тегов она
-как раз наибольшая (11–13 против 3–5). Нужен второй фактор сложности — кандидаты: связь тега с
-запросами, абсолютное число объектов метки, положение стартовой точки метки.
+Selectivity does not explain everything: tags of 0.39 and 0.40 % in the main runs gave 0.86-0.91,
+while 0.28 and 0.20 % gave almost zero. Tag cohesion with the geometry (lift of the tag's share
+among the 10 nearest neighbors, `scripts/tag_cohesion.py`) does not explain the difference either:
+the failing tags have the highest cohesion (11-13 against 3-5). A second difficulty factor is
+needed; candidates: the relation of the tag to the queries, the absolute number of objects with
+the label, the position of the label's start point.
 
-| Тег | Доля, % | Сцепленность |
+| Tag | Share, % | Cohesion |
 |---|---|---|
-| 23 | 33,9 | 1,2 |
-| 17 | 9,7 | 1,3 |
-| 29 | 19,1 | 1,3 |
-| 38 | 2,9 | 2,0 |
-| 0 | 1,0 | 3,0 |
-| 345 | 1,16 | 3,0 |
-| 933 | 0,39 | 5,4 |
-| 3808 | 0,40 | 4,9 |
-| 337 | 0,20 | 11,0 |
-| 142 | 0,27 | 13,0 |
+| 23 | 33.9 | 1.2 |
+| 17 | 9.7 | 1.3 |
+| 29 | 19.1 | 1.3 |
+| 38 | 2.9 | 2.0 |
+| 0 | 1.0 | 3.0 |
+| 345 | 1.16 | 3.0 |
+| 933 | 0.39 | 5.4 |
+| 3808 | 0.40 | 4.9 |
+| 337 | 0.20 | 11.0 |
+| 142 | 0.27 | 13.0 |
 
-## Повторы трёхкратного оборота (`churn_3x_seed8`, `churn_3x_seed9`)
+## Repeats of three-fold churn (`churn_3x_seed8`, `churn_3x_seed9`)
 
-Трёхкратный оборот повторён на зёрнах сценария 8 и 9 при тех же рабочих точках; сводка по трём
-зёрнам — `seeds_summary.txt` (`scripts/aggregate_seeds.py`).
+Three-fold churn was repeated with scenario seeds 8 and 9 at the same operating points; the
+summary over three seeds is in `seeds_summary.txt` (`scripts/aggregate_seeds.py`).
 
-- hnswlib, пометка: работа в конце ×3,47–3,48 без фильтра, ×3,61–3,64 / ×4,03–4,10 / ×3,73–3,95 с
-  тегами 19 / 1,1 / 0,4 %; β = 0,89 / 0,92–0,93 / 1,01–1,02 / 0,96–0,98, ошибка 0,5–1,9 %.
-- Filtered-DiskANN без уплотнения: полнота в конце 0,939–0,942 / 0,731–0,759 / 0,712–0,758,
-  доля запросов ниже 0,9 — 14–16 / 57–62 / 63–67 %.
-- Filtered-DiskANN с уплотнением: широкий тег 0,977–0,979, узкий 0,830–0,857; самый узкий тег
-  проваливается до 0–0,02 в двух зёрнах из трёх, в третьем остаётся не ниже 0,65 — уплотнение
-  делает поведение узких фильтров непредсказуемым.
-- UNG: средняя полнота 0,891–0,903 на всех фильтрах и зёрнах.
+- hnswlib, mark-delete: work at the end ×3.47-3.48 without a filter, ×3.61-3.64 / ×4.03-4.10 /
+  ×3.73-3.95 with tags of 19 / 1.1 / 0.4 %; β = 0.89 / 0.92-0.93 / 1.01-1.02 / 0.96-0.98, error
+  0.5-1.9 %.
+- Filtered-DiskANN without consolidation: recall at the end 0.939-0.942 / 0.731-0.759 /
+  0.712-0.758, share of queries below 0.9 14-16 / 57-62 / 63-67 %.
+- Filtered-DiskANN with consolidation: wide tag 0.977-0.979, narrow 0.830-0.857; the tiniest tag
+  collapses to 0-0.02 in two seeds of three and stays at 0.65 or above in the third, so
+  consolidation makes the behavior of narrow filters unpredictable.
+- UNG: mean recall 0.891-0.903 on all filters and seeds.
 
-### Повторы перебора селективности (`selectivity_seed8`, `selectivity_seed9`)
+### Repeats of the selectivity sweep (`selectivity_seed8`, `selectivity_seed9`)
 
-Перебор повторён на зёрнах 8 и 9 (теги те же: выбор зависит только от долей). Сводка по трём
-зёрнам — `selectivity/derived_seeds.csv` (`scripts/aggregate_derived.py`), рисунок
-`selectivity/selectivity.png` — среднее с разбросом «минимум — максимум».
+The sweep was repeated with seeds 8 and 9 (the same tags: the choice depends only on shares). The
+summary over three seeds is `selectivity/derived_seeds.csv` (`scripts/aggregate_derived.py`); the
+figure `selectivity/selectivity.png` shows the mean with a min-max range.
 
-- hnswlib: недодан 0,01–0,06 п. п.; избыток работы 83–100 %, растёт с сужением фильтра
-  (83 % без фильтра, 97–98 % на тегах 1 % и уже).
-- UNG: недодан 9,4–10,6 п. п. на всех уровнях.
-- Filtered-DiskANN без уплотнения, средние по зёрнам: полнота свежего индекса 0,99 / 0,94 / 0,88 /
-  0,69 при 34 / 10 / 3 / 1 %; недодан 0,4 без фильтра и 1,3 / 2,5 / 6,3 / 9,7 п. п.; наработка до
-  потери 2 п. п. — 160–200 / 80–100 / 40–60 / 40–60 тыс. операций. На тегах 0,28 и 0,20 % полнота
-  свежего индекса 0,30–0,47 и 0,01–0,15.
+- hnswlib: deficit 0.01-0.06 p.p.; excess work 83-100 %, growing as the filter narrows
+  (83 % without a filter, 97-98 % on tags of 1 % and narrower).
+- UNG: deficit 9.4-10.6 p.p. at all levels.
+- Filtered-DiskANN without consolidation, means over seeds: fresh-index recall 0.99 / 0.94 / 0.88 /
+  0.69 at 34 / 10 / 3 / 1 %; deficit 0.4 without a filter and 1.3 / 2.5 / 6.3 / 9.7 p.p.; time to a
+  2 p.p. loss 160-200 / 80-100 / 40-60 / 40-60k operations. On tags of 0.28 and 0.20 %, fresh-index
+  recall is 0.30-0.47 and 0.01-0.15.
+
+## Columns of `derived.csv` and `derived_seeds.csv`
+
+Column names are in Russian because the same files feed the thesis. Translation:
+
+| Column | Meaning |
+|---|---|
+| метод | method |
+| режим | maintenance mode |
+| фильтр | filter |
+| доля | share of objects passing the filter |
+| оракул | oracle: fresh-index recall@10 |
+| полнота в конце | recall@10 at the end of the run |
+| недодан, п.п. | mean recall deficit from the oracle, percentage points |
+| наработка до нарушения, тыс. | operations until recall drops by the threshold, thousands |
+| избыток работы, % | mean excess work relative to the fresh index, % |
+| доля < 0,9 в среднем | mean share of queries with recall below 0.9 |
+| обслуживание за прогон, с | total maintenance time per run, s |
+| полная перестройка, с | time of a full rebuild, s |
+| повторов | number of seeds |
+
+In `derived_seeds.csv` the suffixes `mean`, `min`, `max` give the mean and range over seeds.

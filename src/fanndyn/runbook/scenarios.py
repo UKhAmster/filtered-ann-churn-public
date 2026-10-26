@@ -1,8 +1,8 @@
-"""Пять сценариев динамики из раздела 3.2 спецификации.
+"""Dynamic scenarios of the protocol.
 
-Ключевое различие между сценариями — характер удалений. Случайные удаления
-и удаление связной группы по метке воздействуют на граф по-разному; вторая
-разновидность (category_purge) в опубликованных бенчмарках отсутствует.
+The key difference between scenarios is the nature of deletions. Random deletions
+and deletion of a connected group by label affect the graph differently; the latter
+(category_purge) is absent from published benchmarks.
 """
 
 from __future__ import annotations
@@ -11,8 +11,8 @@ import numpy as np
 
 from fanndyn.runbook.schema import Op, OpKind, Runbook, validate
 
-# Версия 2: живые идентификаторы хранятся в пуле с удалением за O(1).
-# Порядок в пуле отличается от версии 1, поэтому при том же зерне выбор жертв иной.
+# Version 2: live ids are kept in a pool with O(1) removal.
+# The pool order differs from version 1, so the same seed picks different victims.
 GENERATOR_VERSION = "2"
 
 SCENARIOS: tuple[str, ...] = (
@@ -25,7 +25,7 @@ SCENARIOS: tuple[str, ...] = (
 
 
 class _AlivePool:
-    """Множество живых id с равновероятным выбором и удалением за O(1)."""
+    """Set of live ids with uniform sampling and O(1) removal."""
 
     def __init__(self, ids: range) -> None:
         self._items = list(ids)
@@ -60,13 +60,13 @@ def build_scenario(
     **params: object,
 ) -> Runbook:
     if kind not in SCENARIOS:
-        raise ValueError(f"неизвестный сценарий: {kind}")
+        raise ValueError(f"unknown scenario: {kind}")
     rng = np.random.default_rng(seed)
     ops: list[Op] = [Op(kind=OpKind.INSERT, ids=tuple(range(n_base)))]
     alive = _AlivePool(range(n_base))
     next_id = n_base
     target = int(params.get("purge_label", 0))
-    # Для category_purge: живые объекты с удаляемой меткой, ожидающие удаления.
+    # For category_purge: live objects with the purged label awaiting deletion.
     doomed = (
         [i for i in range(n_base) if target in label_sets[i]] if kind == "category_purge" else []
     )

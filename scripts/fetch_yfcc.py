@@ -1,12 +1,12 @@
-"""Загрузка префикса набора YFCC-10M (фильтрованный трек big-ann-benchmarks NeurIPS'23).
+"""Download of a YFCC-10M prefix (filtered track of big-ann-benchmarks NeurIPS'23).
 
-Берутся первые N векторов базы и их теги — частичной загрузкой по диапазонам байт, без
-скачивания 2,9 ГБ целиком, — и полностью публичные запросы с тегами. Скрипт использует
-только стандартную библиотеку: из сети стенда CDN отдаёт данные со скоростью сотни байт
-в секунду, поэтому загрузка идёт на другой машине, а файлы переносятся на стенд.
-Результат проверяется на стенде функциями fanndyn.data.read_u8bin и read_spmat.
+Takes the first N base vectors and their tags, by partial download with byte ranges instead
+of fetching the whole 2.9 GB, and the full public queries with tags. The script uses only
+the standard library: from the testbed network the CDN served data at hundreds of bytes
+per second, so the download ran on another machine and the files were copied to the testbed.
+The result is checked with fanndyn.data.read_u8bin and read_spmat.
 
-Пример:
+Example:
     python3 scripts/fetch_yfcc.py --n 1000000 --out ~/data/yfcc
 """
 
@@ -25,7 +25,7 @@ CHUNK = 1 << 22
 
 
 def copy_range(name: str, start: int, end: int, out) -> None:
-    """Дописывает в out байты [start, end) файла набора."""
+    """Appends bytes [start, end) of a dataset file to out."""
     req = urllib.request.Request(BASE_URL + name, headers={"Range": f"bytes={start}-{end - 1}"})
     got = 0
     with urllib.request.urlopen(req, timeout=600) as resp:
@@ -33,7 +33,7 @@ def copy_range(name: str, start: int, end: int, out) -> None:
             out.write(chunk)
             got += len(chunk)
     if got != end - start:
-        raise OSError(f"{name}: ожидалось {end - start} байт, получено {got}")
+        raise OSError(f"{name}: expected {end - start} bytes, got {got}")
 
 
 def read_range(name: str, start: int, end: int) -> bytes:
@@ -41,12 +41,12 @@ def read_range(name: str, start: int, end: int) -> bytes:
     with urllib.request.urlopen(req, timeout=600) as resp:
         data = resp.read()
     if len(data) != end - start:
-        raise OSError(f"{name}: ожидалось {end - start} байт, получено {len(data)}")
+        raise OSError(f"{name}: expected {end - start} bytes, got {len(data)}")
     return data
 
 
 def fetch_whole(name: str, dst: Path, attempts: int = 5) -> None:
-    """Файл целиком; соединение с CDN иногда рвётся на рукопожатии TLS, поэтому с повторами."""
+    """Whole file, with retries: the CDN connection sometimes drops during the TLS handshake."""
     for attempt in range(1, attempts + 1):
         try:
             with urllib.request.urlopen(BASE_URL + name, timeout=600) as resp, dst.open("wb") as fh:

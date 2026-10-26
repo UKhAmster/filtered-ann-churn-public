@@ -1,49 +1,49 @@
-# Адаптеры методов поиска
+# Search method adapters
 
-Каждый метод-кандидат подключается как отдельный образ Docker и в код пакета `fanndyn`
-не встраивается. Причина в изоляции: методы написаны на C++ с несовместимыми наборами
-зависимостей, а часть из них заморожена и требует старых версий компилятора. Собирать
-их в общем окружении означает подгонять окружение под самый капризный из них.
+Each candidate method is attached as a separate Docker image and is not embedded in the
+`fanndyn` package. The reason is isolation: the methods are written in C++ with incompatible
+dependency sets, and some of them are frozen and need old compiler versions. Building them in
+a shared environment would mean tailoring the environment to the most demanding one.
 
-## Устройство
+## Layout
 
 ```
 adapters/
-  smoke.sh              сборка образа и прогон примера метода
-  hnswlib/              эталонная базовая линия
-  acorn/                ACORN — предикатная фильтрация на лету
-  filtered_diskann/     Filtered-DiskANN — метки вшиты в граф при построении
-  ung/                  UNG — отдельные графы на наборы меток
+  smoke.sh              builds an image and runs the method's example
+  hnswlib/              reference baseline
+  acorn/                ACORN: predicate filtering during traversal
+  filtered_diskann/     Filtered-DiskANN: labels built into the graph at construction
+  ung/                  UNG: separate graphs for label sets
 ```
 
-Дымовая проверка одного метода:
+Smoke check of one method:
 
 ```bash
 bash adapters/smoke.sh <method>     # OK / BUILD_FAIL / RUN_FAIL
 ```
 
-Логи остаются в `/tmp/build-<method>.log` и `/tmp/run-<method>.log`.
+Logs are kept in `/tmp/build-<method>.log` and `/tmp/run-<method>.log`.
 
-## Правила
+## Rules
 
-**Ревизия закрепляется по SHA, а не по ветке.** Ветка уедет, и результаты перестанут
-быть воспроизводимыми молча. SHA каждого метода записан в `ARG COMMIT_SHA` его Dockerfile
-и продублирован в `docs/capability-map.md`.
+**A revision is pinned by SHA, not by branch.** A branch moves on, and results silently stop
+being reproducible. The SHA of each method is set in `ARG COMMIT_SHA` of its Dockerfile and
+repeated in `docs/capability-map.md`.
 
-**Пример берётся из проекта, а не пишется заново** — кроме случаев, когда собственный
-пример требует внешнего датасета. Такие случаи оговорены в комментарии Dockerfile.
+**The example is taken from the project, not written anew**, except when the project's own
+example needs an external dataset. Such cases are explained in a Dockerfile comment.
 
-**Возможности метода проверяются по коду.** README отстают от реализации: у ACORN,
-например, README показывает конструктор индекса из четырёх аргументов, а заголовочный
-файл требует пяти.
+**A method's capabilities are checked in the code.** READMEs lag behind implementations: the
+ACORN README, for example, shows a four-argument index constructor, while the header file
+requires five.
 
-## Драйверы протокола
+## Protocol drivers
 
-Для прогона сценариев у hnswlib, Filtered-DiskANN и UNG есть драйверы на C++
-(`<method>/fanndyn_driver.cpp`) с общим вводом-выводом `common/fanndyn_io.h`: векторы,
-метки в CSR, поток операций, запросы по фильтрам; на выходе — результаты, задержка и число
-вычислений расстояний на запрос. Образы драйверов собираются из каталога `adapters/`, чтобы
-общий заголовок попадал в контекст сборки:
+To run scenarios, hnswlib, Filtered-DiskANN and UNG have C++ drivers
+(`<method>/fanndyn_driver.cpp`) with shared input/output in `common/fanndyn_io.h`: vectors,
+labels in CSR, an operation stream, per-filter queries; the output is results, latency and the
+number of distance computations per query. Driver images are built from the `adapters/`
+directory so that the shared header is in the build context:
 
 ```bash
 cd adapters
@@ -52,5 +52,6 @@ docker build -f filtered_diskann/Dockerfile.driver -t fanndyn-filtered_diskann:d
 docker build -f ung/Dockerfile.driver -t fanndyn-ung:driver .
 ```
 
-Образы DiskANN и UNG строятся поверх `fanndyn-<method>:smoke`. Драйвер ACORN пока в старом
-формате (одна метка на объект) и собирается из своего каталога.
+The DiskANN and UNG images are built on top of `fanndyn-<method>:smoke`. The ACORN driver still
+uses the older format (one label per object) and is built from its own directory:
+`docker build -f acorn/Dockerfile.driver -t fanndyn-acorn:driver acorn`.

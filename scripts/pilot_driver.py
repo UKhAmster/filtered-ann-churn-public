@@ -1,12 +1,12 @@
-"""Пилотный замер методов через драйверы на C++ в Docker (hnswlib, Filtered-DiskANN, ACORN, UNG).
+"""Pilot measurement through C++ drivers in Docker (hnswlib, Filtered-DiskANN, ACORN, UNG).
 
-Формат обмена с драйверами — adapters/common/fanndyn_io.h. Два источника данных:
-  sift — SIFT с синтетическими (zipf) или кластерными (kmeans) метками, одна метка на объект,
-         одни и те же запросы для всех фильтров;
-  yfcc — YFCC-10M с настоящими тегами (префикс, см. scripts/fetch_yfcc.py): у фильтра по тегу
-         свои запросы — публичные запросы, среди тегов которых есть этот тег.
+Exchange format with the drivers: adapters/common/fanndyn_io.h. Two data sources:
+  sift - SIFT with synthetic (zipf) or clustered (kmeans) labels, one label per object,
+         the same queries for all filters;
+  yfcc - YFCC-10M with real tags (a prefix, see scripts/fetch_yfcc.py): a tag filter has
+         its own queries, the public queries whose tags include that tag.
 
-Пример:
+Examples:
     .venv/bin/python scripts/pilot_driver.py --method diskann --scenario steady_churn --mode lazy
     .venv/bin/python scripts/pilot_driver.py --dataset yfcc --method hnswlib --scenario steady_churn --mode mark
 """
@@ -45,7 +45,7 @@ MODES = {
 }
 SIFT_N_LABELS = 20
 LABEL_SEED = 11
-# Целевые доли тегов YFCC в коллекции: широкий, узкий, очень узкий, удаляемая категория.
+# Target shares of YFCC tags in the collection: wide, narrow, tiny, purged category.
 YFCC_TARGETS = {"wide": 0.19, "narrow": 0.012, "tiny": 0.004, "purge": 0.07}
 MISSING = np.uint32(0xFFFFFFFF)
 
@@ -53,7 +53,7 @@ MISSING = np.uint32(0xFFFFFFFF)
 @dataclass(frozen=True)
 class Filter:
     name: str
-    label: int  # -1 — без фильтра
+    label: int  # -1: no filter
     queries: np.ndarray
 
 
@@ -75,7 +75,7 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument("--scenario", required=True)
     p.add_argument("--dataset", choices=["sift", "yfcc"], default="sift")
-    p.add_argument("--labels", choices=LABEL_KINDS, default="zipf", help="только для sift")
+    p.add_argument("--labels", choices=LABEL_KINDS, default="zipf", help="sift only")
     p.add_argument("--method", choices=sorted(IMAGES), default="diskann")
     p.add_argument("--mode", required=True)
     p.add_argument("--data", type=Path, default=None)
@@ -99,18 +99,18 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--rebuild-at", type=float, default=0.2)
     p.add_argument("--ung-entry-points", type=int, default=16)
     p.add_argument("--ung-fetch", type=int, default=50)
-    p.add_argument("--probe-list", action="store_true", help="DiskANN: живые вершины в списке L")
+    p.add_argument("--probe-list", action="store_true", help="DiskANN: live vertices in list L")
     p.add_argument(
         "--yfcc-targets",
         type=str,
         default="",
-        help="доли тегов через запятую для перебора селективности, например 0.3,0.1,0.01",
+        help="comma-separated tag shares for the selectivity sweep, e.g. 0.3,0.1,0.01",
     )
     p.add_argument("--seed", type=int, default=7)
     p.add_argument("--out", type=Path, default=Path("results/pilot_driver"))
     a = p.parse_args()
     if a.mode not in MODES[a.method]:
-        p.error(f"для {a.method} режим должен быть одним из {MODES[a.method]}")
+        p.error(f"for {a.method} the mode must be one of {MODES[a.method]}")
     if a.data is None:
         a.data = Path.home() / ("data/sift" if a.dataset == "sift" else "data/yfcc")
     return a
@@ -130,7 +130,7 @@ def load_sift(a: argparse.Namespace, n_total: int) -> Workload:
 
 
 def pick_tag(share: np.ndarray, target: float, allowed: np.ndarray, taken: set[int]) -> int:
-    """Тег с долей, ближайшей к целевой, среди допустимых и ещё не выбранных."""
+    """Tag whose share is closest to the target, among allowed and not yet chosen tags."""
     order = np.argsort(np.abs(share - target))
     return int(next(t for t in order if allowed[t] and int(t) not in taken))
 
@@ -193,7 +193,7 @@ def driver_args(a: argparse.Namespace) -> list[str]:
 
 
 def run_driver(a: argparse.Namespace, work: Path, rb: Runbook, wl: Workload) -> float:
-    """Запускает драйвер на runbook; возвращает время работы в секундах."""
+    """Runs the driver on a runbook; returns the run time in seconds."""
     encode_ops(rb).tofile(work / "ops.u32")
     for pattern in ("res_c*", "lat_c*", "cmps_c*", "alive_c*"):
         for old in work.glob(pattern):
@@ -282,7 +282,7 @@ def main() -> None:
     write_bin(work / "base.bin", wl.vectors)
     wl.label_ptr.astype(np.uint64).tofile(work / "labels_ptr.u64")
     wl.label_idx.astype(np.uint32).tofile(work / "labels_idx.u32")
-    if np.all(np.diff(wl.label_ptr) == 1):  # драйвер ACORN принимает одну метку на объект
+    if np.all(np.diff(wl.label_ptr) == 1):  # the ACORN driver accepts one label per object
         wl.label_idx.astype(np.uint32).tofile(work / "labels.u32")
     for f_i, flt in enumerate(wl.filters):
         write_bin(work / f"query_f{f_i}.bin", flt.queries)
@@ -294,7 +294,7 @@ def main() -> None:
     wall = run_driver(a, work, rb, wl)
     rows = collect(a, work, rb, wl, masks, {"driver_wall_s": wall})
 
-    # Опорная точка: индекс, построенный заново на итоговой живой коллекции.
+    # Reference point: an index built from scratch on the final live collection.
     final_alive = alive_at_checkpoints(rb)[-1][1]
     fresh = Runbook(
         name=rb.name + "-rebuild",

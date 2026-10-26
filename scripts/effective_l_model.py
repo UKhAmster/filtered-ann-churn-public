@@ -1,20 +1,20 @@
-"""Проверка модели «эффективной длины списка» для Filtered-DiskANN без уплотнения.
+"""Check of the "effective list length" model for Filtered-DiskANN without consolidation.
 
-Гипотеза: лениво удалённые вершины занимают места в списке из L лучших кандидатов, поэтому
-индекс ведёт себя как свежий с L_eff = L * (живые / все вершины графа). Скрипт берёт полноту
-свежего индекса при разных L (results/diskann_L_sweep) и сравнивает предсказание с траекторией
-трёхкратного оборота на трёх зёрнах.
+Hypothesis: lazily deleted vertices occupy places in the list of the L best candidates, so the
+index behaves like a fresh one with L_eff = L * (live / all graph vertices). The script takes
+recall of a fresh index at different L (results/diskann_L_sweep) and compares the prediction
+with the trajectory of three-fold churn on three seeds.
 
-Вторая версия (если есть results/diskann_probe) берёт L_eff не из доли живых вершин графа,
-а из замера: сколько живых вершин реально оказалось в списке кандидатов, нормированного
-на свежий индекс того же прогона.
+The second version (if results/diskann_probe exists) takes L_eff not from the live share of
+graph vertices but from a measurement: how many live vertices actually ended up in the
+candidate list, normalized by the fresh index of the same run.
 
-Третья версия добавляет навигацию через удалённые вершины одним параметром:
-L_eff = L * p ** alpha, где p — доля живых вершин графа; alpha = 1 — только вытеснение,
-alpha = 0 — удалённые вершины ничего не стоят. alpha подбирается на первом зерне
-и проверяется на остальных.
+The third version adds navigation through deleted vertices with one parameter:
+L_eff = L * p ** alpha, where p is the live share of graph vertices; alpha = 1 means crowding
+only, alpha = 0 means deleted vertices cost nothing. alpha is fitted on the first seed
+and checked on the others.
 
-Пример:
+Example:
     .venv/bin/python scripts/effective_l_model.py
 """
 
@@ -34,7 +34,7 @@ RUNS = [
 L_SEARCH = 300
 N_BASE = 100_000
 PROBE = Path("results/diskann_probe/steady_churn-lazy.csv")
-# Внешняя проверка: прогон с другим L, на котором alpha не подбирался.
+# External check: a run with a different L on which alpha was not fitted.
 OTHER_L_RUN = Path("results/pilot_diskann_3x")
 OTHER_L = 64
 
@@ -70,7 +70,7 @@ def main() -> None:
 
 
 def compare_with_probe(curve: pd.DataFrame) -> None:
-    """Модель 1 (доля живых в графе) против модели 2 (замер списка кандидатов)."""
+    """Model 1 (live share in the graph) versus model 2 (measured candidate list)."""
     d = pd.read_csv(PROBE)
     d = d[(d.checkpoint != "rebuild") & d["filter"].isin(["none", "wide"])]
     rows = []
@@ -123,7 +123,7 @@ def predict(
 
 
 def fit_alpha(curve: pd.DataFrame) -> None:
-    """Подбор alpha на первом зерне, проверка на остальных; сравнение с alpha = 1."""
+    """Fits alpha on the first seed, checks it on the others; compares with alpha = 1."""
     runs = trajectories()
     train = RUNS[0]
     grid = np.linspace(0.0, 1.0, 101)
@@ -147,7 +147,7 @@ def fit_alpha(curve: pd.DataFrame) -> None:
 
 
 def check_other_l(curve: pd.DataFrame, alpha: float) -> None:
-    """Тот же alpha на прогоне с другим L: проверка, что параметр не подогнан под L = 300."""
+    """The same alpha on a run with a different L: checks that it is not tuned to L = 300."""
     path = OTHER_L_RUN / "steady_churn-lazy.csv"
     if not path.exists() or curve.L.min() > OTHER_L * N_BASE / (N_BASE + 300_000):
         print("\nВнешняя проверка пропущена: нет прогона или свежий индекс не покрывает малые L")

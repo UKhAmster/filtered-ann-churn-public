@@ -1,7 +1,7 @@
-// Минимальный пример: повторные вызовы IndexACORNFlat::add падают (найдено 2026-09-29).
+// Minimal example: repeated calls to IndexACORNFlat::add crash (found 2026-09-29).
 //
-// На ACORN c259f11 при d = 128 третий вызов add (10000 + 2000 + 2000 точек) завершается
-// segfault при любом OMP_NUM_THREADS; при d = 32 и меньших пакетах падения нет. Сборка:
+// On ACORN c259f11 with d = 128 the third add call (10000 + 2000 + 2000 points) ends
+// in a segfault at any OMP_NUM_THREADS; with d = 32 and smaller batches it does not. Build:
 //   docker run --rm -v $PWD:/r --entrypoint bash fanndyn-acorn:smoke -c \
 //     "g++ -O1 -g -std=c++17 -fopenmp -I/src /r/repro_repeated_add.cpp \
 //      -L/src/build/faiss -lfaiss -o /r/repro && LD_LIBRARY_PATH=/src/build/faiss /r/repro"

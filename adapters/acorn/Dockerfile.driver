@@ -1,4 +1,4 @@
-# Драйвер протокола поверх собранного образа ACORN (см. Dockerfile).
+# Protocol driver on top of the built ACORN image (see Dockerfile).
 FROM fanndyn-acorn:smoke
 COPY fanndyn_driver.cpp /driver/fanndyn_driver.cpp
 RUN g++ -O3 -std=c++17 -fopenmp -I/src /driver/fanndyn_driver.cpp \

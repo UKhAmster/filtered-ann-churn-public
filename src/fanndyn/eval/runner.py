@@ -1,7 +1,7 @@
-"""Прогон runbook на индексе с замером полноты в контрольных точках.
+"""Replays a runbook on an index and measures recall at checkpoints.
 
-Операции SEARCH пропускаются: качество оценивается только в контрольных точках
-на фиксированном наборе запросов против точного поиска по живой коллекции.
+SEARCH operations are skipped: quality is measured only at checkpoints, on a fixed
+query set, against exact search over the live collection.
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ from fanndyn.runbook.schema import OpKind, Runbook
 @dataclass(frozen=True)
 class QueryFilter:
     name: str
-    label: int | None  # None — поиск без фильтра
+    label: int | None  # None: unfiltered search
 
 
 def evaluate(
@@ -31,7 +31,7 @@ def evaluate(
     flt: QueryFilter,
     k: int,
 ) -> dict:
-    """Метрики одного фильтра на текущем состоянии индекса."""
+    """Metrics of one filter on the current index state."""
     if flt.label is None:
         allowed_ids = alive
         mask = None
@@ -58,7 +58,7 @@ def summarize(
     n_allowed: int,
     n_alive: int,
 ) -> dict:
-    """Сводные метрики контрольной точки по результатам поиска и эталону."""
+    """Summary metrics of a checkpoint from search results and ground truth."""
     rec = recall_per_query(found, truth)
     valid = rec[~np.isnan(rec)]
     nan = float("nan")
@@ -84,10 +84,10 @@ def run_runbook(
     k: int = 10,
     progress: Callable[[dict], None] | None = None,
 ) -> list[dict]:
-    """Проигрывает runbook и возвращает по строке на пару (контрольная точка, фильтр).
+    """Replays the runbook and returns a row per (checkpoint, filter) pair.
 
-    vectors и labels индексируются по id объекта; входной массив меток не меняется,
-    правки атрибутов применяются к рабочей копии.
+    vectors and labels are indexed by object id; the input label array is not modified,
+    attribute updates are applied to a working copy.
     """
     work_labels = labels.copy()
     alive = np.zeros(len(vectors), dtype=bool)

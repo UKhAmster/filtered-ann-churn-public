@@ -1,4 +1,4 @@
-"""Загрузка наборов в формате TEXMEX и синтетические метки."""
+"""Loading TEXMEX-format datasets and synthetic labels."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from scipy.cluster.vq import kmeans2
 
 
 def read_fvecs(path: Path, count: int | None = None) -> np.ndarray:
-    """Читает .fvecs: каждая запись — int32 размерность, затем столько же float32."""
+    """Reads .fvecs: each record is an int32 dimension followed by that many float32."""
     raw = np.fromfile(path, dtype=np.int32)
     dim = int(raw[0])
     rows = raw.reshape(-1, dim + 1)
@@ -19,7 +19,7 @@ def read_fvecs(path: Path, count: int | None = None) -> np.ndarray:
 
 
 def read_u8bin(path: Path, count: int | None = None) -> np.ndarray:
-    """Читает .u8bin из big-ann-benchmarks: int32 n, int32 d, затем n*d байт."""
+    """Reads .u8bin from big-ann-benchmarks: int32 n, int32 d, then n*d bytes."""
     with Path(path).open("rb") as fh:
         n, d = np.fromfile(fh, dtype=np.int32, count=2)
         n = int(n) if count is None else min(int(n), count)
@@ -28,9 +28,9 @@ def read_u8bin(path: Path, count: int | None = None) -> np.ndarray:
 
 
 def read_spmat(path: Path) -> tuple[np.ndarray, np.ndarray]:
-    """Читает .spmat (CSR): int64 nrow, ncol, nnz; int64 indptr; int32 indices; float32 data.
+    """Reads .spmat (CSR): int64 nrow, ncol, nnz; int64 indptr; int32 indices; float32 data.
 
-    Возвращает indptr и indices; значения не нужны — в YFCC это единицы наличия тега.
+    Returns indptr and indices; values are not needed, in YFCC they mark tag presence.
     """
     with Path(path).open("rb") as fh:
         nrow, _ncol, nnz = np.fromfile(fh, dtype=np.int64, count=3)
@@ -40,7 +40,7 @@ def read_spmat(path: Path) -> tuple[np.ndarray, np.ndarray]:
 
 
 def write_spmat(path: Path, indptr: np.ndarray, indices: np.ndarray, ncol: int) -> None:
-    """Пишет CSR в формате .spmat; значения — единицы."""
+    """Writes CSR in .spmat format; all values are ones."""
     nnz = int(indptr[-1])
     with Path(path).open("wb") as fh:
         np.array([len(indptr) - 1, ncol, nnz], dtype=np.int64).tofile(fh)
@@ -50,10 +50,10 @@ def write_spmat(path: Path, indptr: np.ndarray, indices: np.ndarray, ncol: int) 
 
 
 def zipf_labels(n: int, n_labels: int, s: float, seed: int) -> np.ndarray:
-    """Одна метка на объект, частота метки i пропорциональна 1 / (i + 1)^s.
+    """One label per object; the frequency of label i is proportional to 1 / (i + 1)^s.
 
-    Метки не связаны с геометрией векторов — как в большинстве бенчмарков
-    фильтрованного поиска с синтетическими атрибутами.
+    Labels are unrelated to the geometry of vectors, as in most filtered search benchmarks
+    with synthetic attributes.
     """
     p = 1.0 / np.arange(1, n_labels + 1) ** s
     return np.random.default_rng(seed).choice(n_labels, size=n, p=p / p.sum())
@@ -62,10 +62,10 @@ def zipf_labels(n: int, n_labels: int, s: float, seed: int) -> np.ndarray:
 def kmeans_labels(
     vectors: np.ndarray, n_labels: int, seed: int, sample: int = 20_000, chunk: int = 50_000
 ) -> np.ndarray:
-    """Одна метка на объект — номер кластера k-means, то есть метки связаны с геометрией.
+    """One label per object: the k-means cluster id, so labels follow the geometry.
 
-    Центры обучаются на подвыборке, затем каждый объект относится к ближайшему центру.
-    Метки упорядочены по убыванию размера кластера: 0 — самый крупный.
+    Centers are trained on a sample, then every object is assigned to the nearest center.
+    Labels are ordered by decreasing cluster size: 0 is the largest.
     """
     rng = np.random.default_rng(seed)
     idx = rng.choice(len(vectors), size=min(sample, len(vectors)), replace=False)
@@ -86,9 +86,9 @@ LABEL_KINDS = ("zipf", "kmeans")
 
 
 def make_labels(kind: str, vectors: np.ndarray, n_labels: int, seed: int) -> np.ndarray:
-    """Метки для пилотов: синтетические (zipf) или связанные с геометрией (kmeans)."""
+    """Labels for pilots: synthetic (zipf) or geometry-related (kmeans)."""
     if kind == "zipf":
         return zipf_labels(len(vectors), n_labels, s=1.0, seed=seed)
     if kind == "kmeans":
         return kmeans_labels(vectors, n_labels, seed=seed)
-    raise ValueError(f"неизвестный вид меток: {kind}")
+    raise ValueError(f"unknown label kind: {kind}")

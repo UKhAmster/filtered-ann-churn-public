@@ -1,6 +1,6 @@
-# Драйвер протокола на C++ для hnswlib (заголовочная библиотека).
-# Коммит тот же, что у пакета PyPI 0.8.0 из карты возможностей.
-# Сборка из каталога adapters/: docker build -f hnswlib/Dockerfile.driver -t fanndyn-hnswlib:driver .
+# C++ protocol driver for hnswlib (a header-only library).
+# The same commit as the PyPI package 0.8.0 from the capability map.
+# Build from the adapters/ directory: docker build -f hnswlib/Dockerfile.driver -t fanndyn-hnswlib:driver .
 FROM ubuntu:22.04
 ARG REPO_URL=https://github.com/nmslib/hnswlib.git
 ARG COMMIT_SHA=d9b3608c83d8

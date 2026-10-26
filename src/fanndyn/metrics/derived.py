@@ -1,8 +1,8 @@
-"""Производные показатели из раздела 4.3 спецификации.
+"""Derived metrics of the protocol.
 
-Именно они превращают набор графиков в протокол: дают одно число,
-по которому методы ранжируются без спора о том, в какой точке смотреть.
-Ось операций — число выполненных операций, а не секунды.
+They turn a set of plots into a protocol: each gives a single number that ranks
+methods without arguing about the point at which to look.
+The x axis is the number of executed operations, not seconds.
 """
 
 from __future__ import annotations
@@ -11,10 +11,10 @@ import numpy as np
 
 
 def loss_area(method: np.ndarray, oracle: np.ndarray, ops_axis: np.ndarray) -> float:
-    """Интеграл отставания метода от оракула по оси операций.
+    """Integral of the method's shortfall from the oracle along the operation axis.
 
-    Отрицательные разности отбрасываются: превзойти полную перестройку
-    метод не может, а численный шум не должен зачитываться в его пользу.
+    Negative differences are dropped: a method cannot beat a full rebuild,
+    and numerical noise must not count in its favor.
     """
     gap = np.clip(oracle - method, 0.0, None)
     return float(np.trapezoid(gap, ops_axis))
@@ -33,8 +33,8 @@ def recovery_cost(
     ops_axis: np.ndarray,
     target: float,
 ) -> float | None:
-    """Суммарные затраты обслуживания от первого падения ниже цели
-    до момента, когда качество снова достигло цели. None — если не достигло."""
+    """Total maintenance cost from the first drop below the target
+    until quality reaches the target again. None if it never does."""
     below = np.flatnonzero(recalls < target)
     if len(below) == 0:
         return 0.0

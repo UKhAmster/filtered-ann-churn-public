@@ -1,1 +1,1 @@
-"""Сценарии динамики и схема runbook."""
+"""Dynamic scenarios and runbook schema."""

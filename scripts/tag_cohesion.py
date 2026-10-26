@@ -1,10 +1,10 @@
-"""Сцепленность тега с геометрией: подъём доли своего тега среди ближайших соседей.
+"""Cohesion of a tag with the geometry: lift of the tag's share among nearest neighbors.
 
-Для выборки объектов с тегом находятся 10 ближайших соседей среди всей коллекции (кроме себя);
-сцепленность = доля соседей с тем же тегом / доля тега в коллекции. 1 — тег разбросан
-случайно, чем больше — тем плотнее объекты тега лежат рядом.
+For a sample of objects with the tag, the 10 nearest neighbors in the whole collection (except
+itself) are found; cohesion = share of neighbors with the same tag / share of the tag in the
+collection. 1 means the tag is scattered at random; larger means its objects lie closer together.
 
-Пример:
+Example:
     OMP_NUM_THREADS=1 .venv/bin/python scripts/tag_cohesion.py --tags 23,17,38,0,142,337,345,933,3808
 """
 

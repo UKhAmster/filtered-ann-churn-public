@@ -1,121 +1,121 @@
 <!-- docs/capability-map.md -->
-# Карта операционных возможностей методов
+# Operational capability map of the methods
 
-Заполнено по результатам чтения исходного кода, дата: 2026-08-26.
-Столбец «эмуляция» означает, что операция реализуется обвязкой поверх метода.
+Compiled from reading the source code, 2026-08-26.
+"Emulation" means the operation is implemented by a wrapper on top of the method.
 
-Проверялись публичные заголовочные файлы и интерфейсы приложений, а не README:
-у ACORN, например, README показывает конструктор индекса из четырёх аргументов,
-а `faiss/IndexACORN.h` требует пяти — метаданные передаются при построении.
+Public header files and application interfaces were checked, not READMEs:
+the ACORN README, for example, shows a four-argument index constructor,
+while `faiss/IndexACORN.h` requires five, with metadata passed at construction.
 
-| Метод | Коммит | Сборка | Вставка | Удаление | Изменение атрибута | Тип предиката | Примечания |
+| Method | Commit | Build | Insert | Delete | Attribute update | Predicate type | Notes |
 |---|---|---|---|---|---|---|---|
-| hnswlib | `d9b3608c83d8` (PyPI 0.8.0) | OK | штатная, `addPoint` с `replace_deleted`, ёмкость через `resizeIndex` | штатное (пометка), `markDelete` / `unmarkDelete`, физического удаления нет | эмуляция | внешняя фильтрация: `BaseFilterFunctor::operator()(id)` при поиске | базовая линия |
-| ACORN | `c259f11cdbec` | OK | по интерфейсу штатная, `add`; метаданные новых точек нужно занести во внешний вектор до вызова. **На практике не работает**: повторный `add` падает (см. ниже) | нет: `remove_ids` не переопределён, есть только `reset()` целиком | эмуляция | предикат-агностик: булева маска `filter_ids_map` размера `nq × N` на запрос | форк FAISS |
-| Filtered-DiskANN | `78256bbab468` (ветка `cpp_main`) | OK | штатная с метками: `insert_point(point, tag, labels)` | штатное с уплотнением: `lazy_delete` + `consolidate_deletes` | эмуляция (удалить и вставить заново) | одна метка на запрос: `search_with_filters(query, filter_label, ...)`; есть универсальная метка, проходящая любой фильтр | единственный кандидат со штатной динамикой; в комплекте `test_insert_deletes_consolidate` и `test_streaming_scenario` |
-| UNG | `92b58ffd600d` | OK | нет | нет | нет | наборы меток: containment (⊆), equality (=), overlap (∩≠∅), no-filter | полностью статический: в `uni_nav_graph.h` только `build`, `search`, `save`, `load` |
+| hnswlib | `d9b3608c83d8` (PyPI 0.8.0) | OK | native, `addPoint` with `replace_deleted`, capacity via `resizeIndex` | native (marking), `markDelete` / `unmarkDelete`, no physical deletion | emulation | external filtering: `BaseFilterFunctor::operator()(id)` during search | baseline |
+| ACORN | `c259f11cdbec` | OK | native by interface, `add`; metadata of new points must be put into the external vector before the call. **Does not work in practice**: a repeated `add` crashes (see below) | none: `remove_ids` is not overridden, only a full `reset()` | emulation | predicate-agnostic: a boolean mask `filter_ids_map` of size `nq × N` per query | FAISS fork |
+| Filtered-DiskANN | `78256bbab468` (branch `cpp_main`) | OK | native with labels: `insert_point(point, tag, labels)` | native with consolidation: `lazy_delete` + `consolidate_deletes` | emulation (delete and reinsert) | one label per query: `search_with_filters(query, filter_label, ...)`; a universal label passes any filter | the only candidate with native dynamics; ships `test_insert_deletes_consolidate` and `test_streaming_scenario` |
+| UNG | `92b58ffd600d` | OK | none | none | none | label sets: containment (⊆), equality (=), overlap (∩≠∅), no-filter | fully static: `uni_nav_graph.h` has only `build`, `search`, `save`, `load` |
 
-## Что из этого следует для протокола
+## Implications for the protocol
 
-**Единственный метод со штатной динамикой — Filtered-DiskANN.** Остальным динамика
-эмулируется обвязкой, и это не изъян выборки, а её содержание: работа измеряет, как
-методы с разным устройством переживают изменения данных, и «перестроить индекс целиком»
-— такой же ответ на изменение, как и точечная вставка, просто дорогой. Цена перестройки
-входит в измеряемые величины через показатель цены восстановления (Задача 13).
+**Filtered-DiskANN is the only method with native dynamics.** For the others, dynamics are
+emulated by a wrapper, and this is not a flaw of the selection but its point: the work measures
+how methods with different designs survive data changes, and "rebuild the whole index" is as
+much a response to change as a point insertion, only an expensive one. The cost of a rebuild
+enters the measured quantities through the maintenance cost metric.
 
-**Изменение атрибута не поддерживается напрямую нигде.** У hnswlib и ACORN атрибуты
-живут вне индекса, у Filtered-DiskANN метки вшиты в структуру и меняются только через
-пересоздание точки, у UNG принадлежность группе определяет весь граф. Сценарий
-`attr_update` (Задача 4) поэтому везде реализуется обвязкой, и разница между методами
-проявится именно в цене этой эмуляции.
+**Attribute updates are not supported directly anywhere.** In hnswlib and ACORN attributes
+live outside the index, in Filtered-DiskANN labels are built into the structure and change only
+by recreating the point, in UNG group membership defines the whole graph. The `attr_update`
+scenario is therefore implemented by a wrapper everywhere, and the methods will differ in the
+cost of that emulation.
 
-**Типы предикатов несопоставимы напрямую.** ACORN принимает произвольную булеву маску,
-Filtered-DiskANN — одну метку на запрос, UNG — операции над наборами меток, hnswlib —
-внешнюю функцию. Общее подмножество, на котором методы сравнимы честно, — конъюнкция
-по одной метке. Предикаты с большей выразительностью (Задача 5) измеряются только на
-тех методах, которые их поддерживают, и это оговаривается в каждой таблице результатов.
+**Predicate types are not directly comparable.** ACORN accepts an arbitrary boolean mask,
+Filtered-DiskANN one label per query, UNG operations on label sets, hnswlib an external
+function. The common subset on which the methods compare fairly is a single-label condition.
+More expressive predicates are measured only on the methods that support them, and this is
+stated in each results table.
 
-**Вставка у ACORN требует внешнего управления метаданными.** Конструктор принимает
-`std::vector<int>& metadata` по ссылке, то есть вектор атрибутов живёт вне индекса и
-должен быть расширен до вызова `add`. Адаптер обязан поддерживать это соответствие сам.
+**Insertion in ACORN requires external metadata management.** The constructor takes
+`std::vector<int>& metadata` by reference, so the attribute vector lives outside the index and
+must be extended before calling `add`. The adapter has to maintain this correspondence itself.
 
-## Решение по гейту M0
+## Build check
 
-**Гейт пройден: собрались и отработали все четыре метода из четырёх.** Порог плана —
-не менее трёх. Выборка методов остаётся в составе, зафиксированном спецификацией.
+**All four methods out of four built and ran.**
 
-Дымовые прогоны на 2026-08-26:
+Smoke runs on 2026-08-26:
 
-| Метод | Результат | Что показал прогон |
+| Method | Result | What the run showed |
 |---|---|---|
 | hnswlib | `OK` | `smoke ok (5, 10)` |
-| ACORN | `OK` | `smoke ok nq=5 k=10 violations=0` — ни один результат не нарушил предикат |
-| Filtered-DiskANN | `OK` | построение фильтрованного индекса и поиск с `--filter_label 1` на 5000 точках |
-| UNG | `OK` | полная цепочка проекта: метки, эталоны, построение, поиск |
+| ACORN | `OK` | `smoke ok nq=5 k=10 violations=0`: no result violated the predicate |
+| Filtered-DiskANN | `OK` | building a filtered index and searching with `--filter_label 1` on 5000 points |
+| UNG | `OK` | the project's full chain: labels, ground truth, build, search |
 
-Ни один метод не собрался по инструкции авторов без правок. Все правки — в окружении
-сборки, исходники методов не изменялись:
+No method built following its authors' instructions without changes. All changes are in the
+build environment; the methods' sources were not modified:
 
-- **hnswlib**: базовый образ `python:3.11-slim` не содержит компилятора, а пакет на PyPI
-  распространяется исходниками. Добавлен `g++`.
-- **ACORN**: не хватало `zlib1g-dev`; `BUILD_TESTING=ON` из README обрывает генерацию на
-  CMake 3.22; корневой `CMakeLists.txt` добавляет путь `nlohmann_json` в цель `faiss` как
-  PUBLIC без обёртки `$<BUILD_INTERFACE:>`, из-за чего CMake отвергает export-набор.
-  Снято флагом `-DCMAKE_SKIP_INSTALL_RULES=ON`: устанавливать библиотеку в систему не нужно.
-- **Filtered-DiskANN**: `libmkl-full-dev` задаёт интерактивный вопрос и вешает сборку;
-  CMakeLists требует Intel OpenMP и перебирает три фиксированных пути, среди которых нет
-  того, куда `libomp-14-dev` кладёт `libiomp5.so`. Задан `-DOMP_PATH` явно.
-- **UNG**: MKL, указанный в цепочке зависимостей, самому проекту не нужен —
-  `codes/CMakeLists.txt` требует только Boost и OpenMP.
+- **hnswlib**: the base image `python:3.11-slim` has no compiler, and the PyPI package is
+  distributed as source. `g++` was added.
+- **ACORN**: `zlib1g-dev` was missing; `BUILD_TESTING=ON` from the README aborts generation on
+  CMake 3.22; the root `CMakeLists.txt` adds the `nlohmann_json` path to the `faiss` target as
+  PUBLIC without a `$<BUILD_INTERFACE:>` wrapper, so CMake rejects the export set.
+  Resolved with `-DCMAKE_SKIP_INSTALL_RULES=ON`: the library need not be installed system-wide.
+- **Filtered-DiskANN**: `libmkl-full-dev` asks an interactive question and hangs the build;
+  CMakeLists requires Intel OpenMP and tries three fixed paths, none of which is where
+  `libomp-14-dev` puts `libiomp5.so`. `-DOMP_PATH` is set explicitly.
+- **UNG**: MKL, listed among the dependencies, is not needed by the project itself;
+  `codes/CMakeLists.txt` requires only Boost and OpenMP.
 
-### Уточнение по Filtered-DiskANN
+### Note on Filtered-DiskANN
 
-Ветка `main` репозитория `microsoft/DiskANN` переписана на Rust, и C++-кода в её истории
-нет вовсе: запрос коммитов старше 2025-01-01 не возвращает ничего. Реализация,
-соответствующая статье Filtered-DiskANN (SIGMOD 2023) и сопоставимая с опубликованными
-результатами, живёт в ветке `cpp_main`, последний коммит — май 2026. Работа использует её.
-Rust-версия — другой код с другими характеристиками; при необходимости она может стать
-самостоятельным объектом измерения, но не заменой C++-реализации.
+The `main` branch of `microsoft/DiskANN` was rewritten in Rust, and its history contains no
+C++ code at all: a query for commits older than 2025-01-01 returns nothing. The implementation
+matching the Filtered-DiskANN paper (WWW 2023) and comparable with published results lives in
+the `cpp_main` branch, last commit May 2026. This work uses it. The Rust version is different
+code with different characteristics; it may become a separate object of measurement, but not a
+replacement for the C++ implementation.
 
-### Оговорка о воспроизводимости сборки
+### Note on build reproducibility
 
-`codes/CMakeLists.txt` UNG собирает Release с `-march=native -mtune=native`. Двоичный код
-привязан к процессору стенда (AMD EPYC 9754). При переносе измерений на другое железо
-образ нужно пересобирать, а не копировать.
+UNG's `codes/CMakeLists.txt` builds Release with `-march=native -mtune=native`. The binary is
+tied to the testbed processor (AMD EPYC 9754). When moving measurements to other hardware the
+image must be rebuilt, not copied.
 
-## Проверка динамики на практике (2026-09-29)
+## Dynamics in practice (2026-09-29)
 
-Чтение кода говорит, что метод умеет; прогон показывает, работает ли это. При подключении
-методов к прогонщику сценариев выяснилось следующее.
+Reading the code tells what a method can do; a run shows whether it works. Attaching the
+methods to the scenario runner revealed the following.
 
-**ACORN: повторная вставка падает.** При d = 128 третий вызов `IndexACORNFlat::add`
-(пакеты 10 000 + 2 000 + 2 000) завершается segfault при любом `OMP_NUM_THREADS`; при d = 32
-и меньших пакетах падения нет. Минимальный пример без обвязки протокола —
-`adapters/acorn/repro_repeated_add.cpp`. Кроме того, `add` на каждый вызов заводит массив из
-`ntotal` блокировок, так что одиночная вставка стоит O(N) и для потока вставок непригодна даже
-без падения. В драйвере `adapters/acorn/fanndyn_driver.cpp` вставки буферизуются до контрольной
-точки, но это падение не обходит. Вывод для протокола: ACORN фактически метод однократного
-построения, и его ответ на изменение данных — только полная перестройка.
+**ACORN: repeated insertion crashes.** With d = 128 the third call to `IndexACORNFlat::add`
+(batches of 10,000 + 2,000 + 2,000) ends in a segfault at any `OMP_NUM_THREADS`; with d = 32
+and smaller batches there is no crash. A minimal example without the protocol wrapper is
+`adapters/acorn/repro_repeated_add.cpp`. Besides, `add` allocates an array of `ntotal` locks on
+every call, so a single insertion costs O(N) and is unusable for an insertion stream even
+without the crash. The driver `adapters/acorn/fanndyn_driver.cpp` buffers insertions until a
+checkpoint, but that does not avoid the crash. Conclusion for the protocol: ACORN is effectively
+a build-once method, and its only response to data changes is a full rebuild.
 
-**Filtered-DiskANN: фильтрованный поиск в динамическом индексе требует обходного пути.**
-`search_with_tags` с фильтром ищет метку в строковом словаре `_label_map`, который у
-динамического индекса не заполняется, а публичный `search_with_filters` возвращает внутренние
-номера слотов и не отбрасывает лениво удалённые точки. Драйвер
-`adapters/filtered_diskann/fanndyn_driver.cpp` заполняет словарь через явное инстанцирование
-шаблона; исходники DiskANN не меняются. Узкий фильтр (1,4 % коллекции) динамический индекс не
-обслуживает даже свежим: у стартовой точки метки почти нет соседей той же метки
-(ср. microsoft/DiskANN#550).
+**Filtered-DiskANN: filtered search in a dynamic index needs a workaround.**
+`search_with_tags` with a filter looks up the label in the string dictionary `_label_map`, which
+a dynamic index does not fill, and the public `search_with_filters` returns internal slot
+numbers and does not drop lazily deleted points. The driver
+`adapters/filtered_diskann/fanndyn_driver.cpp` fills the dictionary through explicit template
+instantiation; the DiskANN sources are not modified. A narrow filter (1.4 % of the collection)
+is not served by the dynamic index even when fresh: the label's start point has almost no
+neighbors with the same label (cf. microsoft/DiskANN#550).
 
-**UNG: подключён как статический индекс с перестройкой по порогу.** Драйвер
-`adapters/ung/fanndyn_driver.cpp`: между перестройками индекс обслуживает прежнюю коллекцию,
-удалённые объекты отфильтровываются из ответа, новые не видны; при доле удалённых из индекса
-не меньше порога от живых индекс строится заново. Метки сдвигаются на +1 — метка 0 занята
-корнем префиксного дерева. Поиск пакетный, поэтому задержка — среднее по пакету.
+**UNG: attached as a static index rebuilt at a threshold.** Driver
+`adapters/ung/fanndyn_driver.cpp`: between rebuilds the index serves the previous collection,
+deleted objects are filtered out of answers, new ones are invisible; when the share of deleted
+objects in the index reaches the threshold relative to the live count, the index is rebuilt.
+Labels are shifted by +1, since label 0 is taken by the trie root. Search is batched, so latency
+is the batch mean.
 
-**Filtered-DiskANN: метки объекта при вставке должны быть отсортированы.**
-`detect_common_filters` пересекает метки вершины и фильтра методом двух указателей и требует
-сортировки обоих списков; `insert_point(point, tag, labels)` это не проверяет. С несортированными
-метками объект не находится по своей не первой метке: на YFCC до исправления 97–99 % промахов
-фильтрованного поиска приходились на такие объекты, а полнота с тегом на 19 % коллекции
-упиралась в 0,93 при любых параметрах. Драйвер сортирует метки перед вставкой; для объектов с
-одной меткой (SIFT) ошибка не проявлялась.
+**Filtered-DiskANN: an object's labels must be sorted on insertion.**
+`detect_common_filters` intersects the labels of a vertex and of the filter with two pointers and
+requires both lists to be sorted; `insert_point(point, tag, labels)` does not check this. With
+unsorted labels an object is not found by any label but its first: on YFCC, before the fix,
+97-99 % of filtered search misses fell on such objects, and recall with a tag covering 19 % of
+the collection was stuck at 0.93 for any parameters. The driver sorts labels before insertion;
+for single-label objects (SIFT) the bug did not show.

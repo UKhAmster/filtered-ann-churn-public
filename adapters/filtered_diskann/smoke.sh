@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Дымовой прогон Filtered-DiskANN на синтетических данных.
-# Цепочка собрана из собственных утилит проекта: генерация векторов и меток,
-# построение фильтрованного индекса, поиск с предикатом по метке.
+# Filtered-DiskANN smoke run on synthetic data.
+# The chain uses the project's own utilities: generation of vectors and labels,
+# building a filtered index, search with a label predicate.
 set -euo pipefail
 cd /src
 
@@ -18,7 +18,7 @@ mkdir -p "$DATA"
 ./build/apps/utils/generate_synthetic_labels \
     --num_labels 12 --num_points "$N" --output_file "$DATA/labels.txt"
 
-# FilteredLbuild включает фильтрованное построение: без него метки игнорируются.
+# FilteredLbuild enables filtered construction: without it labels are ignored.
 ./build/apps/build_memory_index \
     --data_type float --dist_fn l2 \
     --data_path "$DATA/base.bin" --index_path_prefix "$DATA/index" \

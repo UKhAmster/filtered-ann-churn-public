@@ -1,11 +1,11 @@
-// Драйвер hnswlib для протокола fanndyn (формат ввода-вывода — adapters/common/fanndyn_io.h).
+// hnswlib driver for the fanndyn protocol (input/output format: adapters/common/fanndyn_io.h).
 //
-// Заменяет пилотный прогон через Python-обвязку: фильтр вызывается из C++, поэтому задержка
-// не содержит накладных расходов интерпретатора, а работа поиска считается точно — через
-// пространство L2, увеличивающее счётчик потока при каждом вычислении расстояния.
+// Replaces the pilot run through the Python binding: the filter is called from C++, so latency
+// has no interpreter overhead, and search work is counted exactly, through an L2 space
+// that increments a per-thread counter on every distance computation.
 //
-// Режимы удаления: mark — markDelete, новые точки занимают новые места; replace — новые
-// точки занимают места помеченных (allow_replace_deleted).
+// Deletion modes: mark - markDelete, new points take new slots; replace - new
+// points take the slots of marked ones (allow_replace_deleted).
 #include "hnswlib/hnswlib.h"
 
 #include <memory>
@@ -128,7 +128,7 @@ int main(int argc, char **argv) {
             std::cerr << "checkpoint " << ck << " deleted=" << deleted_total << std::endl;
             ck++;
         } else {
-            throw std::runtime_error("неизвестный вид операции " + std::to_string(kind));
+            throw std::runtime_error("unknown operation kind " + std::to_string(kind));
         }
     }
     return 0;

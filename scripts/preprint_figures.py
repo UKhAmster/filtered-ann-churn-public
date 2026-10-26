@@ -1,10 +1,10 @@
-"""Рисунки препринта (на английском) из тех же результатов, что и рисунки ВКР.
+"""Preprint figures, built from the same results as the thesis figures.
 
-fig_mechanisms.png — YFCC, трёхкратный оборот: полнота и работа на запрос по фильтрам;
-fig_laws.png       — три закона деградации: наблюдение против модели;
-fig_selectivity.png — показатели в зависимости от доли тега.
+fig_mechanisms.png - YFCC, three-fold churn: recall and work per query by filter;
+fig_laws.png       - three degradation laws: observation versus model;
+fig_selectivity.png - metrics as a function of the tag share.
 
-Пример:
+Example:
     .venv/bin/python scripts/preprint_figures.py paper/figures
 """
 
@@ -62,7 +62,7 @@ def fig_mechanisms(out: Path) -> None:
 
 def fig_laws(out: Path) -> None:
     fig, axes = plt.subplots(1, 3, figsize=(12, 3.6))
-    # (a) hnswlib: работа от доли живых вершин.
+    # (a) hnswlib: work versus the live share of vertices.
     ax = axes[0]
     d = pd.read_csv(YFCC / "hnswlib" / "steady_churn-mark.csv")
     d = d[d.checkpoint != "rebuild"]
@@ -80,7 +80,7 @@ def fig_laws(out: Path) -> None:
     ax.set_title("(a) HNSW, mark-delete: W = W0 p^(-beta)")
     ax.legend(fontsize=7)
     ax.grid(alpha=0.3)
-    # (b) Filtered-DiskANN: полнота против модели L_eff = L p^alpha.
+    # (b) Filtered-DiskANN: recall versus the model L_eff = L p^alpha.
     ax = axes[1]
     curve = elm.fresh_curve()
     runs = elm.trajectories()
@@ -104,7 +104,7 @@ def fig_laws(out: Path) -> None:
     ax.plot([], [], "o", color="grey", ms=3.5, mfc="white", label="alpha = 1 (pure crowding)")
     ax.legend(fontsize=7, loc="lower right")
     ax.grid(alpha=0.3)
-    # (c) UNG: средняя полнота против 1 - t/2 (SIFT, три зерна, три фильтра).
+    # (c) UNG: mean recall versus 1 - t/2 (SIFT, three seeds, three filters).
     ax = axes[2]
     for root, marker in zip(["results/pilot_ung_3x", "results/pilot_ung_3x_seed8", "results/pilot_ung_3x_seed9"],
                             ["o", "s", "^"]):  # fmt: skip
@@ -128,7 +128,7 @@ def fig_laws(out: Path) -> None:
 
 
 def fig_selectivity(out: Path) -> None:
-    """Среднее по повторам с разбросом «минимум — максимум», если есть derived_seeds.csv."""
+    """Mean over repeats with a min-max range, if derived_seeds.csv exists."""
     seeds = Path("results/yfcc/selectivity/derived_seeds.csv")
     spread = seeds.exists()
     raw = pd.read_csv(seeds if spread else "results/yfcc/selectivity/derived.csv")

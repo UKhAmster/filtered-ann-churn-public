@@ -1,4 +1,4 @@
-"""Эталон точного поиска с фильтром и полнота по запросам."""
+"""Exact filtered search ground truth and per-query recall."""
 
 from __future__ import annotations
 
@@ -8,9 +8,9 @@ import numpy as np
 def filtered_ground_truth(
     queries: np.ndarray, base: np.ndarray, allowed: np.ndarray, k: int
 ) -> list[np.ndarray]:
-    """Точные k ближайших (L2) среди идентификаторов allowed; base индексируется по id.
+    """Exact k nearest (L2) among ids in allowed; base is indexed by id.
 
-    Если допустимых объектов меньше k, эталон короче k.
+    If fewer than k objects are allowed, the ground truth is shorter than k.
     """
     if len(allowed) == 0:
         return [np.array([], dtype=np.int64) for _ in queries]
@@ -27,7 +27,7 @@ def filtered_ground_truth(
 
 
 def recall_per_query(found: list[np.ndarray], truth: list[np.ndarray]) -> np.ndarray:
-    """Доля эталона, найденная методом; NaN для запросов с пустым эталоном."""
+    """Share of the ground truth found by the method; NaN for queries with empty ground truth."""
     out = np.full(len(truth), np.nan)
     for i, (f, t) in enumerate(zip(found, truth)):
         if len(t):

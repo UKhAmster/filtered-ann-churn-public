@@ -1,10 +1,10 @@
-"""Набор YFCC-10M (фильтрованный трек big-ann-benchmarks NeurIPS'23): настоящие теги.
+"""YFCC-10M (filtered track of big-ann-benchmarks NeurIPS'23): real tags.
 
-Словарь тегов сокращается до запрашиваемых: каждый объект получает метки из числа
-выбранных тегов, а объект без них — метку «прочее». На ответы для фильтров по выбранным
-тегам это не влияет, а динамическому Filtered-DiskANN нужно не меньше стартовых точек, чем
-меток, что при исходном словаре в 200 тыс. тегов невозможно. Сокращение одинаково для всех
-методов.
+The tag vocabulary is reduced to the queried tags: each object gets labels among the
+selected tags, and an object with none of them gets the label "other". This does not
+change answers for filters on the selected tags, while dynamic Filtered-DiskANN needs at
+least as many start points as labels, which is impossible with the original vocabulary of
+200k tags. The reduction is the same for all methods.
 """
 
 from __future__ import annotations
@@ -17,10 +17,10 @@ from fanndyn.data import read_spmat
 
 
 def reduce_tags(ptr: np.ndarray, idx: np.ndarray, keep: list[int]) -> tuple[np.ndarray, np.ndarray]:
-    """CSR с метками 0..len(keep)-1 по порядку keep; объекты без них — метка len(keep).
+    """CSR with labels 0..len(keep)-1 in the order of keep; objects without them get len(keep).
 
-    Метки объекта отсортированы: Filtered-DiskANN пересекает списки меток методом двух
-    указателей и без сортировки не находит вершину по её не первой метке.
+    Labels of an object are sorted: Filtered-DiskANN intersects label lists with two
+    pointers and, without sorting, fails to find a vertex by any label but its first.
     """
     remap = {int(t): i for i, t in enumerate(keep)}
     other = len(keep)
@@ -34,7 +34,7 @@ def reduce_tags(ptr: np.ndarray, idx: np.ndarray, keep: list[int]) -> tuple[np.n
 
 
 def label_mask(ptr: np.ndarray, idx: np.ndarray, label: int) -> np.ndarray:
-    """Булева маска объектов, у которых есть метка label."""
+    """Boolean mask of objects that carry label."""
     n = len(ptr) - 1
     rows = np.repeat(np.arange(n), np.diff(ptr).astype(np.int64))
     mask = np.zeros(n, dtype=bool)
@@ -43,6 +43,6 @@ def label_mask(ptr: np.ndarray, idx: np.ndarray, label: int) -> np.ndarray:
 
 
 def queries_with_tag(meta_path: Path, tag: int, limit: int) -> np.ndarray:
-    """Номера первых limit запросов, у которых среди тегов есть tag."""
+    """Indices of the first limit queries whose tags include tag."""
     ptr, idx = read_spmat(meta_path)
     return np.flatnonzero(label_mask(ptr, idx, tag))[:limit]

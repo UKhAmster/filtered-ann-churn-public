@@ -1,11 +1,11 @@
-"""Закон роста работы hnswlib при удалении пометкой: W(p) = W0 * p ** (-beta).
+"""Work growth law of hnswlib with mark-delete: W(p) = W0 * p ** (-beta).
 
-p — доля живых вершин графа: при стационарном обороте без переиспользования мест
-p = n_base / (n_base + число операций). beta подбирается методом наименьших квадратов в
-логарифмах (регрессия через начало координат) по каждому фильтру; печатается beta и средняя
-относительная ошибка предсказания.
+p is the live share of graph vertices: under steady churn without slot reuse
+p = n_base / (n_base + number of operations). beta is fitted by least squares in
+logarithms (regression through the origin) for each filter; beta and the mean
+relative prediction error are printed.
 
-Пример:
+Example:
     .venv/bin/python scripts/work_law.py results/yfcc/churn_3x/hnswlib/steady_churn-mark.csv
     .venv/bin/python scripts/work_law.py results/pilot_3x/steady_churn-mark.csv --col latency_ms_mean
 """
@@ -20,7 +20,7 @@ import pandas as pd
 
 
 def fit_beta(steps: np.ndarray, work: np.ndarray, n_base: int) -> tuple[float, float]:
-    """beta и средняя относительная ошибка; первая точка — свежий индекс (p = 1)."""
+    """beta and mean relative error; the first point is the fresh index (p = 1)."""
     p = n_base / (n_base + steps)
     ratio = work / work[0]
     x, y = -np.log(p[1:]), np.log(ratio[1:])

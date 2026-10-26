@@ -1,17 +1,17 @@
-// Общий ввод-вывод драйверов протокола fanndyn.
+// Shared input/output of fanndyn protocol drivers.
 //
-// Каталог прогона (--dir):
-//   base.bin              векторы, формат DiskANN: uint32 n, uint32 d, float32 n*d
-//   labels_ptr.u64        метки в CSR: n+1 смещений
-//   labels_idx.u32        метки в CSR: номера меток
-//   ops.u32               поток операций: вид, число id, id...
-//                         (1 — вставка, 2 — удаление, 3 — контрольная точка)
-//   query.bin             запросы по умолчанию
-//   query_f<j>.bin        запросы для фильтра j, если есть (иначе query.bin)
-// Выход для контрольной точки i и фильтра j:
-//   res_c<i>_f<j>.u32     nq*K id, 0xFFFFFFFF — нет результата
-//   lat_c<i>_f<j>.f32     мс на запрос
-//   cmps_c<i>_f<j>.u32    вычислений расстояний на запрос
+// Run directory (--dir):
+//   base.bin              vectors, DiskANN format: uint32 n, uint32 d, float32 n*d
+//   labels_ptr.u64        labels in CSR: n+1 offsets
+//   labels_idx.u32        labels in CSR: label ids
+//   ops.u32               operation stream: kind, number of ids, ids...
+//                         (1 - insert, 2 - delete, 3 - checkpoint)
+//   query.bin             default queries
+//   query_f<j>.bin        queries for filter j, if present (otherwise query.bin)
+// Output for checkpoint i and filter j:
+//   res_c<i>_f<j>.u32     nq*K ids, 0xFFFFFFFF means no result
+//   lat_c<i>_f<j>.f32     ms per query
+//   cmps_c<i>_f<j>.u32    distance computations per query
 #pragma once
 
 #include <algorithm>
@@ -32,7 +32,7 @@ constexpr uint32_t kMissing = 0xFFFFFFFFu;
 
 template <typename V> inline std::vector<V> read_raw(const std::string &path) {
     std::ifstream in(path, std::ios::binary | std::ios::ate);
-    if (!in) throw std::runtime_error("нет файла " + path);
+    if (!in) throw std::runtime_error("no file " + path);
     auto size = in.tellg();
     in.seekg(0);
     std::vector<V> out(size / sizeof(V));
@@ -42,7 +42,7 @@ template <typename V> inline std::vector<V> read_raw(const std::string &path) {
 
 inline std::vector<float> read_bin(const std::string &path, uint32_t &n, uint32_t &d) {
     std::ifstream in(path, std::ios::binary);
-    if (!in) throw std::runtime_error("нет файла " + path);
+    if (!in) throw std::runtime_error("no file " + path);
     in.read(reinterpret_cast<char *>(&n), 4);
     in.read(reinterpret_cast<char *>(&d), 4);
     std::vector<float> out(size_t(n) * d);
@@ -104,13 +104,13 @@ inline std::vector<int> parse_filters(const std::string &arg) {
     return out;
 }
 
-// Аргументы вида --ключ значение; неизвестный ключ — ошибка.
+// Arguments of the form --key value; an unknown key is an error.
 struct Args {
     std::map<std::string, std::string> kv;
     Args(int argc, char **argv, const std::map<std::string, std::string> &defaults) : kv(defaults) {
         for (int i = 1; i + 1 < argc; i += 2) {
             std::string k = argv[i];
-            if (k.rfind("--", 0) != 0 || !kv.count(k.substr(2))) throw std::runtime_error("неизвестный параметр " + k);
+            if (k.rfind("--", 0) != 0 || !kv.count(k.substr(2))) throw std::runtime_error("unknown parameter " + k);
             kv[k.substr(2)] = argv[i + 1];
         }
     }

@@ -1,9 +1,9 @@
-"""Графики замеров на YFCC: полнота и работа на запрос по мере обновления коллекции.
+"""YFCC plots: recall and work per query as the collection is updated.
 
-Работа — среднее число вычислений расстояний на запрос относительно свежего индекса
-(контрольная точка base того же прогона): величина не зависит от машины.
+Work is the mean number of distance computations per query relative to a fresh index
+(the base checkpoint of the same run), a machine-independent quantity.
 
-Пример:
+Example:
     .venv/bin/python scripts/plot_yfcc.py results/yfcc/churn_3x results/yfcc/churn_3x
 """
 
